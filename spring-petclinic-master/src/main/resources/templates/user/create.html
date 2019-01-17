@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html th:replace="~{fragments/layout :: layout (~{::body},'user_create')}">
+    <head>
+        <title>Usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>    
+        <div style="display:flex">
+            <div style="margin: auto">
+                <form action="#" th:action="@{/user/create}" th:object="${user}" method="post">
+                    <div style="display:flex;">
+                        <!--FirstName-->
+                        <div style="margin: auto;display: flex; width: 450px">
+                            <h3 style="margin:auto; margin-right: 60px;">FirstName</h3>
+                            <input style="margin:auto; margin-left: 0px; border:0px; border-radius: 3px; text-align: center; width: 80%;" type="text" th:field="*{firstName}" required="required" />
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <!--LastName-->
+                        <div style="margin: auto;display: flex; width: 450px">
+                            <h3 style="margin:auto; margin-right: 62px;">LastName</h3>
+                            <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width: 80%;" type="text" th:field="*{lastName}" required="required" />
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <!--Identifier-->
+                        <div style="margin: auto;display: flex; width: 450px">
+                            <h3 style="margin:auto; margin-right: 42px;">Identificador</h3>
+                            <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width: 80%;" type="text" th:field="*{identifier}" required="required" />                           
+                        </div>
+                        <div style="margin: auto;width: 450px">
+                            <label style="width: 100%;text-align: center; background-color: red; margin-top: 20px; padding: 5px; border-radius: 3px;" th:if="${#fields.hasErrors('identifier')}">El <strong>identificador</strong> no puede ser usado, verique el dato</label>                               
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <!--Active-->
+                        <div style="margin: auto;display: flex; width: 450px">
+                            <h3 style="margin:auto; margin-right: 92px;">Activo</h3>
+                            <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width: 80%;" type="text" th:field="*{active}" required="required" />                           
+                        </div>
+                        <div style="margin: auto;width: 450px">
+                            <label style="width: 100%; text-align: center; background-color: red; margin-top: 20px; padding: 5px; border-radius: 3px;" th:if="${#fields.hasErrors('active')}">El <strong>activo</strong> no puede ser usado, verique el dato</label>                               
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <!--Active-->
+                        <div style="margin: auto;display: flex; width: 450px">
+                            <h3 style="margin:auto;width:142px">Código Postal</h3>
+                            <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width:70%;" type="text" th:field="*{zipcode}" required="required" />                           
+                        </div>
+                        <div style="margin: auto;width: 450px">                              
+                            <label style="width: 100%; text-align: center; background-color: red; margin-top: 20px; padding: 5px; border-radius: 3px;" th:if="!${exitsZipcode}">El <strong>código Postal</strong> no existe, verique el dato</label>                               
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;">
+                            <button
+                                class="btn btn-default" type="submit">Add User</button>
+                        </div>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </body>
+</html>
