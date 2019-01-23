@@ -5,12 +5,14 @@
  */
 package org.springframework.samples.petclinic.user;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,6 +35,10 @@ public class User extends Person {
     @NotNull
     private String password;
 
+    @Column(name = "telephone")
+    @NotNull
+    private String telephone;
+    
     @Column(name = "active")
     @NotNull
     @Size(min=1, max=1)
@@ -49,6 +55,14 @@ public class User extends Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public String getTelephone() {
+        return this.telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getActive() {
