@@ -5,6 +5,7 @@
  */
 package org.springframework.samples.petclinic.user;
 
+import java.nio.charset.StandardCharsets;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Map;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -49,6 +51,7 @@ public class UserController {
     public ModelAndView SaveUser(@Valid User user, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
+        String password = user.getPassword();
         if (result.hasErrors()) {
             return modelAndView;
         } else {
@@ -62,6 +65,8 @@ public class UserController {
                 return modelAndView;
             }
             modelAndView.setViewName("Usuario");
+            password = DigestUtils.sha256Hex(password);
+            user.setPassword(password);
             this.users.save(user);
             return modelAndView;
         }
