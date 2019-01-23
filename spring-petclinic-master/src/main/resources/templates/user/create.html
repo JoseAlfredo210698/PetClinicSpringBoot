@@ -31,11 +31,11 @@ and open the template in the editor.
                     <div style="margin-top: 20px">
                         <!--Identifier-->
                         <div style="margin: auto;display: flex; width: 450px">
-                            <h3 style="margin:auto; margin-right: 42px;">Identificador</h3>
-                            <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width: 80%;" type="text" th:field="*{identifier}" required="required" />                           
+                            <h3 style="margin:auto; margin-right: 42px;">Password</h3>
+                            <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width: 80%;" type="password" th:field="*{password}" required="required" />                           
                         </div>
                         <div style="margin: auto;width: 450px">
-                            <label style="width: 100%;text-align: center; background-color: red; margin-top: 20px; padding: 5px; border-radius: 3px;" th:if="${#fields.hasErrors('identifier')}">El <strong>identificador</strong> no puede ser usado, verique el dato</label>                               
+                            <label style="width: 100%;text-align: center; background-color: red; margin-top: 20px; padding: 5px; border-radius: 3px;" th:if="${#fields.hasErrors('password')}">El <strong>identificador</strong> no puede ser usado, verique el dato</label>                               
                         </div>
                     </div>
                     <div style="margin-top: 20px">
@@ -56,6 +56,13 @@ and open the template in the editor.
                         </div>
                         <div style="margin: auto;width: 450px">                              
                             <label style="width: 100%; text-align: center; background-color: red; margin-top: 20px; padding: 5px; border-radius: 3px;" th:if="!${exitsZipcode}">El <strong>código Postal</strong> no existe, verique el dato</label>                               
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <!--Active-->
+                        <div style="margin: auto;display: flex; width: 450px">
+                            <h3 style="margin:auto;width:142px">Telefono</h3>
+                            <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width:70%;" type="text" th:field="*{telephone}"  />                           
                         </div>
                     </div>
                     <div class="form-group">
