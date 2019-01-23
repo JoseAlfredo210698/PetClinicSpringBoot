@@ -29,30 +29,26 @@ import org.springframework.samples.petclinic.model.Person;
 @Table(name = "users")
 
 public class User extends Person {
-    @Column(name = "identifier")
-    @NotEmpty
+    @Column(name = "password")
     @NotNull
-    @Size(min=2, max=30)
-    private String identifier;
+    private String password;
 
     @Column(name = "active")
-    @NotEmpty
     @NotNull
     @Size(min=1, max=1)
     private String active;
 
     @Column(name = "zipcode")
-    @NotEmpty
     @NotNull
     @Size(min=5, max=10)
     private String zipcode; 
     
-    public String getIdentifier() {
-        return this.identifier;
+    public String getPassword() {
+        return this.password;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getActive() {
