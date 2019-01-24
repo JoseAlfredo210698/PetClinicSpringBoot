@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
@@ -20,6 +21,7 @@ import javax.validation.constraints.Size;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
+import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Person;
  
 /**
@@ -30,9 +32,14 @@ import org.springframework.samples.petclinic.model.Person;
 @Entity
 @Table(name = "users")
 
-public class User extends Person {
+public class User extends Person{
+
+    @Column(name = "email")
+    @NotEmpty
+    private String email;
+    
     @Column(name = "password")
-    @NotNull
+    @NotEmpty
     private String password;
 
     @Column(name = "telephone")
@@ -40,14 +47,22 @@ public class User extends Person {
     private String telephone;
     
     @Column(name = "active")
-    @NotNull
-    @Size(min=1, max=1)
+    @NotEmpty
+    @Max(1)
     private String active;
 
     @Column(name = "zipcode")
-    @NotNull
+    @NotEmpty
     @Size(min=5, max=10)
     private String zipcode; 
+ 
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }    
     
     public String getPassword() {
         return this.password;
@@ -79,6 +94,16 @@ public class User extends Person {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+    
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+            .append("id", this.getId()).append("new", this.isNew())
+            .append("lastName", this.getLastName())
+            .append("firstName", this.getFirstName())
+            .append("email", this.email)
+            .toString();
     }
 
 }
