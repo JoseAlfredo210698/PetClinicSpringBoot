@@ -18,6 +18,8 @@ package org.springframework.samples.petclinic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * PetClinic Spring Boot Application.
@@ -32,4 +34,9 @@ public class PetClinicApplication {
         SpringApplication.run(PetClinicApplication.class, args);
     }
 
+    @Bean
+    public RestTemplate getRestTemplate() {
+      return new RestTemplate();
+    }
+    
 }
