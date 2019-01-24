@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html
+    th:replace="~{fragments/layout :: layout (~{::body},'list')}">
+    <head>
+        <title>Hola mundo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Usuarios existentes</h1>
+        <table id="vets" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Zipcode</th>
+                <th>Status</th>
+                <th>Telephone</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr th:each="user : ${users}">
+                  <td>
+                      <a th:href="@{/user/UpdateDelete/__${user.id}__}" th:text="${user.email}" style="color:#6db33f"/></a>
+                  </td>
+                  <td th:text="${user.firstName + ' ' + user.lastName}"></td>
+                  <td th:text="${user.zipcode}"/>
+                  <td th:text="${user.active}"/>
+                  <td th:text="${user.telephone}"/>
+              </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
