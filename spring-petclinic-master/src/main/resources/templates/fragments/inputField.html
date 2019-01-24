@@ -9,6 +9,7 @@
         <div class="col-sm-10">
             <div th:switch="${type}">
                 <input th:case="'text'" class="form-control" type="text" th:field="*{__${name}__}" />
+                <input th:case="'password'" class="form-control" type="password" th:field="*{__${name}__}" />
                 <input th:case="'date'" class="form-control" type="text" th:field="*{__${name}__}"
                         placeholder="YYYY-MM-DD" title="Enter a date in this format: YYYY-MM-DD"
                         pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"/>
@@ -16,7 +17,24 @@
           <span th:if="${valid}"
             class="glyphicon glyphicon-ok form-control-feedback"
             aria-hidden="true"></span>
-          <th:block th:if="${!valid}">
+          
+           <!--Especifico para zipcode-->
+          <th:block th:if="!${exitsZipcode} and ${name} == 'zipcode'">
+            <span
+              class="glyphicon glyphicon-remove form-control-feedback"
+              aria-hidden="true"></span>
+            <span class="help-inline">ZipCode no encontrado</span>
+          </th:block>
+           
+          <!--Especifico para email-->
+          <th:block th:if="!${exitsEmail} and ${name} == 'email'">
+            <span
+              class="glyphicon glyphicon-remove form-control-feedback"
+              aria-hidden="true"></span>
+            <span class="help-inline">El email no puede ser utilizado</span>
+          </th:block>
+           
+          <th:block th:if="${!valid} and ${name} != 'zipcode' and ${name} != 'email'">
             <span
               class="glyphicon glyphicon-remove form-control-feedback"
               aria-hidden="true"></span>
