@@ -2,6 +2,8 @@ org\springframework\samples\petclinic\owner\Pets.class
 org\springframework\samples\petclinic\system\CrashController.class
 org\springframework\samples\petclinic\owner\OwnerRepository.class
 org\springframework\samples\petclinic\owner\PetValidator.class
+org\springframework\samples\petclinic\user\UserController.class
+org\springframework\samples\petclinic\user\UserRepository.class
 org\springframework\samples\petclinic\vet\VetTypeFormatter.class
 org\springframework\samples\petclinic\medicamento\MedicamentoRepository.class
 org\springframework\samples\petclinic\vet\Vet.class
@@ -26,5 +28,6 @@ org\springframework\samples\petclinic\vet\VetController.class
 org\springframework\samples\petclinic\owner\OwnerController.class
 org\springframework\samples\petclinic\owner\Pet.class
 org\springframework\samples\petclinic\system\CacheConfiguration.class
+org\springframework\samples\petclinic\user\User.class
 org\springframework\samples\petclinic\model\NamedEntity.class
 org\springframework\samples\petclinic\PetClinicApplication.class
