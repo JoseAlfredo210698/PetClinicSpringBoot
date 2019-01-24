@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -29,7 +30,9 @@ import org.springframework.web.client.RestTemplate;
  */
 @Controller
 public class UserController {
-    private String URL_api_zipcode = "https://api-codigos-postales.herokuapp.com/v2/buscar?codigo_postal=";
+
+    @Autowired
+    private UserService userService;
     
     private final UserRepository users;
 
@@ -44,6 +47,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("user/create");
         modelAndView.addObject("user", user);
         modelAndView.addObject("exitsZipcode", true);
+        modelAndView.addObject("exitsEmail", true);
         return modelAndView;
     }
     
@@ -52,23 +56,29 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
         String password = user.getPassword();
+        
         if (result.hasErrors()) {
             return modelAndView;
         } else {
-            Object quote = restTemplate.getForObject(this.URL_api_zipcode+user.getZipcode(), Object.class);
-            String data = quote.toString();
-            data = data.substring(data.indexOf("[")+1, data.length()-2);
+            User _user = this.users.findByEmail(user.getEmail());
             
-            if(data.length() == 0){
+            if(userService.exitsZipCode(user.getZipcode())){
                 modelAndView.setViewName("user/create");
                 modelAndView.addObject("exitsZipcode", false);
                 return modelAndView;
             }
-            modelAndView.setViewName("Usuario");
-            password = DigestUtils.sha256Hex(password);
-            user.setPassword(password);
-            this.users.save(user);
-            return modelAndView;
+
+            if(_user == null){
+                modelAndView.setViewName("Usuario");
+                password = DigestUtils.sha256Hex(password);
+                user.setPassword(password);   
+                this.users.save(user);
+                return modelAndView;
+            }else{
+                modelAndView.setViewName("user/create");
+                modelAndView.addObject("exitsEmail", false); 
+                return modelAndView;
+            }
         }
     }
 
