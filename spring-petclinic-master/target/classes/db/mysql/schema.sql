@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS owners (
 
 CREATE TABLE IF NOT EXISTS users (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(30),
+  first_name VARCHAR(30) UNIQUE,
   last_name VARCHAR(30),
   status INT NOT NULL,
-  address VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   telephone VARCHAR(20),
   zipcode VARCHAR(50) NOT NULL,
 ) engine=InnoDB;
