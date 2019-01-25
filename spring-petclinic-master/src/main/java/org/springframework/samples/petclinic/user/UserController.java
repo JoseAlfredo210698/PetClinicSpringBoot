@@ -101,21 +101,23 @@ public class UserController {
    
     @GetMapping("/UpdateDelete/{id}")
     public ModelAndView update_delete(@PathVariable("id") int id) {
-        modelAndView = new ModelAndView("update_delete");
+        modelAndView = new ModelAndView("user/update_delete");
         modelAndView.addObject("user", users.findById(id));
         return modelAndView;
     }
    
     
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public ModelAndView Update(@Valid User user, @PathVariable("id") int id) {
-        modelAndView.setViewName("user/update_delete");
+        user.setId(id);
+        this.users.save(user);
+        modelAndView = this.ViewListUser();
         return modelAndView;
     }
     
-    @DeleteMapping("/delete/{id}")
-    public ModelAndView Delete(@Valid User user, @PathVariable("id") int id) {
-        modelAndView.setViewName("user/update_delete");
+    @PostMapping("/delete/{id}")
+    public ModelAndView Delete(@PathVariable("id") int id) {
+        modelAndView.setViewName("user/list");
         return modelAndView;
     }
     
