@@ -7,12 +7,138 @@ and open the template in the editor.
 <html
     th:replace="~{fragments/layout :: layout (~{::body},'update_delete')}">
     <head>
-        <title>Hello Word</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-  <h2>Actualizar o Eliminar usuarios</h2>
+        <h1>Actualizar o Eliminar usuarios</h1>
+        <form th:object="${user}"  th:action="@{/user/update/__${user.id}__}"  id="form" method="post">
+            <table class="table table-striped" th:object="${user}">
+              <tr>
+                <th>Email</th>
+                <td>
+                    <input
+                        id="email"
+                        type="text" 
+                        style="outline:0; background-color: transparent; border: 0px;" 
+                        th:value="${user.email}"
+                        th:field="*{email}"
+                        disabled
+                        >
+                    <input
+                        type="text" 
+                        style="display:none"
+                        th:value="${user.password}"
+                        th:field="*{password}"
+                        >
+                </td>
+              </tr>
+              <tr>
+                <th>FirstName</th>
+                <td>
+                    <input 
+                        id="first_name"
+                        type="text" 
+                        style="outline:0; background-color: transparent; border: 0px;" 
+                        th:value="${user.firstName}" 
+                        th:field="*{firstName}"
+                        disabled>
+                </td>
+              </tr>
+              <tr>
+                <th>LastName</th>
+                <td>
+                    <input 
+                        id="last_name"
+                        type="text" 
+                        style="outline:0; background-color: transparent; border: 0px;" 
+                        th:value="${user.lastName}" 
+                        th:field="*{lastName}"
+                        disabled>
+                </td>
+              </tr>
+              <tr>
+                <th>Active</th>
+                <td>
+                    <input
+                        id="active"
+                        style="outline:0; background-color: transparent; border: 0px;" 
+                        type="text" 
+                        th:value="${user.active} == 1? 'Si': 'No'"  
+                        th:field="*{active}"
+                        disabled>
+                </td>
+              </tr>
+              <tr>
+                <th>Zipcode</th>
+                <td>
+                    <input
+                        id="zipcode"
+                        style="outline:0; background-color: transparent; border: 0px;" 
+                        type="text" 
+                        th:value="${user.zipcode}"  
+                        th:field="*{zipcode}"
+                        disabled>            
+                </td>
+              </tr>
+              <tr>
+                <th>Telephone</th>
+                <td>
+                    <input
+                        id="telephone"
+                        style="outline:0; background-color: transparent; border: 0px;" 
+                        type="text" 
+                        th:value="${user.telephone} == ''? 'Sin numero telefononico': ${user.telephone}"  
+                        th:field="*{telephone}"
+                        disabled>                 
+                </td>
+                </tr>
+            </table>
+        </form>
+        <a class="btn btn-default btn_update" onclick="edit(this.id)" th:id="${user.id}">Editar Usuario</a>
 
+        <a class="btn btn-default" th:href="@{/user/delete/__${user.id}__}">Eliminar Usuario</a>
     </body>
 </html>
+
+<script>
+    //th:href="@{/user/update/__${user.id}__}"
+    //th:href="@{/user/delete/__${user.id}__}"
+    var click = true
+    
+    function edit(id){
+        if(click){
+            var input_email = document.getElementById("email")
+            var input_name = document.getElementById("first_name")
+            var input_firstName = document.getElementById("first_name")
+            var input_lastName = document.getElementById("last_name")
+            var input_active = document.getElementById("active")
+            var input_zipcode = document.getElementById("zipcode")
+            var input_telephone = document.getElementById("telephone")
+
+            var _style = "border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;"
+
+            input_email.disabled = false;
+            input_email.setAttribute("style", _style)
+
+            input_firstName.disabled = false;
+            input_firstName.setAttribute("style", _style)
+
+            input_lastName.disabled = false;
+            input_lastName.setAttribute("style", _style)
+
+            input_active.disabled = false;
+            input_active.setAttribute("style", _style)
+
+            input_zipcode.disabled = false;
+            input_zipcode.setAttribute("style", _style)      
+
+            input_telephone.disabled = false;
+            input_telephone.setAttribute("style", _style)
+            document.getElementById(id).text = "Guardar datos" 
+            click = false
+        }else{
+            document.getElementById("form").submit();
+        }
+    }
+</script>
