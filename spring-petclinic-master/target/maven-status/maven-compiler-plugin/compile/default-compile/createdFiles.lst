@@ -5,6 +5,7 @@ org\springframework\samples\petclinic\owner\PetValidator.class
 org\springframework\samples\petclinic\user\UserController.class
 org\springframework\samples\petclinic\user\UserRepository.class
 org\springframework\samples\petclinic\vet\VetTypeFormatter.class
+org\springframework\samples\petclinic\user\UserService.class
 org\springframework\samples\petclinic\medicamento\MedicamentoRepository.class
 org\springframework\samples\petclinic\vet\Vet.class
 org\springframework\samples\petclinic\vet\Specialty.class
@@ -19,6 +20,7 @@ org\springframework\samples\petclinic\vet\VetValidator.class
 org\springframework\samples\petclinic\owner\Owner.class
 org\springframework\samples\petclinic\visit\VisitRepository.class
 org\springframework\samples\petclinic\medicamento\Medicamento.class
+org\springframework\samples\petclinic\system\WelcomeController$MyAccessDeniedHandler.class
 org\springframework\samples\petclinic\vet\VetRepository.class
 org\springframework\samples\petclinic\model\Person.class
 org\springframework\samples\petclinic\model\BaseEntity.class
@@ -28,6 +30,7 @@ org\springframework\samples\petclinic\vet\VetController.class
 org\springframework\samples\petclinic\owner\OwnerController.class
 org\springframework\samples\petclinic\owner\Pet.class
 org\springframework\samples\petclinic\system\CacheConfiguration.class
+org\springframework\samples\petclinic\system\SpringSecurityConfig.class
 org\springframework\samples\petclinic\user\User.class
 org\springframework\samples\petclinic\model\NamedEntity.class
 org\springframework\samples\petclinic\PetClinicApplication.class
