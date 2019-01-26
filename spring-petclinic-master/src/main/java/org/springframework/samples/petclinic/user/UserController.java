@@ -43,6 +43,7 @@ public class UserController {
     
     private final UserRepository users;
 
+    private User auxUser;
 
     public UserController(UserRepository clinicService) {
         this.users = clinicService;
@@ -67,30 +68,25 @@ public class UserController {
     @PostMapping("/create")
     public ModelAndView Save(@Valid User user, BindingResult result) {
         modelAndView = new ModelAndView();
-        String password = user.getPassword();
         
-        if (result.hasErrors()) {
-            return modelAndView;
-        } else {
-            User _user = this.users.findByEmail(user.getEmail());
-            
-            if(userService.exitsZipCode(user.getZipcode())){
+        int exitError = this.exitsError(user, result);
+        
+        switch(exitError){
+            case 1:
+                return modelAndView;
+            case 2:
                 modelAndView.setViewName("user/create");
                 modelAndView.addObject("exitsZipcode", false);
-                return modelAndView;
-            }
-
-            if(_user == null){
-                password = DigestUtils.sha256Hex(password);
-                user.setPassword(password);   
-                this.users.save(user);
-                return this.ViewListUser();
-            }else{
+                return modelAndView; 
+            case 3:
                 modelAndView.setViewName("user/create");
                 modelAndView.addObject("exitsEmail", false); 
                 return modelAndView;
-            }
         }
+        
+        user.setPassword(DigestUtils.sha256Hex(user.getPassword()));   
+        this.users.save(user);
+        return this.ViewListUser();          
     }
    
     @GetMapping("/list")
@@ -99,26 +95,48 @@ public class UserController {
         return modelAndView;
     }
    
-    @GetMapping("/UpdateDelete/{id}")
-    public ModelAndView update_delete(@PathVariable("id") int id) {
+    @GetMapping("/update/{id}")
+    public ModelAndView update(@PathVariable("id") int id) {
+        this.auxUser = users.findById(id);
         modelAndView = new ModelAndView("user/update_delete");
-        modelAndView.addObject("user", users.findById(id));
+        modelAndView.addObject("user", this.auxUser);
+        modelAndView.addObject("exitsError", false);
         return modelAndView;
     }
    
     
     @PostMapping("/update/{id}")
-    public ModelAndView Update(@Valid User user, @PathVariable("id") int id) {
+    public ModelAndView update(@Valid User user, BindingResult result, @PathVariable("id") int id) {
+        int exitError = this.exitsError(user, result);
+        if(exitError != 0){
+            if( exitError == 3 && !this.auxUser.getEmail().equals(user.getEmail()) ){
+                modelAndView = new ModelAndView("user/update_delete");
+                modelAndView.addObject("user", users.findById(id));
+                modelAndView.addObject("exitsError", true);
+                //modelAndView.addObject("message", "1:"+exitError);
+                return modelAndView;
+            }else if(exitError == 1 || exitError == 2){
+                modelAndView = new ModelAndView("user/update_delete");
+                modelAndView.addObject("user", users.findById(id));
+                modelAndView.addObject("exitsError", true);
+                //modelAndView.addObject("message", "2:"+ exitError);               
+                return modelAndView;               
+            }
+        }
         user.setId(id);
         this.users.save(user);
-        modelAndView = this.ViewListUser();
-        return modelAndView;
+        return this.ViewListUser();
     }
     
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public ModelAndView Delete(@PathVariable("id") int id) {
-        modelAndView.setViewName("user/list");
-        return modelAndView;
+        User user = users.findById(id);
+        if(user.getActive().equals("1"))
+            user.setActive("0");
+        else
+            user.setActive("1");
+        users.save(user);
+        return this.ViewListUser();
     }
     
     
@@ -129,5 +147,19 @@ public class UserController {
         return _modelAndView;
     }
 
+    public int exitsError(User user, BindingResult result){
+        String password = user.getPassword();
+        if (result.hasErrors()) {
+            return 1;
+        }else {
+            
+            if(userService.exitsZipCode(user.getZipcode()))
+                return 2;
+            
+            if(this.users.findByEmail(user.getEmail()) != null)
+                return 3;
+        }
+        return 0;
+    }
 
 }
