@@ -60,8 +60,8 @@ public class UserController {
         User user = new User();
         modelAndView = new ModelAndView("user/create");
         modelAndView.addObject("user", user);
-        modelAndView.addObject("exitsZipcode", true);
-        modelAndView.addObject("exitsEmail", true);
+        modelAndView.addObject("exitsZipcode", false);
+        modelAndView.addObject("exitsEmail", false);
         return modelAndView;
     }
     
@@ -76,11 +76,11 @@ public class UserController {
                 return modelAndView;
             case 2:
                 modelAndView.setViewName("user/create");
-                modelAndView.addObject("exitsZipcode", false);
+                modelAndView.addObject("exitsZipcode", true);
                 return modelAndView; 
             case 3:
                 modelAndView.setViewName("user/create");
-                modelAndView.addObject("exitsEmail", false); 
+                modelAndView.addObject("exitsEmail", true); 
                 return modelAndView;
         }
         
@@ -148,7 +148,6 @@ public class UserController {
     }
 
     public int exitsError(User user, BindingResult result){
-        String password = user.getPassword();
         if (result.hasErrors()) {
             return 1;
         }else {
