@@ -43,7 +43,7 @@ public class User extends Person{
     private String password;
 
     @Column(name = "telephone")
-    @NotNull
+    @Size(min=0, max=10)
     private String telephone;
     
     @Column(name = "active")
