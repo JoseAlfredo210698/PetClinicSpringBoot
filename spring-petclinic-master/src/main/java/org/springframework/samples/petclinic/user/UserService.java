@@ -19,7 +19,7 @@ public class UserService {
     @Autowired
     RestTemplate restTemplate;
     
-    String web_service = "http://api.geonames.org/postalCodeLookupJSON?country=MX&username=augustorucle&maxRows=2";
+    String web_service = "http://api.geonames.org/postalCodeLookupJSON?country=MX&username=augustorucle&maxRows=2&postalcode=";
     
     public boolean exitsZipCode(String _zipcode){
         Object request =  restTemplate.getForObject(this.web_service + _zipcode, Object.class);
@@ -27,8 +27,8 @@ public class UserService {
         data = data.substring(data.indexOf("[")+1, data.length()-2);
         
         if(data.length() == 0)
-            return false;
-        else
             return true;
+        else
+            return false;
     }
 }
