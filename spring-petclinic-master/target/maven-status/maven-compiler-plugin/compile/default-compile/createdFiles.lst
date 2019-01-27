@@ -1,8 +1,10 @@
 org\springframework\samples\petclinic\system\CrashController.class
 org\springframework\samples\petclinic\owner\OwnerRepository.class
 org\springframework\samples\petclinic\owner\PetValidator.class
+org\springframework\samples\petclinic\system\SpringSecurityConfig$CustomAuthenticationFailureHandler.class
 org\springframework\samples\petclinic\vet\VetTypeFormatter.class
 org\springframework\samples\petclinic\user\UserService.class
+org\springframework\samples\petclinic\security\RecordController.class
 org\springframework\samples\petclinic\medicamento\MedicamentoRepository.class
 org\springframework\samples\petclinic\vet\Specialty.class
 org\springframework\samples\petclinic\owner\PetController.class
@@ -20,6 +22,7 @@ org\springframework\samples\petclinic\user\LoginController.class
 org\springframework\samples\petclinic\system\SpringSecurityConfig.class
 org\springframework\samples\petclinic\model\NamedEntity.class
 org\springframework\samples\petclinic\owner\Pets.class
+org\springframework\samples\petclinic\security\RecordService.class
 org\springframework\samples\petclinic\user\UserController.class
 org\springframework\samples\petclinic\user\UserRepository.class
 org\springframework\samples\petclinic\user\MyUserPrincipal.class
@@ -28,11 +31,13 @@ org\springframework\samples\petclinic\owner\PetTypeFormatter.class
 org\springframework\samples\petclinic\visit\Visit.class
 org\springframework\samples\petclinic\vet\Vets.class
 org\springframework\samples\petclinic\owner\VisitController.class
+org\springframework\samples\petclinic\security\Record.class
 org\springframework\samples\petclinic\owner\Owner.class
 org\springframework\samples\petclinic\visit\VisitRepository.class
 org\springframework\samples\petclinic\user\MyUserDetailsService.class
 org\springframework\samples\petclinic\vet\VetRepository.class
 org\springframework\samples\petclinic\model\BaseEntity.class
+org\springframework\samples\petclinic\security\RecordRepository.class
 org\springframework\samples\petclinic\medicamento\MedicamentoController.class
 org\springframework\samples\petclinic\system\CacheConfiguration.class
 org\springframework\samples\petclinic\user\User.class

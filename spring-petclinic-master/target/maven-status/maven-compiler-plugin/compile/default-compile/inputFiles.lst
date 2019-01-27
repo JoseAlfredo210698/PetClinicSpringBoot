@@ -4,7 +4,9 @@ C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\s
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\User.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetValidator.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\VisitController.java
+C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\security\RecordController.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\visit\VisitRepository.java
+C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\security\RecordService.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Owner.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetTypeFormatter.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\CrashController.java
@@ -17,6 +19,7 @@ C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\s
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\NamedEntity.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetType.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\OwnerRepository.java
+C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\security\Record.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\OwnerController.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\Medicamento.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\BaseEntity.java
@@ -34,6 +37,7 @@ C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\s
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\UserRepository.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\CacheConfiguration.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\Vets.java
+C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\security\RecordRepository.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetController.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\MyUserDetailsService.java
 C:\Users\katZ_\OneDrive\Escritorio\uni 8\mantenimiento\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Pets.java
