@@ -71,10 +71,17 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-12 text-center">
                             <div th:if="${param.error}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;">    
-                                Contrasña o usuario invalido.
+                                Contraseña o usuario invalido.                            
+                                <div th:text="${param.error}"></div>
                             </div>
                             <div th:if="${param.logout}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
                                 Te has deslogeado exitosamente.
+                            </div>
+                            <div th:if="${param.disabled}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
+                                Usuario no habilitado
+                            </div>
+                            <div th:if="${param.loggedin}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
+                                Ya estas logeado
                             </div>
                         </div>
                     </div>

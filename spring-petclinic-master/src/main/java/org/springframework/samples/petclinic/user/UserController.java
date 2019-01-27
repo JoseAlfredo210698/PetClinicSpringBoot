@@ -19,14 +19,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
-
 
 /**
  *
@@ -35,25 +38,24 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 @RequestMapping("user")
 public class UserController {
-    
+
     @Autowired
     private UserService userService;
-    
-    private ModelAndView modelAndView;
-    
-    private final UserRepository users;
 
+    private ModelAndView modelAndView;
+
+    private final UserRepository users;
 
     public UserController(UserRepository clinicService) {
         this.users = clinicService;
     }
-    
+
     @GetMapping("/home")
-    public ModelAndView init (){
+    public ModelAndView init() {
         modelAndView = new ModelAndView("user/home");
         return modelAndView;
     }
-    
+
     @GetMapping("/create")
     public ModelAndView Create(Map<String, Object> model) {
         User user = new User();
@@ -63,69 +65,71 @@ public class UserController {
         modelAndView.addObject("exitsEmail", true);
         return modelAndView;
     }
-    
+
     @PostMapping("/create")
     public ModelAndView Save(@Valid User user, BindingResult result) {
         modelAndView = new ModelAndView();
         String password = user.getPassword();
-        
+
         if (result.hasErrors()) {
             return modelAndView;
         } else {
             User _user = this.users.findByEmail(user.getEmail());
-            
-            if(userService.exitsZipCode(user.getZipcode())){
+
+            if (userService.exitsZipCode(user.getZipcode())) {
                 modelAndView.setViewName("user/create");
                 modelAndView.addObject("exitsZipcode", false);
                 return modelAndView;
             }
 
-            if(_user == null){
-                password = DigestUtils.sha256Hex(password);
-                user.setPassword(password);   
+            if (_user == null) {
+                //apartado para crear password --kevin                
+                Map encoders = new HashMap<>();
+                encoders.put("bcrypt", new BCryptPasswordEncoder());
+                PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
+                password = passwordEncoder.encode(password);
+                user.setPassword(password);
+                //////////
                 this.users.save(user);
                 return this.ViewListUser();
-            }else{
+            } else {
                 modelAndView.setViewName("user/create");
-                modelAndView.addObject("exitsEmail", false); 
+                modelAndView.addObject("exitsEmail", false);
                 return modelAndView;
             }
         }
     }
-   
+
     @GetMapping("/list")
     public ModelAndView List() {
         modelAndView = this.ViewListUser();
         return modelAndView;
     }
-   
+
     @GetMapping("/UpdateDelete/{id}")
     public ModelAndView update_delete(@PathVariable("id") int id) {
         modelAndView = new ModelAndView("update_delete");
         modelAndView.addObject("user", users.findById(id));
         return modelAndView;
     }
-   
-    
+
     @PutMapping("/update/{id}")
     public ModelAndView Update(@Valid User user, @PathVariable("id") int id) {
         modelAndView.setViewName("user/update_delete");
         return modelAndView;
     }
-    
+
     @DeleteMapping("/delete/{id}")
     public ModelAndView Delete(@Valid User user, @PathVariable("id") int id) {
         modelAndView.setViewName("user/update_delete");
         return modelAndView;
     }
-    
-    
-    private ModelAndView ViewListUser(){
+
+    private ModelAndView ViewListUser() {
         ModelAndView _modelAndView = new ModelAndView("user/list");
         ArrayList<User> users = this.users.All();
         _modelAndView.addObject("users", users);
         return _modelAndView;
     }
-
 
 }
