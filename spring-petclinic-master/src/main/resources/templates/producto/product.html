@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'product')}">
+
+    <body>
+        <h2 th:text="#{Productos}"></h2>
+
+        <a th:text="#{agregarProducto}" class="btn btn-default" th:href="@{/product/create-product}"></a>
+
+        <table id="vets" class="table table-striped">
+            <thead>
+                <tr>
+                    <th th:text="#{Producto}" ></th>
+                    <th th:text="#{Descripcion}" ></th>
+                    <th th:text="#{Precio}" ></th>
+                    <th th:text="#{Existencia}" ></th>
+                    <th colspan="3" ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${allProducts}">
+                    <td th:text="${product.name}"/>
+                    <td th:text="${product.description}"/>
+                    <td><p style="float: left;">$</p><p th:text=" ${product.price}"/></td>
+                    <td th:text="${product.existence}"/>
+                    <td> <img th:src="@{${product.photo}}" style ="width: 100px; height: 100px;"> </td>
+                    <td> <a th:text="#{editar}" th:href="@{/product/edit/__${product.id}__}" class="btn btn-default"></a> </td>
+                    <td> <a th:text="#{Eliminar}" th:href="@{/product/delete/__${product.id}__}" class="btn btn-default"></a> </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

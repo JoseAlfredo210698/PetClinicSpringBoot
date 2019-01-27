@@ -5,14 +5,16 @@
       <div th:with="valid=${!#fields.hasErrors(name)}"
         th:class="${'form-group' + (valid ? '' : ' has-error')}"
         class="form-group">
-        <label class="col-sm-2 control-label" th:text="${label}">Label</label>
+        <label class="col-sm-2 control-label" th:text="${label}"></label>
         <div class="col-sm-10">
             <div th:switch="${type}">
-                <input th:case="'text'" class="form-control" type="text" th:field="*{__${name}__}" />
+                <textarea th:case="'textarea'" class="form-control" th:field="*{__${name}__}" th:placeholder="${label}" style="resize:none"/>
+                <input th:case="'text'" class="form-control" type="text" th:field="*{__${name}__}" th:placeholder="${label}" />
                 <input th:case="'date'" class="form-control" type="text" th:field="*{__${name}__}"
                         placeholder="YYYY-MM-DD" title="Enter a date in this format: YYYY-MM-DD"
                         pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"/>
             </div>
+            
           <span th:if="${valid}"
             class="glyphicon glyphicon-ok form-control-feedback"
             aria-hidden="true"></span>
@@ -20,7 +22,7 @@
             <span
               class="glyphicon glyphicon-remove form-control-feedback"
               aria-hidden="true"></span>
-            <span class="help-inline" th:errors="*{__${name}__}">Error</span>
+            <span class="help-inline control-label" th:errors="*{__${name}__}"></span>
           </th:block>
         </div>
       </div>
