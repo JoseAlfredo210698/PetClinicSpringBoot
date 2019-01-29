@@ -49,12 +49,6 @@ public class UserController {
         this.users = clinicService;
     }
     
-    @GetMapping("/home")
-    public ModelAndView init (){
-        modelAndView = new ModelAndView("user/home");
-        return modelAndView;
-    }
-    
     @GetMapping("/create")
     public ModelAndView Create(Map<String, Object> model) {
         User user = new User();
@@ -86,14 +80,21 @@ public class UserController {
         
         user.setPassword(DigestUtils.sha256Hex(user.getPassword()));   
         this.users.save(user);
-        return this.ViewListUser();          
+        return this.ViewListUser("user/list");          
     }
    
-    @GetMapping("/list")
+    @GetMapping("/home")
     public ModelAndView List() {
-        modelAndView = this.ViewListUser();
+        modelAndView = this.ViewListUser("user/list");
         return modelAndView;
     }
+    
+    @GetMapping("/reports")
+    public ModelAndView Reports() {
+        modelAndView = this.ViewListUser("user/reports");
+        return modelAndView;
+    }
+   
    
     @GetMapping("/update/{id}")
     public ModelAndView update(@PathVariable("id") int id) {
@@ -125,7 +126,7 @@ public class UserController {
         }
         user.setId(id);
         this.users.save(user);
-        return this.ViewListUser();
+        return this.ViewListUser("user/list");
     }
     
     @GetMapping("/delete/{id}")
@@ -136,12 +137,12 @@ public class UserController {
         else
             user.setActive("1");
         users.save(user);
-        return this.ViewListUser();
+        return this.ViewListUser("user/list");
     }
     
     
-    private ModelAndView ViewListUser(){
-        ModelAndView _modelAndView = new ModelAndView("user/list");
+    private ModelAndView ViewListUser(String view){
+        ModelAndView _modelAndView = new ModelAndView(view);
         ArrayList<User> users = this.users.All();
         _modelAndView.addObject("users", users);
         return _modelAndView;
