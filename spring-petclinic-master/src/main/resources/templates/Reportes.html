@@ -3,20 +3,43 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
 
   <body>
-      
-      <a class="btn btn-primary" href="/owners/1/pets/pet"> Mascotas <a>
-              
+        <div class="col-sm-offset-1 col-sm-10">
+            <a 
+                class="btn btn-default"
+                type="button" 
+                href="/owners/1/pets/pet"
+                style="width:100%; margin-top: 10%"> Mascotas <a>
+        </div>
               <br/>
               <br/>
               
-      <a class="btn btn-primary" href="/medicamento2"> Medicina <a>        
-              
+        <div class="col-sm-offset-1 col-sm-10">
+            <a 
+                class="btn btn-default"
+                type="button" 
+                href="/medicamento2"
+                style="width:100%; margin-top: 5%"> Medicina <a>
+        </div>
               <br/>
+              <br/> 
+        <div class="col-sm-offset-1 col-sm-10">
+            <a 
+                class="btn btn-default"
+                type="button" 
+                href="/vets2?lastName="
+                style="width:100%; margin-top: 5%;"> Veterinarios <a>
+        </div>
               <br/>
-              
-      <a class="btn btn-primary" href="/vets2?lastName="> Veterinarios <a>     
-              
-      
+              <br/> 
+        <div class="col-sm-offset-1 col-sm-10">
+            <a 
+                class="btn btn-default"
+                type="button" 
+                href="/user/reports"
+                style="width:100%; margin-top: 50px; margin-bottom:20%"> Reportar usuarios <a>
+        </div>
+              <br/>
+              <br/> 
   </body>
 
 </html>
