@@ -1,4 +1,52 @@
 -------------------------------------------------------------------------------
 Test set: org.springframework.samples.petclinic.owner.OwnerControllerTests
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.117 s - in org.springframework.samples.petclinic.owner.OwnerControllerTests
+Tests run: 11, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 1.406 s <<< FAILURE! - in org.springframework.samples.petclinic.owner.OwnerControllerTests
+testProcessUpdateOwnerFormHasErrors(org.springframework.samples.petclinic.owner.OwnerControllerTests)  Time elapsed: 0.141 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessUpdateOwnerFormHasErrors(OwnerControllerTests.java:155)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessUpdateOwnerFormHasErrors(OwnerControllerTests.java:155)
+Caused by: org.springframework.beans.NotReadablePropertyException: Invalid property 'latitud' of bean class [org.springframework.samples.petclinic.owner.Owner]: Bean property 'latitud' is not readable or has an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessUpdateOwnerFormHasErrors(OwnerControllerTests.java:155)
+
+testProcessCreationFormSuccess(org.springframework.samples.petclinic.owner.OwnerControllerTests)  Time elapsed: 0.078 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessCreationFormSuccess(OwnerControllerTests.java:66)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessCreationFormSuccess(OwnerControllerTests.java:66)
+Caused by: org.springframework.beans.NotReadablePropertyException: Invalid property 'latitud' of bean class [org.springframework.samples.petclinic.owner.Owner]: Bean property 'latitud' is not readable or has an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessCreationFormSuccess(OwnerControllerTests.java:66)
+
+testInitUpdateOwnerForm(org.springframework.samples.petclinic.owner.OwnerControllerTests)  Time elapsed: 0.062 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testInitUpdateOwnerForm(OwnerControllerTests.java:129)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testInitUpdateOwnerForm(OwnerControllerTests.java:129)
+Caused by: org.springframework.beans.NotReadablePropertyException: Invalid property 'latitud' of bean class [org.springframework.samples.petclinic.owner.Owner]: Bean property 'latitud' is not readable or has an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testInitUpdateOwnerForm(OwnerControllerTests.java:129)
+
+testInitCreationForm(org.springframework.samples.petclinic.owner.OwnerControllerTests)  Time elapsed: 0.016 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testInitCreationForm(OwnerControllerTests.java:58)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testInitCreationForm(OwnerControllerTests.java:58)
+Caused by: org.springframework.beans.NotReadablePropertyException: Invalid property 'latitud' of bean class [org.springframework.samples.petclinic.owner.Owner]: Bean property 'latitud' is not readable or has an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testInitCreationForm(OwnerControllerTests.java:58)
+
+testProcessUpdateOwnerFormSuccess(org.springframework.samples.petclinic.owner.OwnerControllerTests)  Time elapsed: 0.063 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessUpdateOwnerFormSuccess(OwnerControllerTests.java:142)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessUpdateOwnerFormSuccess(OwnerControllerTests.java:142)
+Caused by: org.springframework.beans.NotReadablePropertyException: Invalid property 'latitud' of bean class [org.springframework.samples.petclinic.owner.Owner]: Bean property 'latitud' is not readable or has an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessUpdateOwnerFormSuccess(OwnerControllerTests.java:142)
+
+testProcessCreationFormHasErrors(org.springframework.samples.petclinic.owner.OwnerControllerTests)  Time elapsed: 0.062 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessCreationFormHasErrors(OwnerControllerTests.java:78)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "!#fields.hasErrors(name)" (template: "fragments/inputField" - line 5, col 12)
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessCreationFormHasErrors(OwnerControllerTests.java:78)
+Caused by: org.springframework.beans.NotReadablePropertyException: Invalid property 'latitud' of bean class [org.springframework.samples.petclinic.owner.Owner]: Bean property 'latitud' is not readable or has an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+	at org.springframework.samples.petclinic.owner.OwnerControllerTests.testProcessCreationFormHasErrors(OwnerControllerTests.java:78)
+

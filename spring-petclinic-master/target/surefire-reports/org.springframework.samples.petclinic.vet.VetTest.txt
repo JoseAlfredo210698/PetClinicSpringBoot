@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.springframework.samples.petclinic.vet.VetTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.24 s - in org.springframework.samples.petclinic.vet.VetTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.906 s - in org.springframework.samples.petclinic.vet.VetTest
