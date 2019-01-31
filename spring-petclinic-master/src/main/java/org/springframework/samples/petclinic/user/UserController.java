@@ -86,16 +86,14 @@ public class UserController {
                 user.setPassword(password);
                 //////////
                 this.users.save(user);
-                return this.ViewListUser();
+                return this.ViewListUser("user/list");
             } else {
                 modelAndView.setViewName("user/create");
                 modelAndView.addObject("exitsEmail", false);
                 return modelAndView;
         }
-        
-        user.setPassword(DigestUtils.sha256Hex(user.getPassword()));   
-        this.users.save(user);
-        return this.ViewListUser("user/list");          
+                 
+        }
     }
    
     @GetMapping("/home")

@@ -26,7 +26,7 @@ public class RecordService {
     public void badCredentials(String username) {
         System.out.println("record de malas credenciales");
         Record record = new Record();
-        record.setDate(LocalDate.now());
+        //record.setDate(LocalDate.now());
         record.setDescription("Contraseña o usuario incorrectos");
         record.setType("failure");
         record.setUser_email(username);
@@ -36,7 +36,7 @@ public class RecordService {
     public void userDisabled(String username) {
         System.out.println("record de usuario disabled");
         Record record = new Record();
-        record.setDate(LocalDate.now());
+        //record.setDate(LocalDate.now());
         record.setDescription("El usuario esta deshabilitado");
         record.setType("failure");
         record.setUser_email(username);
@@ -46,7 +46,7 @@ public class RecordService {
     public void success(String username) {
         System.out.println("record de exito creado");
         Record record = new Record();
-        record.setDate(LocalDate.now());
+        //record.setDate(LocalDate.now());
         record.setDescription("Usuario ingreso al sistema sin problemas");
         record.setType("success");
         record.setUser_email(username);

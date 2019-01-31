@@ -5,7 +5,7 @@
  */
 package org.springframework.samples.petclinic.record;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -34,11 +34,10 @@ public class Record extends BaseEntity {
     private String user_email;
 
     @Column(name = "record_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate record_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    private Date record_date;
 
-    public Record() {
-        this.record_date = LocalDate.now();
+    public Record() {        
     }
 
     /**
@@ -84,16 +83,11 @@ public class Record extends BaseEntity {
     }
 
     /**
-     * @return the record_date
-     */
-    public LocalDate getRecord_date() {
-        return record_date;
-    }
 
     /**
      * @param record_date the record_date to set
      */
-    public void setRecord_date(LocalDate record_date) {
+    public void setRecord_date(Date record_date) {
         this.record_date = record_date;
     }
 
