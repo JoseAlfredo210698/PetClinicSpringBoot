@@ -45,24 +45,19 @@ public class UserController {
     private ModelAndView modelAndView;
 
     private final UserRepository users;
+    private User auxUser;
 
     public UserController(UserRepository clinicService) {
         this.users = clinicService;
     }
-
-    @GetMapping("/home")
-    public ModelAndView init() {
-        modelAndView = new ModelAndView("user/home");
-        return modelAndView;
-    }
-
+    
     @GetMapping("/create")
     public ModelAndView Create(Map<String, Object> model) {
         User user = new User();
         modelAndView = new ModelAndView("user/create");
         modelAndView.addObject("user", user);
-        modelAndView.addObject("exitsZipcode", true);
-        modelAndView.addObject("exitsEmail", true);
+        modelAndView.addObject("exitsZipcode", false);
+        modelAndView.addObject("exitsEmail", false);
         return modelAndView;
     }
 
@@ -96,40 +91,90 @@ public class UserController {
                 modelAndView.setViewName("user/create");
                 modelAndView.addObject("exitsEmail", false);
                 return modelAndView;
+        }
+        
+        user.setPassword(DigestUtils.sha256Hex(user.getPassword()));   
+        this.users.save(user);
+        return this.ViewListUser("user/list");          
+    }
+   
+    @GetMapping("/home")
+    public ModelAndView List() {
+        modelAndView = this.ViewListUser("user/list");
+        return modelAndView;
+    }
+    
+    @GetMapping("/reports")
+    public ModelAndView Reports() {
+        modelAndView = this.ViewListUser("user/reports");
+        return modelAndView;
+    }
+   
+   
+    @GetMapping("/update/{id}")
+    public ModelAndView update(@PathVariable("id") int id) {
+        this.auxUser = users.findById(id);
+        modelAndView = new ModelAndView("user/update_delete");
+        modelAndView.addObject("user", this.auxUser);
+        modelAndView.addObject("exitsError", false);
+        return modelAndView;
+    }
+   
+    
+    @PostMapping("/update/{id}")
+    public ModelAndView update(@Valid User user, BindingResult result, @PathVariable("id") int id) {
+        int exitError = this.exitsError(user, result);
+        if(exitError != 0){
+            if( exitError == 3 && !this.auxUser.getEmail().equals(user.getEmail()) ){
+                modelAndView = new ModelAndView("user/update_delete");
+                modelAndView.addObject("user", users.findById(id));
+                modelAndView.addObject("exitsError", true);
+                //modelAndView.addObject("message", "1:"+exitError);
+                return modelAndView;
+            }else if(exitError == 1 || exitError == 2){
+                modelAndView = new ModelAndView("user/update_delete");
+                modelAndView.addObject("user", users.findById(id));
+                modelAndView.addObject("exitsError", true);
+                //modelAndView.addObject("message", "2:"+ exitError);               
+                return modelAndView;               
             }
         }
+        user.setId(id);
+        this.users.save(user);
+        return this.ViewListUser("user/list");
     }
-
-    @GetMapping("/list")
-    public ModelAndView List() {
-        modelAndView = this.ViewListUser();
-        return modelAndView;
+    
+    @GetMapping("/delete/{id}")
+    public ModelAndView Delete(@PathVariable("id") int id) {
+        User user = users.findById(id);
+        if(user.getActive().equals("1"))
+            user.setActive("0");
+        else
+            user.setActive("1");
+        users.save(user);
+        return this.ViewListUser("user/list");
     }
-
-    @GetMapping("/UpdateDelete/{id}")
-    public ModelAndView update_delete(@PathVariable("id") int id) {
-        modelAndView = new ModelAndView("update_delete");
-        modelAndView.addObject("user", users.findById(id));
-        return modelAndView;
-    }
-
-    @PutMapping("/update/{id}")
-    public ModelAndView Update(@Valid User user, @PathVariable("id") int id) {
-        modelAndView.setViewName("user/update_delete");
-        return modelAndView;
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ModelAndView Delete(@Valid User user, @PathVariable("id") int id) {
-        modelAndView.setViewName("user/update_delete");
-        return modelAndView;
-    }
-
-    private ModelAndView ViewListUser() {
-        ModelAndView _modelAndView = new ModelAndView("user/list");
+    
+    
+    private ModelAndView ViewListUser(String view){
+        ModelAndView _modelAndView = new ModelAndView(view);
         ArrayList<User> users = this.users.All();
         _modelAndView.addObject("users", users);
         return _modelAndView;
+    }
+
+    public int exitsError(User user, BindingResult result){
+        if (result.hasErrors()) {
+            return 1;
+        }else {
+            
+            if(userService.exitsZipCode(user.getZipcode()))
+                return 2;
+            
+            if(this.users.findByEmail(user.getEmail()) != null)
+                return 3;
+        }
+        return 0;
     }
 
 }

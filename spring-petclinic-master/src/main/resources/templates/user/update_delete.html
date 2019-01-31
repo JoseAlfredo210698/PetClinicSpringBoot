@@ -7,12 +7,89 @@ and open the template in the editor.
 <html
     th:replace="~{fragments/layout :: layout (~{::body},'update_delete')}">
     <head>
-        <title>Hello Word</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-  <h2>Actualizar o Eliminar usuarios</h2>
-
+        <h1>Actualizar usuarios</h1>
+        <div class="alert alert-danger" role="alert" th:if="${exitsError}">
+           Existen valores que causan conflictos, revisalos
+        </div>
+        <form th:object="${user}"  th:action="@{/user/update/__${user.id}__}"  id="form" method="post">
+            <table class="table table-striped" th:object="${user}">
+              <tr>
+                <th>Email</th>
+                <td>
+                    <input
+                        id="email"
+                        type="text" 
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                        th:value="${user.email}"
+                        th:field="*{email}">
+                    <input
+                        type="text" 
+                        style="display:none"
+                        th:value="${user.password}"
+                        th:field="*{password}">
+                </td>
+              </tr>
+              <tr>
+                <th>FirstName</th>
+                <td>
+                    <input 
+                        id="first_name"
+                        type="text" 
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                        th:value="${user.firstName}" 
+                        th:field="*{firstName}">
+                </td>
+              </tr>
+              <tr>
+                <th>LastName</th>
+                <td>
+                    <input 
+                        id="last_name"
+                        type="text" 
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                        th:value="${user.lastName}" 
+                        th:field="*{lastName}">
+                </td>
+              </tr>
+              <tr>
+                <th>Active</th>
+                <td>
+                    <input
+                        id="active"
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                        type="text" 
+                        th:value="${user.active} == 1? 'Si': 'No'"  
+                        th:field="*{active}">
+                </td>
+              </tr>
+              <tr>
+                <th>Zipcode</th>
+                <td>
+                    <input
+                        id="zipcode"
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                        type="text" 
+                        th:value="${user.zipcode}"  
+                        th:field="*{zipcode}">            
+                </td>
+              </tr>
+              <tr>
+                <th>Telephone</th>
+                <td>
+                    <input
+                        id="telephone"
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                        type="text" 
+                        th:value="${user.telephone} == ''? 'Sin numero telefononico': ${user.telephone}"  
+                        th:field="*{telephone}">                 
+                </td>
+                </tr>
+            </table>
+            <input type="submit" class="btn btn-default" value="Guardar cambios" >
+        </form>
     </body>
 </html>

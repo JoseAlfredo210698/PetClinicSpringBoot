@@ -43,7 +43,7 @@ public class User extends Person{
     private String password;
 
     @Column(name = "telephone")
-    @NotNull
+    @Size(min=0, max=10)
     private String telephone;
     
     @Column(name = "active")
@@ -102,7 +102,11 @@ public class User extends Person{
             .append("id", this.getId()).append("new", this.isNew())
             .append("lastName", this.getLastName())
             .append("firstName", this.getFirstName())
-            .append("email", this.email)
+            .append("email", this.getEmail())
+            .append("active", this.getActive())
+            .append("password", this.getPassword())
+            .append("zipcode", this.getZipcode())
+            .append("telephone", this.getTelephone())
             .toString();
     }
 
