@@ -52,10 +52,19 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255) NOT NULL,
   telephone VARCHAR(20),
 <<<<<<< HEAD
+  zipcode VARCHAR(50) NOT NULL
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS records (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  description VARCHAR(255),
+  record_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  type VARCHAR(255),
+  user_email VARCHAR(255)
 =======
   city VARCHAR(50) NOT NULL,
->>>>>>> augusto
   zipcode VARCHAR(50) NOT NULL
+>>>>>>> augusto
 ) engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS pets (

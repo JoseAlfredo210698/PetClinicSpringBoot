@@ -71,7 +71,7 @@ public class UserController {
         } else {
             User _user = this.users.findByEmail(user.getEmail());
 
-            if (userService.exitsZipCode(user.getZipcode())) {
+            if (userService.exitsZipCode(user.getZipcode(), user.getCity())) {
                 modelAndView.setViewName("user/create");
                 modelAndView.addObject("exitsZipcode", false);
                 return modelAndView;
