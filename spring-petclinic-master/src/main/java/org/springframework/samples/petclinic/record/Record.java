@@ -5,7 +5,8 @@
  */
 package org.springframework.samples.petclinic.record;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -28,16 +29,18 @@ public class Record extends BaseEntity {
     @Column(name = "description")
     @NotEmpty
     private String description;
-    
+
     @Column(name = "user_email")
     @NotEmpty
     private String user_email;
 
     @Column(name = "record_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
-    private Date record_date;
+    private Timestamp record_date;
 
-    public Record() {        
+    public Record() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.record_date = timestamp;
     }
 
     /**
@@ -83,12 +86,21 @@ public class Record extends BaseEntity {
     }
 
     /**
-
-    /**
+     *
+     * /
+     *
+     **
      * @param record_date the record_date to set
      */
-    public void setRecord_date(Date record_date) {
+    public void setRecord_date(Timestamp record_date) {                
         this.record_date = record_date;
+    }
+
+    /**
+     * @return the record_date
+     */
+    public Timestamp getRecord_date() {
+        return record_date;
     }
 
 }
