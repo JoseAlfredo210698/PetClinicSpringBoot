@@ -1,11 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 4.8.3
+﻿-- phpMyAdmin SQL Dump
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2018 a las 05:06:36
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.10
+-- Tiempo de generación: 01-02-2019 a las 02:26:43
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -113,6 +113,54 @@ INSERT INTO `pets` (`id`, `name`, `birth_date`, `type_id`, `owner_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `price` float NOT NULL,
+  `existence` int(11) NOT NULL,
+  `photo` varchar(100) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `description`, `price`, `existence`, `photo`) VALUES
+(1, 'quesobabas', 'queso mexicano', 99.99, 1000, '/resources/images/Captura de pantalla (20).png'),
+(2, 'gallo', 'jjajaj', 192, 232, '/resources/images/boston-dynamics.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `records`
+--
+
+CREATE TABLE `records` (
+  `id` int(4) UNSIGNED NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `record_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `type` varchar(255) DEFAULT NULL,
+  `user_email` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `records`
+--
+
+INSERT INTO `records` (`id`, `description`, `record_date`, `type`, `user_email`) VALUES
+(1, 'Contraseña o usuario incorrectos', NULL, 'failure', 'd'),
+(2, 'Usuario ingreso al sistema sin problemas', NULL, 'success', 'chairo@chairo.com'),
+(3, 'Usuario ingreso al sistema sin problemas', NULL, 'success', 'chairo@chairo.com'),
+(4, 'Usuario ingreso al sistema sin problemas', NULL, 'success', 'chairo@chairo.com'),
+(5, 'Usuario ingreso al sistema sin problemas', NULL, 'success', 'chairo@chairo.com');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `specialties`
 --
 
@@ -152,6 +200,30 @@ INSERT INTO `types` (`id`, `name`) VALUES
 (6, 'hamster'),
 (3, 'lizard'),
 (4, 'snake');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(4) UNSIGNED NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `first_name` varchar(30) DEFAULT NULL,
+  `last_name` varchar(30) DEFAULT NULL,
+  `active` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `zipcode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `active`, `password`, `telephone`, `zipcode`) VALUES
+(1, 'chairo@chairo.com', 'Kevin<3Augusto', 'Lo-pez-que', 1, '{bcrypt}$2a$10$E1X2oYQFyDnUibAaRjZ2Ber3qevby6K4/4uzGQAnLxz7MjIMJnCnq', '9191172505', '29000');
 
 -- --------------------------------------------------------
 
@@ -240,6 +312,18 @@ ALTER TABLE `pets`
   ADD KEY `type_id` (`type_id`);
 
 --
+-- Indices de la tabla `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `records`
+--
+ALTER TABLE `records`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `specialties`
 --
 ALTER TABLE `specialties`
@@ -252,6 +336,13 @@ ALTER TABLE `specialties`
 ALTER TABLE `types`
   ADD PRIMARY KEY (`id`),
   ADD KEY `name` (`name`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indices de la tabla `vets`
@@ -298,6 +389,18 @@ ALTER TABLE `pets`
   MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT de la tabla `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `records`
+--
+ALTER TABLE `records`
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `specialties`
 --
 ALTER TABLE `specialties`
@@ -308,6 +411,12 @@ ALTER TABLE `specialties`
 --
 ALTER TABLE `types`
   MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `vets`

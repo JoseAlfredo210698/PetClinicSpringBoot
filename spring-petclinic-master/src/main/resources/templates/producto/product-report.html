@@ -1,0 +1,33 @@
+<html 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    
+    th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
+
+    <body>
+        <h2 th:text="#{Productos}"></h2>
+        
+        <table id="vets" class="table table-striped">
+            <thead>
+                <tr>
+                    <th th:text="#{Producto}" style="width: 200px;"></th>
+                    <th th:text="#{Descripcion}" style="width: 250px;"></th>
+                    <th th:text="#{Precio}" style="width: 150px;"></th>
+                    <th th:text="#{Existencia}" style="width: 200px;"></th>
+                    <th style="width: 150px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${allProducts}">
+                    <td th:text="${product.name}"/>
+                    <td th:text="${product.description}"/>
+                    <td><p style="float: left;">$</p><p th:text=" ${product.price}"/></td>
+                    <td th:text="${product.existence}"/>
+                    <td> <img th:src="@{${product.photo}}" style ="width: 100px; height: 100px;"> </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
