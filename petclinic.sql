@@ -129,10 +129,6 @@ CREATE TABLE `products` (
 -- Volcado de datos para la tabla `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `price`, `existence`, `photo`) VALUES
-(1, 'quesobabas', 'queso mexicano', 99.99, 1000, '/resources/images/Captura de pantalla (20).png'),
-(2, 'gallo', 'jjajaj', 192, 232, '/resources/images/boston-dynamics.jpg');
-
 -- --------------------------------------------------------
 
 --
