@@ -51,6 +51,10 @@ CREATE TABLE IF NOT EXISTS users (
   active INT NOT NULL,
   password VARCHAR(255) NOT NULL,
   telephone VARCHAR(20),
+<<<<<<< HEAD
+=======
+  city VARCHAR(50) NOT NULL,
+>>>>>>> augusto
   zipcode VARCHAR(50) NOT NULL
 ) engine=InnoDB;
 
