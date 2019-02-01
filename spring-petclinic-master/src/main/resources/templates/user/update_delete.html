@@ -67,6 +67,17 @@ and open the template in the editor.
                 </td>
               </tr>
               <tr>
+                <th>Ciudad</th>
+                <td>
+                    <input
+                        id="active"
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                        type="text" 
+                        th:value="${user.city}"  
+                        th:field="*{city}">
+                </td>
+              </tr>
+              <tr>
                 <th>Zipcode</th>
                 <td>
                     <input

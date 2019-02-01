@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="1.477" tests="10" errors="0" skipped="0" failures="0">
+<testsuite name="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="5.038" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin"/>
@@ -28,7 +28,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.2\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_191\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Python27;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Program Files\nodejs\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\platform-tools;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\tools;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\ndk-bundle;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python37-32\;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python36-32\;C:\Users\AugustoRuCle\AppData\Local\Microsoft\WindowsApps;C:\Users\AugustoRuCle\AppData\Local\GitHubDesktop\bin;C:\Users\AugustoRuCle\AppData\Roaming\npm;C:\Users\AugustoRuCle\AppData\Roaming\Composer\vendor\bin;C:\Users\AugustoRuCle\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_191\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Python27;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Program Files\nodejs\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\platform-tools;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\tools;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\ndk-bundle;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\tools\bin;C:\Users\AugustoRuCle\AppData\Local\Android\Sdk\emulator;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python37-32\;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\AugustoRuCle\AppData\Local\Programs\Python\Python36-32\;C:\Users\AugustoRuCle\AppData\Local\Microsoft\WindowsApps;C:\Users\AugustoRuCle\AppData\Local\GitHubDesktop\bin;C:\Users\AugustoRuCle\AppData\Roaming\npm;C:\Users\AugustoRuCle\AppData\Roaming\Composer\vendor\bin;C:\Users\AugustoRuCle\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -60,14 +60,14 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testProcessCreationFormSuccess" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.339"/>
-  <testcase name="testInitFindForm" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.75"/>
-  <testcase name="testProcessUpdateMedicamentoFormSuccess" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.013"/>
-  <testcase name="testShowOwner" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.11"/>
-  <testcase name="testProcessFindFormByNombre" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.026"/>
-  <testcase name="testProcessFindFormNoMedicamentosFound" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.045"/>
-  <testcase name="testInitUpdateMedicamentoForm" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.061"/>
-  <testcase name="testInitCreationForm" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.035"/>
-  <testcase name="testProcessFindFormSuccess" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.044"/>
-  <testcase name="testProcessUpdateMedicamentoFormHasErrors" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.054"/>
+  <testcase name="testProcessCreationFormSuccess" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="1.248"/>
+  <testcase name="testInitFindForm" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="2.565"/>
+  <testcase name="testProcessUpdateMedicamentoFormSuccess" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.088"/>
+  <testcase name="testShowOwner" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.571"/>
+  <testcase name="testProcessFindFormByNombre" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.153"/>
+  <testcase name="testProcessFindFormNoMedicamentosFound" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.09"/>
+  <testcase name="testInitUpdateMedicamentoForm" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.09"/>
+  <testcase name="testInitCreationForm" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.038"/>
+  <testcase name="testProcessFindFormSuccess" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.054"/>
+  <testcase name="testProcessUpdateMedicamentoFormHasErrors" classname="org.springframework.samples.petclinic.medicamento.MedicamentoTest" time="0.141"/>
 </testsuite>

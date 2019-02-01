@@ -153,7 +153,7 @@ public class UserController {
             return 1;
         }else {
             
-            if(userService.exitsZipCode(user.getZipcode()))
+            if(userService.exitsZipCode(user.getZipcode(), user.getCity()))
                 return 2;
             
             if(this.users.findByEmail(user.getEmail()) != null)

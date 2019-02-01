@@ -5,6 +5,7 @@ org\springframework\samples\petclinic\owner\PetValidator.class
 org\springframework\samples\petclinic\user\UserController.class
 org\springframework\samples\petclinic\user\UserRepository.class
 org\springframework\samples\petclinic\vet\VetTypeFormatter.class
+org\springframework\samples\petclinic\user\UserService.class
 org\springframework\samples\petclinic\medicamento\MedicamentoRepository.class
 org\springframework\samples\petclinic\vet\Vet.class
 org\springframework\samples\petclinic\vet\Specialty.class

@@ -18,13 +18,15 @@
                     </div>  
                 </div>  
                 <input
-                    th:replace="~{fragments/inputField :: input (#{fn}, 'firstName', 'text')}" />
+                    th:replace="~{fragments/inputField :: input (FirstName, 'firstName', 'text')}" />
                 <input
                     th:replace="~{fragments/inputField :: input (#{ln}, 'lastName', 'text')}" />
                 <input
                     th:replace="~{fragments/inputField :: input (#{pw}, 'password', 'password')}" />
                 <input
                     th:replace="~{fragments/inputField :: input (#{ac}, 'active', 'text')}" />
+                <input
+                    th:replace="~{fragments/inputField :: input (Ciudad, 'city', 'text')}" />
                 
                 <div class="form-group">
                     <h3 class="col-sm-2 control-label">Zipcode</h3>

@@ -55,6 +55,10 @@ public class User extends Person{
     @NotEmpty
     @Size(min=5, max=10)
     private String zipcode; 
+    
+    @Column(name = "city")
+    @NotEmpty
+    private String city; 
  
     public String getEmail() {
         return this.email;
@@ -96,6 +100,14 @@ public class User extends Person{
         this.zipcode = zipcode;
     }
     
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
     @Override
     public String toString() {
         return new ToStringCreator(this)
@@ -107,6 +119,7 @@ public class User extends Person{
             .append("password", this.getPassword())
             .append("zipcode", this.getZipcode())
             .append("telephone", this.getTelephone())
+            .append("city", this.getCity())
             .toString();
     }
 
