@@ -55,7 +55,9 @@ CREATE TABLE `owners` (
   `last_name` varchar(30) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `city` varchar(80) DEFAULT NULL,
-  `telephone` varchar(20) DEFAULT NULL
+  `telephone` varchar(20) DEFAULT NULL,
+  `latitud` varchar(50) DEFAULT NULL,
+  `longitud` varchar(50) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

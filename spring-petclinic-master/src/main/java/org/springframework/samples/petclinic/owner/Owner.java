@@ -44,9 +44,7 @@ import org.springframework.samples.petclinic.model.Person;
  */
 @Entity
 @Table(name = "owners")
-
 public class Owner extends Person {
-    
     @Column(name = "address")
     @NotEmpty
     private String address;
@@ -59,6 +57,14 @@ public class Owner extends Person {
     @NotEmpty
     @Digits(fraction = 0, integer = 10)
     private String telephone;
+    
+    @Column(name = "latitud")
+    @NotEmpty
+    private String latitud;
+    
+    @Column(name = "longitud")
+    @NotEmpty
+    private String longitud;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets;
@@ -85,6 +91,22 @@ public class Owner extends Person {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+    
+    public String getLatitud() {
+        return this.latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+    
+    public String getLongitud() {
+        return this.longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 
     protected Set<Pet> getPetsInternal() {
@@ -146,9 +168,15 @@ public class Owner extends Person {
     public String toString() {
         return new ToStringCreator(this)
 
-                .append("id", this.getId()).append("new", this.isNew())
+                .append("id", this.getId())
+                .append("new", this.isNew())
                 .append("lastName", this.getLastName())
-                .append("firstName", this.getFirstName()).append("address", this.address)
-                .append("city", this.city).append("telephone", this.telephone).toString();
+                .append("firstName", this.getFirstName())
+                .append("address", this.address)
+                .append("city", this.city)
+                .append("telephone", this.telephone)
+                .append("latitud",this.latitud)
+                .append("longitud",this.longitud)
+                    .toString();
     }
 }
