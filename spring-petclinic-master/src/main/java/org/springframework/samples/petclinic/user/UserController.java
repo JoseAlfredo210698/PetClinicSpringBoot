@@ -73,7 +73,7 @@ public class UserController {
 
             if (userService.exitsZipCode(user.getZipcode(), user.getCity())) {
                 modelAndView.setViewName("user/create");
-                modelAndView.addObject("exitsZipcode", false);
+                modelAndView.addObject("exitsZipcode", true);
                 return modelAndView;
             }
 
@@ -89,7 +89,7 @@ public class UserController {
                 return this.ViewListUser("user/list");
             } else {
                 modelAndView.setViewName("user/create");
-                modelAndView.addObject("exitsEmail", false);
+                modelAndView.addObject("exitsEmail", true);
                 return modelAndView;
         }
                  
