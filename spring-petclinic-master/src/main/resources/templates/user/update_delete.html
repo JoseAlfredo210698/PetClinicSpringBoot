@@ -56,6 +56,16 @@ and open the template in the editor.
                 </td>
               </tr>
               <tr>
+                <th>Password</th>
+                <td>
+                    <input 
+                        type="password" 
+                        style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;"
+                        th:value="${user.password}"
+                        th:field="*{password}">
+                </td>
+              </tr>
+              <tr>
                 <th>Active</th>
                 <td>
                     <input
