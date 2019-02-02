@@ -137,8 +137,21 @@ public class UserController {
                 return modelAndView;               
             }
         }
+        
+        String password = user.getPassword();
+        System.out.println("P:" + password);
+        String auxPassword = password.substring(password.indexOf(",")+1);
+        if(auxPassword.length() != 0)
+            password = auxPassword;
         user.setId(id);
-        this.users.save(user);
+        System.out.println("PN:" + password );
+        Map encoders = new HashMap<>();
+        encoders.put("bcrypt", new BCryptPasswordEncoder());               
+        PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
+        password = passwordEncoder.encode(password);
+        user.setPassword(password);
+        System.out.println("Pn2:" + password );
+        users.save(user);
         return this.ViewListUser("user/list");
     }
     
