@@ -72,6 +72,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/**",
                         "/login**",                        
                         "/webjars/**").permitAll()
+                .antMatchers("/owner/**").access("hasAuthority('OWNER_PRIVILEGE')")
+                .antMatchers("/admin/**").access("hasAuthority('ADMIN_PRIVILEGE')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -164,12 +166,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 throws IOException {
             
             RecordService recordService = new RecordService(recordRepository);
-            System.out.println("test------");
+            System.out.println("test------ sucess");
             String username = request.getParameter("username");
             recordService.success(username);
             
             handle(request, response, authentication);
-            clearAuthenticationAttributes(request);
+            //clearAuthenticationAttributes(request);
         }
 
         protected void handle(HttpServletRequest request,
@@ -186,22 +188,27 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
         protected String determineTargetUrl(Authentication authentication) {
-            return "/";
+            
+            
             //no borrar en caso de que se necesita roles mas adelante
-//            boolean isUser = false;
-//            boolean isAdmin = false;
-//            Collection<? extends GrantedAuthority> authorities
-//                    = authentication.getAuthorities();
-//            for (GrantedAuthority grantedAuthority : authorities) {
-//                if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
-//                    isUser = true;
-//                    break;
-//                } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-//                    isAdmin = true;
-//                    break;
-//                }
-//            }
-//
+            boolean isUser = false;
+            boolean isAdmin = false;
+            System.out.println("aqui en determin" + authentication.getAuthorities());
+            Collection<? extends GrantedAuthority> authorities
+                    = authentication.getAuthorities();
+            for (GrantedAuthority grantedAuthority : authorities) {
+                System.out.println("que roles tienes tuuu: " + grantedAuthority.getAuthority().toString());;
+                if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+                    isUser = true;
+                    break;
+                } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                    isAdmin = true;
+                    break;
+                }
+            }
+            
+            return "/";
+
 //            if (isUser) {
 //                return "/homepage.html";
 //            } else if (isAdmin) {

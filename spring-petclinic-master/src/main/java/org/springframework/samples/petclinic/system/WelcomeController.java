@@ -36,6 +36,8 @@ class WelcomeController {
 
             Authentication auth
                     = SecurityContextHolder.getContext().getAuthentication();
+            
+            System.out.println(auth.toString());
 
             if (auth != null) {
                 logger.info("User '" + auth.getName()

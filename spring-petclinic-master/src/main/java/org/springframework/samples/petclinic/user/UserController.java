@@ -7,6 +7,7 @@ package org.springframework.samples.petclinic.user;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,6 +42,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private RoleRepository roleRepository;
 
     private ModelAndView modelAndView;
 
@@ -85,6 +89,11 @@ public class UserController {
                 password = passwordEncoder.encode(password);
                 user.setPassword(password);
                 //////////
+                
+                ///////////////////////apartado para lo de admin
+                Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+                user.setRoles(Arrays.asList(adminRole));
+                ///////////////////////
                 this.users.save(user);
                 return this.ViewListUser("user/list");
             } else {

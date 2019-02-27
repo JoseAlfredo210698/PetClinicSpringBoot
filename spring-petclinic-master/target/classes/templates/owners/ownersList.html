@@ -15,11 +15,11 @@
             <th th:text="#{tf}" style="width: 120px">Telephone</th>
             <th th:text="#{p}">Pets</th>
         </tr>
-        </thead>
+        </thead>d
         <tbody>
           <tr th:each="owner : ${selections}">
               <td>
-                  <a th:href="@{/owners/__${owner.id}__}" th:text="${owner.firstName + ' ' + owner.lastName}"/></a>
+                  <a th:href="@{/admin/owners/__${owner.id}__}" th:text="${owner.firstName + ' ' + owner.lastName}"/></a>
               </td>
               <td th:text="${owner.city}"/>
               <td th:text="${owner.telephone}"/>

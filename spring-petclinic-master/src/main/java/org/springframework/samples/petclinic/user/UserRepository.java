@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author AugustoRuCle
  */
-public interface UserRepository extends Repository<User, Integer>{
+public interface UserRepository extends Repository<User, Long>{
 
     @Query("SELECT user FROM User user WHERE user.id = :id")
     @Transactional(readOnly = true)

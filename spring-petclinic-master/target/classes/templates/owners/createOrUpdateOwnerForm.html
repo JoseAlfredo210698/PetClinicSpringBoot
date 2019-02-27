@@ -15,9 +15,14 @@
       <input
         th:replace="~{fragments/inputField :: input (#{tf}, 'telephone', 'text')}" />
       <input
+          th:replace="~{fragments/inputField :: input ('Email', 'user.email', 'text')}" />
+      <input
+          th:replace="~{fragments/inputField :: input ('Contraseña', 'user.password', 'text')}" />
+      <input
           th:replace="~{fragments/inputField :: input (' ', 'latitud', 'text')}" />
       <input
           th:replace="~{fragments/inputField :: input (' ', 'longitud', 'text')}" />
+      
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
