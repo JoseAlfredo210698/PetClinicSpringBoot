@@ -46,19 +46,6 @@ public class Appointment extends BaseEntity{
     @NotEmpty
     public Time hour;
     
-    @Column(name = "pet")
-    @NotEmpty
-    public Time hour;
-    
-    @Column(name = "hour")
-    @NotEmpty
-    public Time hour;
-    
-    @Column(name = "hour")
-    @NotEmpty
-    public Time hour;
-    
-    
 
     public String getNombre() {
         return nombre;
