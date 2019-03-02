@@ -24,7 +24,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
@@ -33,6 +35,7 @@ import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
+import org.springframework.samples.petclinic.user.User;
 
 /**
  * Simple JavaBean domain object representing an owner.
@@ -45,6 +48,7 @@ import org.springframework.samples.petclinic.model.Person;
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
+
     @Column(name = "address")
     @NotEmpty
     private String address;
@@ -57,11 +61,11 @@ public class Owner extends Person {
     @NotEmpty
     @Digits(fraction = 0, integer = 10)
     private String telephone;
-    
+
     @Column(name = "latitud")
     @NotEmpty
     private String latitud;
-    
+
     @Column(name = "longitud")
     @NotEmpty
     private String longitud;
@@ -69,6 +73,20 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets;
 
+    ////////////////////cambios de kevin
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    ///////
     public String getAddress() {
         return this.address;
     }
@@ -92,7 +110,7 @@ public class Owner extends Person {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
-    
+
     public String getLatitud() {
         return this.latitud;
     }
@@ -100,7 +118,7 @@ public class Owner extends Person {
     public void setLatitud(String latitud) {
         this.latitud = latitud;
     }
-    
+
     public String getLongitud() {
         return this.longitud;
     }
@@ -167,7 +185,6 @@ public class Owner extends Person {
     @Override
     public String toString() {
         return new ToStringCreator(this)
-
                 .append("id", this.getId())
                 .append("new", this.isNew())
                 .append("lastName", this.getLastName())
@@ -175,8 +192,9 @@ public class Owner extends Person {
                 .append("address", this.address)
                 .append("city", this.city)
                 .append("telephone", this.telephone)
-                .append("latitud",this.latitud)
-                .append("longitud",this.longitud)
-                    .toString();
+                .append("latitud", this.latitud)
+                .append("longitud", this.longitud)
+                .append("id_user", this.user.getId())
+                .toString();
     }
 }
