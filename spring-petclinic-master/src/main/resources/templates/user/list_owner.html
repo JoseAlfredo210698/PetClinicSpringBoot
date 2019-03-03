@@ -7,26 +7,12 @@ and open the template in the editor.
 <html
     th:replace="~{fragments/layout :: layout (~{::body},'list')}">
     <head>
-        <title>Hola mundo</title>
+        <title>Owners</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Usuarios existentes</h1>
-        <div class="col-sm-2">
-            <a 
-                class="btn btn-default"
-                type="button" 
-                href="/user/create"
-                style="width:100%; margin-top: 1%; margin-bottom:5%"> Crear usuario </a>
-        </div>
-        <div class="col-sm-2">
-            <a 
-                class="btn btn-default"
-                type="button" 
-                href="/user/owners"
-                style="width:100%; margin-top: 1%; margin-bottom:5%"> Ver solo propietarios </a>
-        </div>
+        <h1>Owners existentes</h1>        
               <br/>
         <table id="vets" class="table table-striped">
             <thead>
@@ -34,10 +20,9 @@ and open the template in the editor.
                 <th>Email</th>
                 <th>Name</th>
                 <th>City</th>
-                <th>Zipcode</th>
-                <th>Active</th>
+                <th>Zipcode</th>                
                 <th>Telephone</th>
-                <th>Opciones</th>
+                <th>Estatus</th>
             </tr>
             </thead>
             <tbody>
@@ -45,11 +30,10 @@ and open the template in the editor.
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.firstName + ' ' + user.lastName}"></td>
                     <td th:text="${user.city}"></td>
-                    <td th:text="${user.zipcode}"></td>
-                    <td th:text="${user.active} == '1'? 'Si':'No'"></td>
+                    <td th:text="${user.zipcode}"></td>                    
                     <td th:text="${user.telephone} == ''? 'Sin numero':${user.telephone}"></td>
                     <td>
-                        <a th:href="@{/user/update/__${user.id}__}" class="btn btn-default" />Editar</a>
+                        <!--<a th:href="@{/user/update/__${user.id}__}" class="btn btn-default" />Editar</a>-->
                         <th:block th:if="${user.active} == '1'">
                             <a class="btn btn-default" data-toggle="modal" data-target="#exampleModal" th:id="${user.id}" onclick="btn_delete(this.id)" >Desactivar</a>
                         </th:block>

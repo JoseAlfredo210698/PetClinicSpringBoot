@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,8 @@ import org.springframework.samples.petclinic.user.Role;
 import org.springframework.samples.petclinic.user.RoleRepository;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,18 +52,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 class OwnerController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
-    
+
     private final OwnerRepository owners;
-    
+
     ////////kevin
     @Autowired
     private UserRepository userRepository;
-  
+
     @Autowired
     private RoleRepository roleRepository;
-    
-    ////////////////
 
+    private ModelAndView modelAndView;
+
+    ////////////////
     public OwnerController(OwnerRepository clinicService) {
         this.owners = clinicService;
     }
@@ -84,9 +88,9 @@ class OwnerController {
         } else {
             //Hablar con edgar porque esto es temporal
             Map encoders = new HashMap<>();
-            encoders.put("bcrypt", new BCryptPasswordEncoder());               
+            encoders.put("bcrypt", new BCryptPasswordEncoder());
             PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
-            
+
             Role ownerRole = roleRepository.findByName("ROLE_OWNER");
             User user = new User();
             user.setFirstName(owner.getFirstName());
@@ -98,7 +102,7 @@ class OwnerController {
             user.setCity(owner.getCity());
             user.setTelephone(owner.getTelephone());
             user.setZipcode("29049");
-            
+
             userRepository.save(user);
             owner.setUser(user);
             /////////////////
@@ -156,6 +160,91 @@ class OwnerController {
         }
     }
 
+    @GetMapping("owner/my_profile")
+    public String initUpdateOwnerForm(Model model) {
+        String username = "";
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        System.out.println("username : " + username);
+        User temp = userRepository.findByEmail(username);
+        System.out.println("id de este username " + temp.getId());
+        Owner owner = this.owners.findByUserId(temp.getId());
+        System.out.println("owner: " + owner);
+        model.addAttribute(owner);
+        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("owner/my_profile")
+    public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result) {
+        if (result.hasErrors()) {
+            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        } else {
+            //obtener owner
+            String username = "";
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else {
+                username = principal.toString();
+            }
+            User temp = userRepository.findByEmail(username);
+            Owner owner_temp = this.owners.findByUserId(temp.getId());
+            String temp_pass = owner_temp.getUser().getPassword();
+            String temp_username = owner_temp.getUser().getEmail();
+
+            System.out.println("owner encontrado: " + owner_temp);
+            System.out.println("id del owner encontrado: " + owner_temp.getId());
+
+            owner.setId(owner_temp.getId());
+            System.out.println("id del que estoy editandos, seniors homeros: " + owner.getId());
+            System.out.println("owner con datos nuevos: " + owner);
+            //Hablar con edgar porque esto es temporal
+            Map encoders = new HashMap<>();
+            encoders.put("bcrypt", new BCryptPasswordEncoder());
+            PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
+
+            Role ownerRole = roleRepository.findByName("ROLE_OWNER");
+            User user = owner_temp.getUser();
+            System.out.println("El user del owner que estoy editando: " + user);
+            System.out.println("El id user del owner que estoy editando: " + user.getId());
+            user.setFirstName(owner.getFirstName());
+            user.setLastName(owner.getLastName());
+            System.out.println("contra adentro de owner mandado" + owner.getUser().getPassword());
+            if (owner.getUser().getPassword().contains("{bcrypt}")) {
+                user.setPassword(owner.getUser().getPassword());
+            } else {
+                user.setPassword(passwordEncoder.encode(owner.getUser().getPassword()));
+            }
+            user.setEmail(owner.getUser().getEmail());
+            user.setCity(owner.getCity());
+            user.setTelephone(owner.getTelephone());
+            user.setZipcode("29049");
+            System.out.println("Hasta aca llego");
+            userRepository.save(user);
+            owner.setUser(user);
+            //owner.setUser(user);
+            /////////////////            
+            this.owners.save(owner);
+            if (temp_pass.compareTo(owner.getUser().getPassword()) != 0) {
+                System.out.println("Las contras son diferentes");
+                System.out.println(temp_pass);
+                System.out.println(owner.getUser().getPassword());
+                return "redirect:/login?confirmation";
+            }
+            if (temp_username.compareTo(owner.getUser().getEmail()) != 0) {
+                System.out.println("Las emails son diferentes");
+                System.out.println(temp_username);
+                System.out.println(owner.getUser().getEmail());
+                return "redirect:/login?confirmation";
+            }
+            return "redirect:/owner/my_profile";
+        }
+    }
+
     /**
      * Custom handler for displaying an owner.
      *
@@ -169,4 +258,25 @@ class OwnerController {
         return mav;
     }
 
+    //kevin
+    @GetMapping("user/owners")
+    public ModelAndView ListOwners() {
+        modelAndView = this.ViewListOwners("user/list_owner");
+        return modelAndView;
+    }
+
+    private ModelAndView ViewListOwners(String view) {
+        ModelAndView _modelAndView = new ModelAndView(view);
+        ArrayList<Owner> owners = this.owners.All();
+        System.out.println("Estyo hay en owner: " + owners.toString());
+        ArrayList<User> users = new ArrayList<>();
+        for (Owner owner : owners) {
+            users.add(owner.getUser());
+        }
+        System.out.println("Esto hay en users: " + users.toString());
+        //ArrayList<User> users = this.users.All();
+        _modelAndView.addObject("users", users);
+        return _modelAndView;
+    }
+    //
 }

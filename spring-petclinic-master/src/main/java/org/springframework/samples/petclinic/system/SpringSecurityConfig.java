@@ -22,6 +22,7 @@ import org.springframework.samples.petclinic.record.RecordService;
 import org.springframework.samples.petclinic.user.MyUserDetailsService;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,6 +30,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -137,8 +139,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 AuthenticationException exception) throws IOException, ServletException {
 
             RecordService recordService = new RecordService(recordRepository);
-            System.out.println("test------");
+            System.out.println("test error------");
             String username = request.getParameter("username");
+            System.out.println(exception.getClass());
 
             if (exception.getClass().isAssignableFrom(BadCredentialsException.class)) {
                 response.sendRedirect("/login?error");
@@ -150,6 +153,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 System.out.println(exception);
             } else if (exception.getClass().isAssignableFrom(SessionAuthenticationException.class)) {
                 response.sendRedirect("/login?loggedin");
+                System.out.println(exception);
+            } else if (exception.getClass().isAssignableFrom(LockedException.class)) {
+                System.out.println("Pero fue por no existir");
+                response.sendRedirect("/login?error");
+                recordService.badCredentials(username);
                 System.out.println(exception);
             }
         }

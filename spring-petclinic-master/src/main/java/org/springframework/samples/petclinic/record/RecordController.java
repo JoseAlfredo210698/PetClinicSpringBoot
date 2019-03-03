@@ -35,7 +35,7 @@ public class RecordController {
         return _modelAndView;
     }
 
-    @GetMapping("/admin/records")
+    @GetMapping("/owner/records")
     public ModelAndView List() {
         modelAndView = this.ViewListUser();
         return modelAndView;

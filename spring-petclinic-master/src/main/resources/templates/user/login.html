@@ -88,6 +88,9 @@ and open the template in the editor.
                             <div th:if="${param.loggedin}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
                                 Ya estas logeado
                             </div>
+                            <div th:if="${param.confirmation}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
+                                Te has deslogeado porque hiciste cambios importantes
+                            </div>
                         </div>
                     </div>
                 </div>
