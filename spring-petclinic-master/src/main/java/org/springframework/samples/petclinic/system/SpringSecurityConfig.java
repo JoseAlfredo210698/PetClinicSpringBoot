@@ -72,7 +72,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/img/**",
                         "/resources/**",
                         "/static/**",
-                        "/login**",                        
+                        "/login**",      
+                        "/owner_signup",
                         "/webjars/**").permitAll()
                 .antMatchers("/owner/**").access("hasAuthority('OWNER_PRIVILEGE')")
                 .antMatchers("/admin/**").access("hasAuthority('ADMIN_PRIVILEGE')")

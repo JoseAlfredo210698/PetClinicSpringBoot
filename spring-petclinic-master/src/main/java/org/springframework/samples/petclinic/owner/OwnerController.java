@@ -41,6 +41,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * @author Juergen Hoeller
@@ -52,6 +60,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 class OwnerController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+
+    //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER = "src//main//resources//static//resources//images//";
 
     private final OwnerRepository owners;
 
@@ -82,7 +93,8 @@ class OwnerController {
     }
 
     @PostMapping("/owner_signup")
-    public String processCreationForm(@Valid Owner owner, BindingResult result) {
+    public String processCreationForm(@Valid Owner owner, BindingResult result,
+            @RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
@@ -106,6 +118,31 @@ class OwnerController {
             userRepository.save(user);
             owner.setUser(user);
             /////////////////
+            ///
+            String relativePath = "";
+            try {
+
+                // Get the file and save it somewhere
+                byte[] bytes = file.getBytes();
+                String prefijo = RandomStringUtils.randomAlphanumeric(10);
+                String imageName = prefijo + file.getOriginalFilename();
+                if (file.isEmpty()) {
+                    relativePath = "/resources/images/placeholder.png";
+                } else {
+                    relativePath = "/resources/images/" + imageName;
+                }
+                Path path = Paths.get(UPLOADED_FOLDER + imageName);
+                Files.write(path, bytes);
+                System.out.println("El path donde se guardo" + path.toString());
+                System.out.println("Nombre del archivo" + imageName);
+                System.out.println("Lo que en la bd estara" + relativePath);
+
+                System.out.println("Esperemos que la imagen se guarde compa");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            owner.setImagen(relativePath);
             this.owners.save(owner);
             return "redirect:/admin/owners/" + owner.getId();
         }
@@ -179,7 +216,8 @@ class OwnerController {
     }
 
     @PostMapping("owner/my_profile")
-    public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result) {
+    public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result,
+            @RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
@@ -214,8 +252,8 @@ class OwnerController {
             user.setFirstName(owner.getFirstName());
             user.setLastName(owner.getLastName());
             System.out.println("contra adentro de owner mandado" + owner.getUser().getPassword());
-            if (owner.getUser().getPassword().contains("{bcrypt}")) {
-                user.setPassword(owner.getUser().getPassword());
+            if (owner.getUser().getPassword().contains("{bcrypt}") || owner.getUser().getPassword().compareTo("") == 0) {
+                user.setPassword(owner_temp.getUser().getPassword());
             } else {
                 user.setPassword(passwordEncoder.encode(owner.getUser().getPassword()));
             }
@@ -227,7 +265,32 @@ class OwnerController {
             userRepository.save(user);
             owner.setUser(user);
             //owner.setUser(user);
-            /////////////////            
+            /////////////////        
+            ///
+            String relativePath = "";
+            try {
+
+                // Get the file and save it somewhere
+                byte[] bytes = file.getBytes();
+                String prefijo = RandomStringUtils.randomAlphanumeric(10);
+                String imageName = prefijo + file.getOriginalFilename();
+                if (file.isEmpty()) {
+                    relativePath = owner_temp.getImagen();
+                } else {
+                    relativePath = "/resources/images/" + imageName;
+                }
+                Path path = Paths.get(UPLOADED_FOLDER + imageName);
+                Files.write(path, bytes);
+                System.out.println("El path donde se guardo" + path.toString());
+                System.out.println("Nombre del archivo" + imageName);
+                System.out.println("Lo que en la bd estara" + relativePath);
+
+                System.out.println("Esperemos que la imagen se guarde compa");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            owner.setImagen(relativePath);
             this.owners.save(owner);
             if (temp_pass.compareTo(owner.getUser().getPassword()) != 0) {
                 System.out.println("Las contras son diferentes");
@@ -241,6 +304,7 @@ class OwnerController {
                 System.out.println(owner.getUser().getEmail());
                 return "redirect:/login?confirmation";
             }
+            /////////
             return "redirect:/owner/my_profile";
         }
     }
