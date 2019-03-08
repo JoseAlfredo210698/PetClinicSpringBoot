@@ -1,35 +1,88 @@
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{fragments/layout :: layout (~{::body},'medicamento')}">
-
+  th:replace="~{fragments/layout :: layout (~{::body},'medicamento')}">       
+    
 <body>
+    <style> 
+        
+    .container_img {
+      position: relative;
+      text-align: center;
+      color: white;
+    }
 
-  <h2 th:text="#{fm}">Find Med</h2>
+    .top-left {
+      position: absolute;
+      top: 20px;
+      width: 400px;
+      padding: 10px;
+      font-size: 30px;
+      text-align: left;
+      color:white;
+      background-color:rgb(76, 206, 173);
+      opacity:0.9;
+    }
+    
+    .aux-input{
+        outline: none;
+        border-color: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background-color: transparent;
+        width: 100%;
+        border-style: solid;
+        border-radius: 20px;
+        border-color: #4CCEAD;
+        padding: 10px;
+    }
+    
+    .btn{
+        outline: none !important;
+        border: none;
+        border-radius: 20px;
+        background-color: #212121;
+        color: white;
+        width: 100%;
+    }
+    
+    .btn-a{
+        font-weight: bold; 
+        text-align: right;
+    }
+    
+    .btn-a a:hover{
+        color: #4CCEAD;
+    }
 
-  <form th:object="${medicamento}" th:action="@{/medicamento}" method="get"
-    class="form-horizontal" id="search-medicamento-form">
-    <div class="form-group">
-      <div class="control-group" id="nombreGroup">
-        <label th:text="#{fn}" class="col-sm-2 control-label">Last name </label>
-        <div class="col-sm-10">
-          <input class="form-control" th:field="*{nombre}" size="30"
-            maxlength="80" /> <span class="help-inline"><div
-              th:if="${#fields.hasAnyErrors()}">
-              <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
-            </div></span>
+</style> 
+    <br>
+    <div class="container">
+        <div class="row">
+            <form th:object="${medicamento}" th:action="@{/medicamento}" method="get"
+                class="form-horizontal" id="search-medicamento-form">
+                <div style="display:flex; margin-top: 20px; flex-wrap: wrap">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-10">
+                            <input class="aux-input" th:field="*{nombre}" size="20" placeholder="Buscar medicamentos" maxlength="80" /> 
+                            <span class="help-inline">
+                                <div th:if="${#fields.hasAnyErrors()}">
+                                    <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+                                </div>
+                            </span>
+                    </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+                        <button style="padding: 10px" type="submit" class="btn btn-default">Buscar medicamento</button>
+                    </div>
+                </div>
+            </form>
         </div>
-      </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-10"></div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 btn-a">
+                <a th:text="#{amed}" th:href="@{/medicamento/new}">Add Med</a>
+            </div>
+        </div>
+        <br>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button th:text="#{fm}" type="submit" class="btn btn-default">Find
-          Med</button>
-      </div>
-    </div>
-
-  </form>
-
-  <br />
-  <a th:text="#{amed}" class="btn btn-default" th:href="@{/medicamento/new}">Add Med</a>
-
+  <br><br>
 </body>
 </html>

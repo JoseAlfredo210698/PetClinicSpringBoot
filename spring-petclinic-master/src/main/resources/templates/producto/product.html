@@ -7,11 +7,30 @@
     th:replace="~{fragments/layout :: layout (~{::body},'product')}">
 
     <body>
-        <h2 th:text="#{Productos}"></h2>
+        
+        <style>
+            .btn{
+                width: 300px;
+                height: 30px;
+                outline: none !important;
+                border: none;
+                border-radius: 20px;
+                margin-bottom:10px;
+                color: white;
+                background-color: #212121 !important;
+            }
+            th {
+                background-color: #4CCEAD !important;
+                color: white;
+            } 
+        </style>
+        
+        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px" th:text="#{Productos}"></h1></div>
+       
+        <a style="margin-left:10%; margin-top:20px;" th:text="#{agregarProducto}" class="btn" th:href="@{/product/create-product}"></a>
 
-        <a th:text="#{agregarProducto}" class="btn btn-default" th:href="@{/product/create-product}"></a>
-
-        <table id="vets" class="table table-striped">
+        <div style="width: 100%;display: flex">
+        <table style="margin:auto; width:80%" id="vets" class="table table-striped">
             <thead>
                 <tr>
                     <th th:text="#{Producto}" ></th>
@@ -33,5 +52,6 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </body>
 </html>

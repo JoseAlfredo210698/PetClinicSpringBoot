@@ -7,9 +7,17 @@
     th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
 
     <body>
-        <h2 th:text="#{Productos}"></h2>
+        <style>
+        th {
+            background-color: #4CCEAD !important;
+            color: white;
+        }
+        </style>
+    
+        <div style="display:flex"><h1 style="margin:auto; margin-top: 20px; margin-bottom:20px;" th:text="#{Productos}"></h1></div>
         
-        <table id="vets" class="table table-striped">
+       <div style="width: 100%;display: flex">
+        <table style="margin:auto; width:80%" id="vets" class="table table-striped">
             <thead>
                 <tr>
                     <th th:text="#{Producto}" style="width: 200px;"></th>
@@ -29,5 +37,6 @@
                 </tr>
             </tbody>
         </table>
+       </div>
     </body>
 </html>

@@ -2,7 +2,21 @@
 <html 
     th:replace="~{fragments/layout :: layout (~{::body},'user_create')}">
     <body>
-        <h1>Crear usuario</h1>
+        <style>
+            button, .btn-default{
+                width: 100%;
+                height: 30px;
+                outline: none !important;
+                border: none;
+                border-radius: 20px;
+                color: white;
+                background-color: #212121 !important;
+            }
+        </style>
+        
+        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px">Crear usuario</h1></div>
+        <div class="col-xs-13 col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="col-xs-13 col-sm-5 col-md-5 col-lg-5">
         <form th:object="${user}" class="form-horizontal" id="add-owner-form" method="post">
             <div class="form-group has-feedback">
                 <div class="form-group">
@@ -47,9 +61,10 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <button
                         th:with="text=${user['new']} ? #{au} : #{uu}"
-                        class="btn btn-default" type="submit" th:text="${text}"></button>
+                        class="btn" type="submit" th:text="${text}"></button>
                 </div>
             </div>
         </form>
+        </div>
     </body>
 </html>

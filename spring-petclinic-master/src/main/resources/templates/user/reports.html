@@ -6,14 +6,17 @@ and open the template in the editor.
 -->
 <html 
     th:replace="~{fragments/layout :: layout (~{::body},'user_reports')}">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
     <body>
-<h1>Reporte</h1>
-        <table id="vets" class="table table-striped">
+    <style>
+        th {
+            background-color: #4CCEAD !important;
+            color: white;
+        }
+        </style>
+    
+        <div style="display:flex"><h1 style="margin:auto; margin-top: 20px; margin-bottom:20px;">Reporte</h1></div>
+        <div style="width: 100%;display: flex">
+        <table style="margin:auto; width:80%" id="vets" class="table table-striped">
             <thead>
             <tr>
                 <th>Email</th>
@@ -35,5 +38,6 @@ and open the template in the editor.
               </tr>
             </tbody>
         </table>
+        </div>
     </body>
 </html>

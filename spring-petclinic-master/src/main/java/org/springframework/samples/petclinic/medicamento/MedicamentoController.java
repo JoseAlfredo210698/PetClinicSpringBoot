@@ -27,7 +27,6 @@ import java.util.Map;
 public class MedicamentoController {
     private static final String VIEW_MEDICAMENTOS = "medicamentos/createOrUpdateMedicamentoForm";
     private final MedicamentoRepository medicamento;
-    
     public MedicamentoController(MedicamentoRepository medicinas) {
         this.medicamento = medicinas;
     }

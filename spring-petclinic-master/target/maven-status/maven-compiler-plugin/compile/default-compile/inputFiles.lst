@@ -21,7 +21,6 @@ C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-mast
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\VisitController.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\SpringSecurityConfig.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\RoleRepository.java
-C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\AppointmentRepository.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\BaseEntity.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\PetClinicApplication.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\CrashController.java
@@ -31,8 +30,6 @@ C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-mast
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\OwnerController.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetTypeFormatter.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetController.java
-C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\Appointment.java
-C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\AppointmentController.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\MedicamentoController.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Pet.java
 C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\PrivilegeRepository.java
