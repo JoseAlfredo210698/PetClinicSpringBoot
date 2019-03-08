@@ -206,7 +206,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             Collection<? extends GrantedAuthority> authorities
                     = authentication.getAuthorities();
             for (GrantedAuthority grantedAuthority : authorities) {
-                System.out.println("que roles tienes tuuu: " + grantedAuthority.getAuthority().toString());;
+                System.out.println("que roles tienes tu: " + grantedAuthority.getAuthority().toString());
+                if(grantedAuthority.getAuthority().toString().compareTo("OWNER_PRIVILEGE") == 0)
+                    isUser = true;
                 if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
                     isUser = true;
                     break;
@@ -216,15 +218,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 }
             }
             
+            if(isUser)
+                return "/owner/";
             return "/";
-
-//            if (isUser) {
-//                return "/homepage.html";
-//            } else if (isAdmin) {
-//                return "/console.html";
-//            } else {
-//                throw new IllegalStateException();
-//            }
+            
         }
 
         protected void clearAuthenticationAttributes(HttpServletRequest request) {
