@@ -165,7 +165,10 @@ public class User extends Person {
         final StringBuilder builder = new StringBuilder();
         builder.append("User [id=").append(this.getId()).append(", firstName=").append(this.getFirstName()).append(", lastName=").append(this.getLastName()).
                 append(", email=").append(email).append(", password=").append(password).append(", enabled=").append("true").append(", secret=").
-                append(", roles=").append(roles).append("]");
+                append(", roles=").append(roles).
+                append(", city=").append(city).
+                append(", zipcode=").append(zipcode)
+                .append("]");
         return builder.toString();
     }
 

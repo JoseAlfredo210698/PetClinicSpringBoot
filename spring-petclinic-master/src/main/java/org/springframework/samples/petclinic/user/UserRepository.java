@@ -32,6 +32,10 @@ public interface UserRepository extends Repository<User, Long>{
     @Transactional(readOnly = true)
     ArrayList<User> All();
     
+//    @Query("SELECT user FROM Owner user")
+//    @Transactional(readOnly = true)
+//    ArrayList<User> Owners();
+    
     /** 
      * Save an {@link User} to the data store, either inserting or updating it.
      * @param user the {@link Owner} to save

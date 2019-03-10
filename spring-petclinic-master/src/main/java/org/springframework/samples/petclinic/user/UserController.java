@@ -5,32 +5,25 @@
  */
 package org.springframework.samples.petclinic.user;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.owner.Owner;
+import org.springframework.samples.petclinic.owner.OwnerRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -50,9 +43,12 @@ public class UserController {
 
     private final UserRepository users;
     private User auxUser;
-
+        
+    //private final OwnerRepository owners;
+    
     public UserController(UserRepository clinicService) {
         this.users = clinicService;
+        //this.owners = clinicService;
     }
     
     @GetMapping("/create")
@@ -110,6 +106,12 @@ public class UserController {
         modelAndView = this.ViewListUser("user/list");
         return modelAndView;
     }
+    
+//    @GetMapping("/owners")
+//    public ModelAndView ListOwners() {
+//        modelAndView = this.ViewListOwners("user/list");
+//        return modelAndView;
+//    }
     
     @GetMapping("/reports")
     public ModelAndView Reports() {
@@ -182,6 +184,14 @@ public class UserController {
         _modelAndView.addObject("users", users);
         return _modelAndView;
     }
+    
+//    private ModelAndView ViewListOwners(String view){
+//        ModelAndView _modelAndView = new ModelAndView(view);
+//        ArrayList<Owner> owners = this.owners.All();
+//        //ArrayList<User> users = this.users.All();
+//        _modelAndView.addObject("owners", owners);
+//        return _modelAndView;
+//    }
 
     public int exitsError(User user, BindingResult result){
         if (result.hasErrors()) {
@@ -195,6 +205,6 @@ public class UserController {
                 return 3;
         }
         return 0;
-    }
+    }    
 
 }

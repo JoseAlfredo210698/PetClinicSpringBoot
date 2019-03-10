@@ -5,6 +5,7 @@
 // */
 package org.springframework.samples.petclinic.user;
 //
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -110,21 +111,24 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private RoleRepository roleRepository;
+    
     public MyUserDetailsService() {
         super();
     }
 
     // API
-
     @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
 
         try {
             final User user = userRepository.findByEmail(email);
             if (user == null) {
-                throw new UsernameNotFoundException("No user found with username: " + email);
+                // new UsernameNotFoundException("No user found with username: " + email);
+                return new org.springframework.security.core.userdetails.User(email, "", true, true, true, false, getAuthorities(Arrays.asList(roleRepository.findByName("ROLE_OWNER"))));
             }
-            
+
             System.out.println("Estoy en mis service:" + getAuthorities(user.getRoles()));
             return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, getAuthorities(user.getRoles()));
         } catch (final Exception e) {
@@ -133,7 +137,6 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     // UTIL
-
     private final Collection<? extends GrantedAuthority> getAuthorities(final Collection<Role> roles) {
         System.out.println("Adentro de grranted: " + roles.toString());
         return getGrantedAuthorities(getPrivileges(roles));
@@ -144,7 +147,7 @@ public class MyUserDetailsService implements UserDetailsService {
         List<String> privileges = new ArrayList<String>();
         List<Privilege> collection = new ArrayList<Privilege>();
         for (Role role : roles) {
-            System.out.println( "que hay adentro de rol: " + role.getPrivileges().toString());
+            System.out.println("que hay adentro de rol: " + role.getPrivileges().toString());
             collection.addAll(role.getPrivileges());
         }
         for (Privilege item : collection) {

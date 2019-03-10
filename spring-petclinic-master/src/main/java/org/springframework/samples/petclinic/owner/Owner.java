@@ -70,6 +70,9 @@ public class Owner extends Person {
     @NotEmpty
     private String longitud;
 
+    @Column(name = "imagen")    
+    private String imagen = "";
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets;
 
@@ -195,6 +198,21 @@ public class Owner extends Person {
                 .append("latitud", this.latitud)
                 .append("longitud", this.longitud)
                 .append("id_user", this.user.getId())
+                .append("imagen", this.imagen)
                 .toString();
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

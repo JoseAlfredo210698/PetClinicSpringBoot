@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
-  th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+  th:replace="~{fragments/layout_owner :: layout (~{::body},'owners')}">
 <body>
-  <h2 th:text="#{o}">Owner</h2>
-  <form th:object="${owner}" class="form-horizontal" id="add-owner-form" method="post">
+  <h2 th:text="#{o}">Owner</h2> 
+  <form th:object="${owner}" class="form-horizontal" id="add-owner-form" method="post" enctype="multipart/form-data">
     <div class="form-group has-feedback">
       <input
         th:replace="~{fragments/inputField :: input (#{fn}, 'firstName', 'text')}" />
@@ -17,11 +17,12 @@
       <input
           th:replace="~{fragments/inputField :: input ('Email', 'user.email', 'text')}" />
       <input
-          th:replace="~{fragments/inputField :: input ('Contraseña', 'user.password', 'text')}" />
-      <input
-          th:replace="~{fragments/inputField :: input (' ', 'latitud', 'text')}" />
-      <input
-          th:replace="~{fragments/inputField :: input (' ', 'longitud', 'text')}" />
+          th:replace="~{fragments/inputField :: input ('Contraseña', 'user.password', 'password')}" />
+      <input 
+          type="file" name="file" style="margin-left: 38px;"/><br>
+      <img th:src="@{${owner.imagen} == '' ? '/resources/images/placeholder.png':${owner.imagen}}" style="width:15%;height:30%; margin-left: 17%" alt="myImage"/>
+      
+      
       
     </div>
     <div class="form-group">
@@ -201,6 +202,10 @@
             });   
             </script>
                   </div>
+      <input
+          th:replace="~{fragments/inputField :: input (' ', 'latitud', 'text')}" />
+      <input
+          th:replace="~{fragments/inputField :: input (' ', 'longitud', 'text')}" />
   </form>
 </body>
 </html>

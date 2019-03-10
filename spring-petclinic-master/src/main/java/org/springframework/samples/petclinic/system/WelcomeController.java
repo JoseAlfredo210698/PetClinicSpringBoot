@@ -22,6 +22,11 @@ class WelcomeController {
     public String welcome() {
         return "welcome";
     }
+    
+    @GetMapping("/owner/")
+    public String welcome_owner() {
+        return "welcome_owner";
+    }
 
     // handle 403 page
     @Component
