@@ -1,0 +1,40 @@
+<html 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+    th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
+
+    <body>
+        <span th:object="${specialtie}">
+            <h1 th:text="#{especialidad}"></h1>
+            <h4 th:text="${specialtie}"/>
+        </span>
+        <a th:text="#{regresar}" th:href="@{/appointments/report}" class="btn btn-default"></a>
+        <table id="vets" class="table table-striped">
+            <thead>
+                <tr>
+                    <th th:text="#{numeroCita}" style="width: 200px;"></th>
+                    <th th:text="#{fecha}" style="width: 250px;"></th>
+                    <th th:text="#{hora}" style="width: 150px;"></th>
+                    <th th:text="#{mascota}" style="width: 200px;"></th>
+                    <th th:text="#{confirmacion}" style="width: 150px;"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="appointments : ${allAppointments}">
+                    <td th:text="${appointments.id}"/>
+                    <td th:text="${appointments.fecha}"/>
+                    <td th:text="${appointments.hora}"/>
+                    <td th:text="${appointments.mascota}"/>
+                    <td th:if="${appointments.confirmacion == 0}" style="width: 150px; color: red;"
+                        th:text="#{noConfirmado}"/>
+                    <td th:unless="${appointments.confirmacion == 0}" style="width: 150px; color: green;"
+                        th:text="#{confirmado}"/>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
