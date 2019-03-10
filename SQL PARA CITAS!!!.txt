@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 CREATE TABLE citas (
   id int(11) NOT NULL,
   IDowner int(11) NOT NULL,
@@ -7,14 +7,4 @@ CREATE TABLE citas (
   mascota varchar(50) NOT NULL,
   especialidad int(11) NOT NULL,
   confirmacion tinyint(1) NOT NULL
-=======
-CREATE TABLE citas (
-  id int(11) NOT NULL,
-  IDowner int(11) NOT NULL,
-  fecha date NOT NULL,
-  hora time NOT NULL,
-  mascota varchar(50) NOT NULL,
-  especialidad int(11) NOT NULL,
-  confirmacion tinyint(1) NOT NULL
->>>>>>> 44d419ca18b7dcd24649841368eb04595bcd7bf5
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
