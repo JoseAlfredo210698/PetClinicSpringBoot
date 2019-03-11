@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2019 a las 00:55:25
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 11-03-2019 a las 06:03:58
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,42 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `petclinic`
 --
-CREATE DATABASE IF NOT EXISTS `petclinic` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `petclinic`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `citas`
+--
+
+CREATE TABLE `citas` (
+  `id` int(11) NOT NULL,
+  `owner_id` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `mascota` varchar(50) NOT NULL,
+  `especialidad` int(11) DEFAULT NULL,
+  `confirmacion` varchar(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `especialidades`
+--
+
+CREATE TABLE `especialidades` (
+  `id` int(11) NOT NULL,
+  `nombreEspecialidad` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `especialidades`
+--
+
+INSERT INTO `especialidades` (`id`, `nombreEspecialidad`) VALUES
+(1, 'Cardiologia'),
+(2, 'Dermatologia'),
+(3, 'Fisioterapia');
 
 -- --------------------------------------------------------
 
@@ -52,24 +86,29 @@ CREATE TABLE `owners` (
   `telephone` varchar(20) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `latitud` varchar(255) NOT NULL,
-  `longitud` varchar(255) NOT NULL
+  `longitud` varchar(255) NOT NULL,
+  `imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `owners`
 --
 
-INSERT INTO `owners` (`id`, `first_name`, `last_name`, `address`, `city`, `telephone`, `user_id`, `latitud`, `longitud`) VALUES
-(1, 'edgarioo', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 20, '3.0838532866897026', '101.69003609326023'),
-(2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 21, '3.0838532866897026', '101.69003609326023'),
-(3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', 3, '3.0838532866897026', '101.69003609326023'),
-(4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', 23, '3.0838532866897026', '101.69003609326023'),
-(5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', 25, '3.0838532866897026', '101.69003609326023'),
-(6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', 26, '3.0838532866897026', '101.69003609326023'),
-(7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', 27, '3.0838532866897026', '101.69003609326023'),
-(8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', 28, '3.0838532866897026', '101.69003609326023'),
-(9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 29, '3.0838532866897026', '101.69003609326023'),
-(10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 30, '3.0838532866897026', '101.69003609326023');
+INSERT INTO `owners` (`id`, `first_name`, `last_name`, `address`, `city`, `telephone`, `user_id`, `latitud`, `longitud`, `imagen`) VALUES
+(1, 'Maestro Fonbon', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 20, '3.0838532866897026', '101.69003609326023', '/resources/images/iandxltdCw14 10 2016 07 21 PM Office Lens.jpg'),
+(2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 21, '3.0838532866897026', '101.69003609326023', ''),
+(3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', 3, '3.0838532866897026', '101.69003609326023', ''),
+(4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', 23, '3.0838532866897026', '101.69003609326023', ''),
+(5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', 25, '3.0838532866897026', '101.69003609326023', ''),
+(6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', 26, '3.0838532866897026', '101.69003609326023', ''),
+(7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', 27, '3.0838532866897026', '101.69003609326023', ''),
+(8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', 28, '3.0838532866897026', '101.69003609326023', ''),
+(9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 29, '3.0838532866897026', '101.69003609326023', ''),
+(10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 30, '3.0838532866897026', '101.69003609326023', ''),
+(12, 'Kevin Jhair', 'Velazquez Lopez', 'Blvd. Fidel Velázquez', '29049', '234', 39, '16.78123015229899', '-93.08928338931258', '/resources/images/Z27xBAxw1vtest2.jpg'),
+(13, 'prueba2', 'prueba2', 'R.M. Khatulistiwa', 'Besusu Tengah', '123', 40, '-0.8955606824339242', '119.87729809294308', '/resources/images/0VT5CT2nwUtest1.jpg'),
+(14, 'thatcher', 'thatcher', 'RM. Minahasa', 'Lolu Utara', '961234567', 41, '-0.8989446781738764', '119.86996790699021', '/resources/images/EqSGr8cXmjtest1.jpg'),
+(15, 'Edgar', 'Ramos', 'Huanacastle', '29010', '9617091100', 42, '16.772661972243426', '-93.10838235302536', '/resources/images/placeholder.png');
 
 -- --------------------------------------------------------
 
@@ -271,7 +310,76 @@ INSERT INTO `records` (`id`, `description`, `record_date`, `type`, `user_email`)
 (112, 'Contraseña o usuario incorrectos', '2019-03-04 05:40:50', 'failure', 'fon'),
 (113, 'Usuario ingreso al sistema sin problemas', '2019-03-04 05:40:57', 'success', 'fon@fon'),
 (114, 'Usuario ingreso al sistema sin problemas', '2019-03-04 05:41:46', 'success', 'fon@fon'),
-(115, 'Usuario ingreso al sistema sin problemas', '2019-03-04 05:42:42', 'success', 'fon@fon');
+(115, 'Usuario ingreso al sistema sin problemas', '2019-03-04 05:42:42', 'success', 'fon@fon'),
+(116, 'Contraseña o usuario incorrectos', '2019-03-07 09:22:38', 'failure', 'fon@fon'),
+(117, 'Usuario ingreso al sistema sin problemas', '2019-03-07 09:22:44', 'success', 'fon'),
+(118, 'Usuario ingreso al sistema sin problemas', '2019-03-07 09:29:35', 'success', 'fon'),
+(119, 'Usuario ingreso al sistema sin problemas', '2019-03-07 09:30:24', 'success', 'fon'),
+(120, 'Usuario ingreso al sistema sin problemas', '2019-03-07 09:30:42', 'success', 'fon'),
+(121, 'Usuario ingreso al sistema sin problemas', '2019-03-07 09:33:51', 'success', 'fon'),
+(122, 'El usuario esta deshabilitado', '2019-03-07 11:15:45', 'failure', 'kevin667'),
+(123, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:15:49', 'success', 'lol'),
+(124, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:16:06', 'success', 'kevin667'),
+(125, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:21:49', 'success', 'lol'),
+(126, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:21:57', 'success', 'lol'),
+(127, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:22:09', 'success', 'lol'),
+(128, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:26:28', 'success', 'lol'),
+(129, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:26:44', 'success', 'kevin667'),
+(130, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:33:54', 'success', 'lol'),
+(131, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:42:39', 'success', 'lol'),
+(132, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:42:39', 'success', 'lol'),
+(133, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:42:43', 'success', 'lol'),
+(134, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:43:03', 'success', 'lol2'),
+(135, 'El usuario esta deshabilitado', '2019-03-07 11:45:22', 'failure', 'thatcher'),
+(136, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:45:27', 'success', 'lol'),
+(137, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:45:42', 'success', 'thatcher'),
+(138, 'Contraseña o usuario incorrectos', '2019-03-07 11:46:36', 'failure', 'thatcher'),
+(139, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:52:26', 'success', 'lol2'),
+(140, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:53:11', 'success', 'lol2'),
+(141, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:53:25', 'success', 'lol2'),
+(142, 'Contraseña o usuario incorrectos', '2019-03-07 11:53:40', 'failure', 'lol2'),
+(143, 'Usuario ingreso al sistema sin problemas', '2019-03-07 11:53:44', 'success', 'lol2'),
+(144, 'Usuario ingreso al sistema sin problemas', '2019-03-07 12:10:00', 'success', 'lol2'),
+(145, 'Usuario ingreso al sistema sin problemas', '2019-03-08 08:46:27', 'success', 'lol2'),
+(146, 'Usuario ingreso al sistema sin problemas', '2019-03-08 08:56:08', 'success', 'lol2'),
+(147, 'Usuario ingreso al sistema sin problemas', '2019-03-08 08:58:39', 'success', 'lol2'),
+(148, 'El usuario esta deshabilitado', '2019-03-10 05:12:23', 'failure', '163209@ids.upchiapas.edu.mx'),
+(149, 'Usuario ingreso al sistema sin problemas', '2019-03-10 05:13:12', 'success', '163209@ids.upchiapas.edu.mx'),
+(150, 'Usuario ingreso al sistema sin problemas', '2019-03-10 06:48:39', 'success', '163209@ids.upchiapas.edu.mx'),
+(151, 'Usuario ingreso al sistema sin problemas', '2019-03-10 06:57:24', 'success', 'lol'),
+(152, 'Usuario ingreso al sistema sin problemas', '2019-03-10 07:01:27', 'success', 'test'),
+(153, 'Usuario ingreso al sistema sin problemas', '2019-03-10 07:07:10', 'success', 'lol'),
+(154, 'Usuario ingreso al sistema sin problemas', '2019-03-10 07:08:05', 'success', 'lol'),
+(155, 'Usuario ingreso al sistema sin problemas', '2019-03-10 07:50:19', 'success', 'lol'),
+(156, 'Usuario ingreso al sistema sin problemas', '2019-03-10 08:12:06', 'success', 'lol'),
+(157, 'Usuario ingreso al sistema sin problemas', '2019-03-10 08:15:06', 'success', 'lol'),
+(158, 'Usuario ingreso al sistema sin problemas', '2019-03-10 08:15:17', 'success', '163209@ids.upchiapas.edu.mx'),
+(159, 'Usuario ingreso al sistema sin problemas', '2019-03-10 09:20:05', 'success', 'lol'),
+(160, 'Usuario ingreso al sistema sin problemas', '2019-03-10 09:37:41', 'success', 'lol'),
+(161, 'Usuario ingreso al sistema sin problemas', '2019-03-10 10:31:24', 'success', '163209@ids.upchiapas.edu.mx'),
+(162, 'Usuario ingreso al sistema sin problemas', '2019-03-10 13:52:53', 'success', 'lol'),
+(163, 'Usuario ingreso al sistema sin problemas', '2019-03-10 14:02:54', 'success', 'lol'),
+(164, 'Usuario ingreso al sistema sin problemas', '2019-03-10 14:29:07', 'success', 'lol'),
+(165, 'Usuario ingreso al sistema sin problemas', '2019-03-11 01:49:10', 'success', '163209@ids.upchiapas.edu.mx'),
+(166, 'Usuario ingreso al sistema sin problemas', '2019-03-11 02:58:33', 'success', 'lol'),
+(167, 'Usuario ingreso al sistema sin problemas', '2019-03-11 03:45:38', 'success', '163209@ids.upchiapas.edu.mx'),
+(168, 'Usuario ingreso al sistema sin problemas', '2019-03-11 03:56:21', 'success', '163209@ids.upchiapas.edu.mx'),
+(169, 'Usuario ingreso al sistema sin problemas', '2019-03-11 04:15:51', 'success', '163209@ids.upchiapas.edu.mx'),
+(170, 'Usuario ingreso al sistema sin problemas', '2019-03-11 04:41:03', 'success', '163209@ids.upchiapas.edu.mx'),
+(171, 'Usuario ingreso al sistema sin problemas', '2019-03-11 05:03:18', 'success', 'test'),
+(172, 'Usuario ingreso al sistema sin problemas', '2019-03-11 05:08:11', 'success', 'test'),
+(173, 'Usuario ingreso al sistema sin problemas', '2019-03-11 06:09:36', 'success', '163209@ids.upchiapas.edu.mx'),
+(174, 'Usuario ingreso al sistema sin problemas', '2019-03-11 06:11:08', 'success', 'test'),
+(175, 'Usuario ingreso al sistema sin problemas', '2019-03-11 06:17:35', 'success', '163209@ids.upchiapas.edu.mx'),
+(176, 'Usuario ingreso al sistema sin problemas', '2019-03-11 06:31:20', 'success', 'test'),
+(177, 'Usuario ingreso al sistema sin problemas', '2019-03-11 06:32:37', 'success', '163209@ids.upchiapas.edu.mx'),
+(178, 'Usuario ingreso al sistema sin problemas', '2019-03-11 06:46:55', 'success', 'test'),
+(179, 'Usuario ingreso al sistema sin problemas', '2019-03-11 06:56:59', 'success', '163209@ids.upchiapas.edu.mx'),
+(180, 'Usuario ingreso al sistema sin problemas', '2019-03-11 07:09:53', 'success', '163209@ids.upchiapas.edu.mx'),
+(181, 'Usuario ingreso al sistema sin problemas', '2019-03-11 07:10:16', 'success', 'test'),
+(182, 'Usuario ingreso al sistema sin problemas', '2019-03-11 07:11:53', 'success', '163209@ids.upchiapas.edu.mx'),
+(183, 'Usuario ingreso al sistema sin problemas', '2019-03-11 07:59:42', 'success', '163209@ids.upchiapas.edu.mx'),
+(184, 'Usuario ingreso al sistema sin problemas', '2019-03-11 08:41:15', 'success', '163209@ids.upchiapas.edu.mx');
 
 -- --------------------------------------------------------
 
@@ -379,7 +487,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `active`, `email`, `password`, `telephone`, `zipcode`, `city`) VALUES
 (1, 'kevin', 'jhair', '1', 'katz@katz.com', '{bcrypt}$2a$10$gvZpMU8b/8V4nuqFyau72.1l5zqoofbyKPb1PGzruQ3NPRMCm6Gma', '', '29049', ''),
-(20, 'edgarioo', 'Franklin', '1', 'fon', '{bcrypt}$2a$10$7hGRQ19.BMFhTM6DJaO60uWGyy2/7SkpH09FPrloExySwlbTyt01y', '6085551023', '29049', 'Madison'),
+(20, 'Maestro Fonbon', 'Franklin', '1', 'fon', '{bcrypt}$2a$10$7hGRQ19.BMFhTM6DJaO60uWGyy2/7SkpH09FPrloExySwlbTyt01y', '6085551023', '29049', 'Madison'),
 (3, 'lol', 'lol', '1', 'lol', '{bcrypt}$2a$10$jS74X.M2pYegYNm7HbnJhu2SwxMZrmGewQKybpsTByCOqOx.fUTr2', '123', '29049', ''),
 (18, 'gustavo', 'gustavo', '1', 'gustavo', '{bcrypt}$2a$10$liMPb3CTBl7gC8bR15bbp.U4M.x08q2Q.ntGzy3YvSPhKkoKWVG4.', '1234568', '29049', 'tuxtla'),
 (14, 'Test', 'Test', '1', 'test', '{bcrypt}$2a$10$/pj5dd5tMOk3zbZnN9Zlyed14p7LYSBHbcLY.UUGDtKvLdRyaF5c.', '9612570599', '29049', 'Tuxtla Gutierrez'),
@@ -392,7 +500,11 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `active`, `email`, `passwo
 (27, 'Jeff', 'Black', '0', 'jeff', '{bcrypt}$2a$10$bgQ8F/b349GhWaYjttpZGun/Rc5ZqZn4XZ1RAkSTpk7hr1leFI3R.', '961234567', '29049', '08003'),
 (28, 'Maria', 'Escobito', '0', 'maria', '{bcrypt}$2a$10$jcUWUoPbsU0yIDjsba/BwuMlSosn5eOxUNxKTVXDguDM8yR1eaHWy', '961234567', '29049', '08003'),
 (29, 'David', 'Schroeder', '0', 'david', '{bcrypt}$2a$10$naq.RQ5/9lF1Cx4.PIVYWuzTxv/Nl5zF6MKqFNPc9BSzLaERTyqG6', '961234567', '29049', '08003'),
-(30, 'Carlos', 'Estaban', '0', 'carlos', '{bcrypt}$2a$10$DvQM4I.mIez2FMGKSgHNhOV0IZ6adzQmbS0NHBTb94Zb81Ka7eOQ.', '961234567', '29049', '08003');
+(30, 'Carlos', 'Estaban', '0', 'carlos', '{bcrypt}$2a$10$DvQM4I.mIez2FMGKSgHNhOV0IZ6adzQmbS0NHBTb94Zb81Ka7eOQ.', '961234567', '29049', '08003'),
+(41, 'thatcher', 'thatcher', '1', 'thatcher', '{bcrypt}$2a$10$TkYWFv6fyu0f1.FULkqc..uN6YoInSTl/6uTrcpTvd68W/gebIVvK', '961234567', '29049', 'Lolu Utara'),
+(40, 'prueba2', 'prueba2', '1', 'lol2', '{bcrypt}$2a$10$B43fIqchyw6z8CVCF7fMIODHWSE7XZDrwbrxFNtXrdxM0aKBiEUtK', '123', '29049', 'Besusu Tengah'),
+(39, 'Kevin Jhair', 'Velazquez Lopez', '1', 'kevin667', '{bcrypt}$2a$10$ryAWmxXzn/pmwxpSypxnouHoQlLwBm4Vkp4IRrxplQCEGyUf1r2ka', '234', '29049', '29049'),
+(42, 'Edgar', 'Ramos', '1', '163209@ids.upchiapas.edu.mx', '{bcrypt}$2a$10$QB3nHutqVTpbwZ6nynZO9umTJQU3jDBzli9XWBeq8FBVgpYJ11lP6', '9617091100', '29049', '29010');
 
 -- --------------------------------------------------------
 
@@ -423,7 +535,11 @@ INSERT INTO `users_roles` (`id`, `user_id`, `role_id`) VALUES
 (23, 27, 14),
 (24, 28, 14),
 (25, 29, 14),
-(26, 30, 14);
+(26, 30, 14),
+(29, 39, 14),
+(30, 40, 14),
+(31, 41, 14),
+(32, 42, 14);
 
 -- --------------------------------------------------------
 
@@ -487,6 +603,19 @@ CREATE TABLE `visits` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `especialidad` (`especialidad`);
+
+--
+-- Indices de la tabla `especialidades`
+--
+ALTER TABLE `especialidades`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `medicamento`
@@ -595,6 +724,18 @@ ALTER TABLE `visits`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `especialidades`
+--
+ALTER TABLE `especialidades`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `medicamento`
 --
 ALTER TABLE `medicamento`
@@ -604,7 +745,7 @@ ALTER TABLE `medicamento`
 -- AUTO_INCREMENT de la tabla `owners`
 --
 ALTER TABLE `owners`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `pets`
@@ -622,7 +763,7 @@ ALTER TABLE `privilege`
 -- AUTO_INCREMENT de la tabla `records`
 --
 ALTER TABLE `records`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT de la tabla `role`
@@ -652,7 +793,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `users_roles`
@@ -675,6 +816,12 @@ ALTER TABLE `visits`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`id`);
 
 --
 -- Filtros para la tabla `pets`
