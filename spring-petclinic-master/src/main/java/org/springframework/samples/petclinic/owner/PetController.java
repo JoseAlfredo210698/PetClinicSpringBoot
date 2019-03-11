@@ -32,7 +32,7 @@ import java.util.Map;
  * @author Arjen Poutsma
  */
 @Controller
-@RequestMapping("/owners/{ownerId}")
+@RequestMapping("/admin/owners/{ownerId}")
 class PetController {
 
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
@@ -63,21 +63,20 @@ class PetController {
     public void initPetBinder(WebDataBinder dataBinder) {
         dataBinder.setValidator(new PetValidator());
     }
-    
-        @GetMapping("/pets/pet")
+
+    @GetMapping("/pets/pet")
     public String showVetList(Map<String, Object> model) {
         Pets pets = new Pets();
         pets.getPetList().addAll(this.pets.findById2(999999));
         model.put("pets", pets);
-       // model.put("pets", this.pets.allPet());
+        // model.put("pets", this.pets.allPet());
         return "pets/Pets";
     }
-    
+
     @GetMapping("/pets/reports")
     public String showPetList() {
         return "/pets/reportes";
     }
-   
 
     @GetMapping("/pets/new")
     public String initCreationForm(Owner owner, ModelMap model) {
@@ -89,7 +88,7 @@ class PetController {
 
     @PostMapping("/pets/new")
     public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {
-        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null){
+        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
             result.rejectValue("name", "duplicate", "already exists");
         }
         owner.addPet(pet);

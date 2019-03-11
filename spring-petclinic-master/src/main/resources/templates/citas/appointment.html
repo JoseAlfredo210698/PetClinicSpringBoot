@@ -17,7 +17,8 @@ and open the template in the editor.
                 width: 100%;
             }
         </style>
-        <div style="display:flex; height:70vh;">
+        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 10px; margin-bottom: 40px">Agregar nueva cita</h1></div>
+        <div style="display:flex;">
             <div style="width:60%; margin:auto;">
                 <form th:object="${citas}" class="form-horizontal" id="add-owner-form" method="post">
                     <div class="form-group has-feedback">

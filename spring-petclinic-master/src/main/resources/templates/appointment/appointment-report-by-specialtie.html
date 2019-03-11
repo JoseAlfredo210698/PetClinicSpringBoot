@@ -7,12 +7,37 @@
     th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
 
     <body>
-        <span th:object="${specialtie}">
-            <h1 th:text="#{especialidad}"></h1>
-            <h4 th:text="${specialtie}"/>
-        </span>
-        <a th:text="#{regresar}" th:href="@{/appointments/report}" class="btn btn-default"></a>
-        <table id="vets" class="table table-striped">
+        
+      <style>
+            th {
+                background-color: #4CCEAD !important;
+                color: white;
+            }
+
+            .btn-default, .btn-danger{
+                outline: none !important;
+                border: none;
+                border-radius: 20px;
+                color: white;
+                width: 200px;
+            }
+
+            .btn-default{
+                background-color: #212121;
+            }
+
+
+        </style>  
+      
+        <div style="display:flex">
+            <span style="width:100%; text-align: center; margin-top: 20px" th:object="${specialtie}">
+                <h1 th:text="#{especialidad}"></h1>
+                <h4 th:text="${specialtie}"/>
+            </span>
+        </div>
+        <a style="margin-left:10%; margin-top:20px;" th:text="#{regresar}" th:href="@{/appointments/report}" class="btn btn-default"></a><br>
+       <div style="width: 100%;display: flex; margin-top:20px;">
+        <table style="margin:auto; width:80%" id="vets" class="table table-striped">
             <thead>
                 <tr>
                     <th th:text="#{numeroCita}" style="width: 200px;"></th>
@@ -36,5 +61,6 @@
                 </tr>
             </tbody>
         </table>
+       </div>
     </body>
 </html>

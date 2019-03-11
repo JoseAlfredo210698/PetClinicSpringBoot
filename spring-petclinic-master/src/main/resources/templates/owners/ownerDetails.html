@@ -4,42 +4,66 @@
   th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 
   <body>
+      <style>
+        th {
+            background-color: #4CCEAD !important;
+            color: white;
+        }
+        
+        .btn-default, .btn-danger{
+            outline: none !important;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            width: 200px;
+        }
+        
+        .btn-default{
+            background-color: #212121;
+        }
+        
+        
+    </style>
   
+    <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px" th:text="#{oi}">Owner Information</h1></div>
   
-    <h2 th:text="#{oi}">Owner Informationss</h2>
-  
-  
-    <table class="table table-striped" th:object="${owner}">
-      <tr>
-        <th th:text="#{fn}">Name</th>
-        <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
-      </tr>
-      <tr>
-        <th th:text="#{ad}">Address</th>
-        <td th:text="*{address}" /></td>
-      </tr>
-      <tr>
-        <th th:text="#{cd}">City</th>
-        <td th:text="*{city}" /></td>
-      </tr>
-      <tr>
-        <th th:text="#{tf}">Telephone</th>
-        <td th:text="*{telephone}" /></td>
-      </tr>
-    </table>
-  
-    <a th:text="#{eo}" th:href="@{{id}/edit(id=${owner.id})}" class="btn btn-default">Edit
-      Owner</a>
-      
-    <a th:text="#{anp}" th:href="@{{id}/pets/new(id=${owner.id})}" class="btn btn-default">Add
-      New Pet</a>
-  
+    <div style="width: 100%;display: flex">
+        <table style="margin:auto; width:80%" class="table table-striped" th:object="${owner}">
+            <tr>
+              <th th:text="#{fn}">Name</th>
+              <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+            </tr>
+            <tr>
+              <th th:text="#{ad}">Address</th>
+              <td th:text="*{address}" /></td>
+            </tr>
+            <tr>
+              <th th:text="#{cd}">City</th>
+              <td th:text="*{city}" /></td>
+            </tr>
+            <tr>
+              <th th:text="#{tf}">Telephone</th>
+              <td th:text="*{telephone}" /></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div style="width: 100%; display:flex;">
+        <div style="margin: auto; display:flex; margin-top: 20px;">
+            <a th:text="#{eo}" th:href="@{{id}/edit(id=${owner.id})}" class="btn btn-default">Edit
+              Owner</a>
+
+            <a style="margin-left:20px;" th:text="#{anp}" th:href="@{{id}/pets/new(id=${owner.id})}" class="btn btn-default">Add
+              New Pet</a>
+        </div>
+    </div>
     <br />
     <br />
     <br />
-    <h2 th:text="#{pv}">Pets and Visits</h2>
-  
-    <table class="table table-striped">
+    
+    <div style="display:flex"><h2 style="width:100%; text-align: center; margin-top: 20px"  th:text="#{pv}">Pets and Visits</h2></div>
+    <div style="width: 100%;display: flex">
+        <table style="margin:auto; width:80%"  class="table table-striped">
   
       <tr th:each="pet : ${owner.pets}">
         <td valign="top">
@@ -78,7 +102,7 @@
       </tr>
   
     </table>
-  
+    </div>
   </body>
 
 </html>
