@@ -18,9 +18,9 @@ import javax.validation.constraints.Positive;
 @Table(name = "citas")
 
 public class AppointmentReport extends BaseEntity{
-    @Column(name = "IDowner")
+    @Column(name = "owner_id")
     @NotEmpty
-    private Integer IDowner;
+    private Integer owner_id;
 
     @Column(name = "fecha")
     @Basic
@@ -50,12 +50,12 @@ public class AppointmentReport extends BaseEntity{
 
     
     
-    public Integer getIDowner() {
-        return IDowner;
+    public Integer getOwner_id() {
+        return owner_id;
     }
 
-    public void setIDowner(Integer IDowner) {
-        this.IDowner = IDowner;
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
     }
     
     
