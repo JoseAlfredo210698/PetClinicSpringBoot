@@ -22,8 +22,18 @@
     </head>
 
     <body>
-
-        <nav class="navbar navbar-default" role="navigation">
+        <style>
+            .navbar-aux{
+                z-index:1;
+                background-color: #4CCEAD;
+            }
+            
+            a, span{
+                color:#212121;
+            }
+            
+        </style>
+        <nav class="navbar-aux" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" th:href="@{/}"><span></span></a>
@@ -62,18 +72,7 @@
         </nav>
         <div class="container-fluid">
             <div class="container xd-container">
-
                 <th:block th:include="${template}"/>
-
-                <br/>
-                <br/>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <img src="../static/resources/images/spring-pivotal-logo.png" th:src="@{/resources/images/spring-pivotal-logo.png}"
-                                 alt="Sponsored by Pivotal"/></div>
-                    </div>
-                </div>
             </div>
         </div>
 
