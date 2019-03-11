@@ -1,53 +1,61 @@
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\BaseEntity.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\CrashController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\OwnerRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\Vet.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\ProductRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\Privilege.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetValidator.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\NamedEntity.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\VisitController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetTypeFormatter.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\RecordRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\MyUserDetailsService.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\UserController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\MedicamentoRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\Role.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\package-info.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\RecordService.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\PetClinicApplication.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\UserService.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\visit\Visit.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\Record.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\MedicamentoController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\Vets.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Pet.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\PrivilegeRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\LoginController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\Person.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\ProductController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\MyUserPrincipal.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\OwnerController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\Specialty.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\CacheConfiguration.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\User.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\Product.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetType.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\InitialDataLoader.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\Medicamento.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\FileStorageProperties.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Pets.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\RecordController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\SpringSecurityConfig.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\UserRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\visit\VisitRepository.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetValidator.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetTypeFormatter.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Owner.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\WelcomeController.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\FileStorageService.java
-C:\Users\legad\Desktop\Mantenimiento de sistemas\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\RoleRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\package-info.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\LoginController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetValidator.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\OwnerRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\RecordRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\SpecialtieRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\CacheConfiguration.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\InitialDataLoader.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\Vet.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetTypeFormatter.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\UserController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\visit\VisitRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\citas\Citas.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\Specialties.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\MyUserDetailsService.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\Vets.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\MyUserPrincipal.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetValidator.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\Record.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\FileStorageService.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\UserRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\VisitController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\SpringSecurityConfig.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\RoleRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\AppointmentRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\citas\CitasRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\BaseEntity.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\PetClinicApplication.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\CrashController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Owner.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\RecordController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\OwnerController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetTypeFormatter.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\VetController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\AppointmentController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\citas\CitasController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\MedicamentoController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Pet.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\PrivilegeRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\record\RecordService.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\Privilege.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\Pets.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\Medicamento.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\ProductRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\ProductController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\appointment\AppointmentReport.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\Product.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\visit\Visit.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\system\WelcomeController.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\UserService.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\Person.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\medicamento\MedicamentoRepository.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\User.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\owner\PetType.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\vet\Specialty.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\product\FileStorageProperties.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\model\NamedEntity.java
+C:\Users\AugustoRuCle\Documents\Github\PetClinicSpringBoot\spring-petclinic-master\src\main\java\org\springframework\samples\petclinic\user\Role.java
