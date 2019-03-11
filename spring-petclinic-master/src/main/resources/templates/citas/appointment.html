@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout_owner :: layout (~{::body},'home')}">
+    <body>
+        <form th:object="${citas}" class="form-horizontal" id="add-owner-form" method="post">
+            <div class="form-group has-feedback">
+               
+                <input
+                    th:replace="~{fragments/inputField :: input ('Fecha', 'fecha', 'text')}" />
+                
+                <input
+                    th:replace="~{fragments/inputField :: input ('Hora', 'hora', 'text')}" />
+                
+                <input
+                    th:replace="~{fragments/inputField :: input ('Mascota', 'mascota', 'text')}" />
+                
+                <!--<input
+                    th:replace="~{fragments/inputField :: input ('Especialidad', 'especialidad', 'text')}" />-->
+                
+                <input
+                    th:replace="~{fragments/inputField :: input ('Confirmacion', 'confirmacion', 'text')}" />
+                
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button id="btn"
+                        th:with="text=Cita"
+                        class="btn btn-default" type="submit" th:text="${text}">Add Cita</button>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

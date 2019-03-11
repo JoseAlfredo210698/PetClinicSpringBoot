@@ -49,6 +49,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.samples.petclinic.citas.Citas;
+import org.springframework.samples.petclinic.citas.CitasRepository;
 
 /**
  * @author Juergen Hoeller
