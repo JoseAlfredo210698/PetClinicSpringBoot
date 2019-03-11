@@ -39,16 +39,139 @@ and open the template in the editor.
 <body>  
     
         <style>
-            button, .btn-default{
+            button{
                 width: 50%;
                 height: 30px;
                 outline: none !important;
                 border: none;
                 color: white;
             }
+            
+            .container-img{
+                width: 100wh;
+                height: 100vh;
+                background-color: red;
+                align-content: center;
+            }
+            
+            .img{
+                width: 100%;
+                height: 100%;
+            }
+            
+            .title-login{
+                width:100%; 
+                text-align: center; 
+                margin-top: 20px;
+                color:#29B6F6;
+                font-size: 40px;
+                text-shadow: 2px 2px #E1F5FE; 
+            }
+            
+            .MyContainer{
+                display:flex; 
+                position: absolute; 
+                top:0px; 
+                bottom: 0px; 
+                right:0px; 
+                left: 0px;
+            }
+            
+            .style_inputs{
+                margin:auto; 
+                margin-left: 0px; 
+                border:0px; 
+                border-radius: 3px; 
+                text-align: center; 
+                width: 100%;
+                border: none;
+                color:white;
+                background-color: rgba(0, 0, 0, 0.2);
+                border-color: #29B6F6;
+                border-style:solid;
+            }
+            
+            input::placeholder {
+                color: white;
+            }
+            
+            .style-alert{
+                text-align: center; 
+                margin-top: 20px;
+                color:white;
+            }
+            
+            .color-new-owner{
+                color:white;
+                text-align: center; 
+                margin-top: 20px;              
+            }
+            
+            .color-new-owner:hover{
+                font-weight:bold;
+                color:#B3E5FC;
+            }
+            
+            
         </style>
     
-    <div class="container-fluid">
+        
+        <div class="container-img">
+            <img class="img" th:src="@{/resources/images/background.jpg}"/>
+        </div>
+        <div class="MyContainer">
+                <div style="margin: auto;">  
+                    <div style="display:flex"><h1 class="title-login" >Petclinic</h1></div>
+                    <form th:action="@{/login}" method="post">
+                        <div style="display:flex;">
+                            <div style="margin: auto;display: flex; width: 350px">                        
+                                <input class="style_inputs" type="text" id="username" name="username" required="required" placeholder="Email"/>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px">
+                            <div style="margin: auto;display: flex; width: 350px">                        
+                                <input class="style_inputs" type="password" id="password" name="password" required="required" placeholder="Contraseña"/>
+                            </div>        
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;">
+                                <button
+                                    class="btn" style="background-color:#29B6F6" type="submit">Acceder</button>
+                            </div>
+                        </div>       
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div th:if="${param.error}" class="col-sm-offset-2 col-sm-8 style-alert">    
+                                        Contraseña o usuario invalido.                            
+                                        <div th:text="${param.error}"></div>
+                                    </div>
+                                    <div th:if="${param.logout}" class="col-sm-offset-2 col-sm-8 style-alert" > 
+                                        Te has deslogeado exitosamente.
+                                    </div>
+                                    <div th:if="${param.disabled}" class="col-sm-offset-2 col-sm-8 style-alert" > 
+                                        Usuario no habilitado
+                                    </div>
+                                    <div th:if="${param.loggedin}" class="col-sm-offset-2 col-sm-8 style-alert"> 
+                                        Ya estas logeado
+                                    </div>
+                                    <div th:if="${param.confirmation}" class="col-sm-offset-2 col-sm-8 style-alert" > 
+                                        Te has deslogeado porque hiciste cambios importantes
+                                    </div>                                                       
+                                </div>
+                            </div>
+                        </div>
+                    </form> 
+                    <a class="col-sm-offset-2 col-sm-8 color-new-owner" th:href="@{/owner_signup}">Soy propietario, deseo registrarme</a>
+                </div>
+            </div>
+
+        
+        
+        
+        
+        
+    <!--<div class="container-fluid">
         <div class="container xd-container">            
             <br/>
             <br/>
@@ -66,13 +189,11 @@ and open the template in the editor.
         <div style="margin: auto">            
             <form th:action="@{/login}" method="post">
                 <div style="display:flex;">
-                    <!--User-->
                     <div style="margin: auto;display: flex; width: 350px">                        
                         <input style="margin:auto; margin-left: 0px; border:0px; border-radius: 3px; text-align: center; width: 100%;" type="text" id="username" name="username" required="required" placeholder="Email"/>
                     </div>
                 </div>
                 <div style="margin-top: 20px">
-                    <!--Password-->
                     <div style="margin: auto;display: flex; width: 350px">                        
                         <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width: 100%;" type="password" id="password" name="password" required="required" placeholder="Contraseña"/>
                     </div>        
@@ -108,6 +229,6 @@ and open the template in the editor.
             </form> 
             <a class="col-sm-offset-2 col-sm-8" th:href="@{/owner_signup}" style="text-align: center; margin-top: 20px;"><button class="btn btn-danger">Soy propietario, deseo registrarme</button></a>
         </div>
-    </div>
+    </div>-->
 </body>
 </html>
