@@ -41,6 +41,12 @@
                 padding-right: 10px;
             }
             
+            @media only screen and (max-width: 760px) {
+                .navbar-brand, .nav-brand:hover{
+                    color:transparent;
+                }
+            }
+            
         </style>
         <nav class="navbar-aux" role="navigation">
             <div class="container">
@@ -70,6 +76,7 @@
                                
                         
                         <li th:replace="::menuItem ('/owner/my_profile','list','list','th-list','My profile (owner)')">
+             
                         </li>
                         <!--Cambios edgar-->
                         <li th:replace="::menuItem ('/owner/cita','list','list','th-list','Hacer cita')">
