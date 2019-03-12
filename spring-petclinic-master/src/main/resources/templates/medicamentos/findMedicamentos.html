@@ -31,7 +31,7 @@
         width: 100%;
         border-style: solid;
         border-radius: 20px;
-        border-color: #4CCEAD;
+        border-color: #29B6F6 ;
         padding: 10px;
     }
     
@@ -39,7 +39,7 @@
         outline: none !important;
         border: none;
         border-radius: 20px;
-        background-color: #212121;
+        background-color:#29B6F6;
         color: white;
         width: 100%;
     }
@@ -50,7 +50,8 @@
     }
     
     .btn-a a:hover{
-        color: #4CCEAD;
+        font-weight:bold;
+        color:#29B6F6 !important;
     }
 
 </style> 
@@ -58,7 +59,7 @@
         <div class="row">
             <form th:object="${medicamento}" th:action="@{/medicamento}" method="get"
                 class="form-horizontal" id="search-medicamento-form">
-                <div style="display:flex; margin-top: 20px; flex-wrap: wrap">
+                <div style="display:flex; margin-top: 40px; flex-wrap: wrap">
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-10">
                             <input class="aux-input" th:field="*{nombre}" size="20" placeholder="Buscar medicamentos" maxlength="80" /> 
                             <span class="help-inline">
@@ -68,12 +69,11 @@
                             </span>
                     </div>
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-                        <button style="padding: 10px" type="submit" class="btn btn-default">Buscar medicamento</button>
+                        <button style="padding: 10px" type="submit" class="btn">Buscar medicamento</button>
                     </div>
                 </div>
             </form>
         </div>
-        <br>
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-10"></div>
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 btn-a">

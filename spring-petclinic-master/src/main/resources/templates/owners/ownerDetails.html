@@ -6,7 +6,7 @@
   <body>
       <style>
         th {
-            background-color: #4CCEAD !important;
+            background-color: #29B6F6 !important;
             color: white;
         }
         
@@ -19,7 +19,12 @@
         }
         
         .btn-default{
-            background-color: #212121;
+            background-color: #29B6F6;
+        }
+        
+        .btn-default:hover, .style-options:hover{
+            color: #29B6F6;
+            background-color: #E1F5FE;
         }
         
         
@@ -88,12 +93,12 @@
             <tr th:each="visit : ${pet.visits}">
               <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
               <td th:text="${visit?.description}"></td>
-            </tr>
+            </tr>   
             <tr>
-              <td><a
+              <td><a class="style-options"
                 th:text="#{ep}" th:href="@{{ownerId}/pets/{petId}/edit(ownerId=${owner.id},petId=${pet.id})}">Edit
                   Pet</a></td>
-              <td><a
+              <td><a class="style-options"
                 th:text="#{av}" th:href="@{{ownerId}/pets/{petId}/visits/new(ownerId=${owner.id},petId=${pet.id})}">Add
                   Visit</a></td>
             </tr>

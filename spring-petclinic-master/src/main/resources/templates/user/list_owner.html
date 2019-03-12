@@ -15,11 +15,12 @@ and open the template in the editor.
         
         <style>
             th {
-                background-color: #4CCEAD !important;
+                background-color: #29B6F6 !important;
                 color: white;
             }
 
-            .btn-default, .btn-danger{
+            .btn, .btn-danger{
+                background-color: #29B6F6;
                 outline: none !important;
                 border: none;
                 border-radius: 20px;
@@ -27,10 +28,7 @@ and open the template in the editor.
                 width: 100px;
             }
 
-            .btn-default{
-                background-color: #212121;
-            }
-        
+           
         </style>
         
         <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px">Owners existentes</h1></div>        
@@ -57,10 +55,10 @@ and open the template in the editor.
                         <td>
                             <!--<a th:href="@{/user/update/__${user.id}__}" class="btn btn-default" />Editar</a>-->
                             <th:block th:if="${user.active} == '1'">
-                                <a class="btn btn-default" data-toggle="modal" data-target="#exampleModal" th:id="${user.id}" onclick="btn_delete(this.id)" >Desactivar</a>
+                                <a class="btn" data-toggle="modal" data-target="#exampleModal" th:id="${user.id}" onclick="btn_delete(this.id)" >Desactivar</a>
                             </th:block>
                             <th:block th:unless="${user.active} == '1'">
-                                <a class="btn btn-default" data-toggle="modal" data-target="#exampleModal" th:id="${user.id}" onclick="btn_delete(this.id)" >Activar</a>
+                                <a class="btn" data-toggle="modal" data-target="#exampleModal" th:id="${user.id}" onclick="btn_delete(this.id)" >Activar</a>
                             </th:block>            
                         </td>
                   </tr>
@@ -77,8 +75,8 @@ and open the template in the editor.
                   <p>Estas seguro de cambiar este valor?</p>
               </div>
               <div class="modal-footer">
-                  <a id="delete_user" class="btn btn-default" style="width: 20%" >Si</a>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 20%">No</button>
+                  <a id="delete_user" class="btn " style="width: 20%;" >Si</a>
+                <button type="button" class="btn " data-dismiss="modal" style="width: 20%">No</button>
               </div>
             </div>
           </div>

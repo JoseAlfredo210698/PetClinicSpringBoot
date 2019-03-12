@@ -25,18 +25,27 @@
         <style>
             .navbar-aux{
                 z-index:1;
-                background-color: #4CCEAD;
+                background-color: #29B6F6   ;
             }
             
             a, span{
                 color:#212121;
             }
             
+            .navbar-brand:hover{
+                color:#E1F5FE;
+            }
+            
+            .fa-paw{
+                font-size: 25px;
+                padding-right: 10px;
+            }
+            
         </style>
         <nav class="navbar-aux" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" th:href="@{/}"><span></span></a>
+                    <a class="navbar-brand" th:href="@{/owner/}" ><i class="fas fa-paw"></i>Petclinic<span></span></a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
                         <div style="display:flex;">
                             <i class="fas fa-bars" style="font-size:20px;"></i>
@@ -74,11 +83,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid">
-            <div class="container xd-container">
-                <th:block th:include="${template}"/>
-            </div>
-        </div>
+        <th:block th:include="${template}"/>
 
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>

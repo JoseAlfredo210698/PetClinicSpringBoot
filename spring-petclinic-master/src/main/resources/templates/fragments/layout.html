@@ -30,12 +30,22 @@
                 color:#212121;
             }
             
+            .navbar-brand:hover{
+                color:#E1F5FE;
+            }
+            
+            .fa-paw{
+                font-size: 25px;
+                padding-right: 10px;
+            }
+            
+            
         </style>
         <nav class="navbar-aux" role="navigation">
 
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" th:href="@{/}"><span></span></a>
+                    <a class="navbar-brand" th:href="@{/}"><i class="fas fa-paw"></i>Petclinic<span></span></a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
                         <div style="display:flex;">
                             <i class="fas fa-bars" style="font-size:20px;"></i>
@@ -56,12 +66,7 @@
                                 <span th:text="${text}">Template</span>
                             </a>
                         </li>
-                                             
-                        <li th:replace="::menuItem ('/','home','home page','home','Home')">
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            <span>Home</span>
-                        </li>
-
+                                            
                         <li th:replace="::menuItem ('/admin/owners/find','owners','find owners','search',#{fo})">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                             <span>Find owners</span>
@@ -96,7 +101,7 @@
                 </div>
             </div>
         </nav>
-         <th:block th:include="${template}"/>
+        <th:block th:include="${template}"/>
 
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>

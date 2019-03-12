@@ -13,7 +13,7 @@
            width: 100%;
            border-style: solid;
            border-radius: 20px;
-           border-color: #4CCEAD;
+           border-color: #29B6F6 ;
            padding: 10px;
        }
 
@@ -21,20 +21,22 @@
            outline: none !important;
            border: none;
            border-radius: 20px;
-           background-color: #212121;
+           background-color:#29B6F6;
            color: white;
            width: 15%;
        }
+      
 
        .btn-a{
            font-weight: bold; 
-           padding-right: 50px;
            text-align: right;
        }
 
-       .btn-a a:hover{
-           color: #4CCEAD;
-       }
+            
+        .color-add a:hover{
+            font-weight:bold;
+            color:#29B6F6 !important;
+        }
        
        @media only screen and (max-width: 990px) {
            .btn{
@@ -64,7 +66,7 @@
     </div>
     <div class="row">
       <div class="col-xs-0 col-sm-0 col-md-10 col-lg-10"></div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 btn-a">
+      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 btn-a color-add">
         <a th:text="#{ao}" th:href="@{/owner_signup}">Add Owner</a>
       </div>
     </div>
