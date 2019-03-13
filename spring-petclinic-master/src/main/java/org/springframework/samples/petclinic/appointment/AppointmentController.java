@@ -35,10 +35,12 @@ public class AppointmentController {
     @GetMapping("/appointment/report/{specialtieId}")
     public String report(Map<String, Object> model, @PathVariable("specialtieId") int specialtieId) {
         Collection<AppointmentReport> allAppointments;
+        System.out.println(this.appointmentRepository.getAppointments(1).size());
         if (specialtieId > 0) {
             allAppointments = this.appointmentRepository.getAppointments(specialtieId);
             Specialties specialtie = this.specialtieRepository.getSpecialtieById(specialtieId);
             model.put("specialtie", specialtie.getName());
+            System.out.println(allAppointments.size());
             model.put("allAppointments", allAppointments);
         } else {
             if (specialtieId == 0) {
