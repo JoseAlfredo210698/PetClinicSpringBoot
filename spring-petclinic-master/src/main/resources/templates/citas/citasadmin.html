@@ -48,14 +48,14 @@ and open the template in the editor.
                         <br>
                         
                         Mascota
-                        <select th:field="*{mascota}">
+                        <!--<select th:field="*{mascota}">
                             <span th:each="mascota : ${mascotas}">
                                 <option  th:value="${mascota.id}" th:text="${mascota.name}"/>
                             </span>
-                        </select>
+                        </select>-->
 
-                        <input
-                            th:replace="~{fragments/inputField :: input ('Confirmacion', 'confirmacion', 'checkbox')}" />
+                        <!--<input
+                            th:replace="~{fragments/inputField :: input ('Confirmacion', 'confirmacion', 'checkbox')}" />-->
 
                     </div>
 

@@ -31,6 +31,7 @@ public class CitasController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_APPOINTMENT = "citas/appointment";
     private static final String VIEWS_ADMIN_CREATE_OR_UPDATE_APPOINTMENT = "citas/citasadmin";
+    private static final String HOME = "/user/home";
 
     private final CitasRepository citas;
     private final EspecialidadesRepository especialidadesRepository;
@@ -177,7 +178,7 @@ public class CitasController {
             } else {
                 username = principal.toString();
             }
-            User temp = userRepository.findByEmail(username);
+            /*User temp = userRepository.findByEmail(username);
             Owner owner_temp = this.owners.findByUserId(temp.getId());
             String temp_pass = owner_temp.getUser().getPassword();
             String temp_username = owner_temp.getUser().getEmail();
@@ -187,14 +188,15 @@ public class CitasController {
             System.out.println("owner encontrado: " + owner_temp);
             System.out.println("id del owner encontrado: " + owner_temp.getId());
 
-            cita.setOwner(owner_temp);
-            System.out.println("id del que estoy editandos, seniors homeros: " + cita.getId());
+            cita.setOwner(owner_temp);*/
+            /*System.out.println("id del que estoy editandos, seniors homeros: " + cita.getId());
 
             System.out.println("cita con datos nuevos: " + cita);
 
-            System.out.println("BIEN");
+            System.out.println("BIEN");*/
+            cita.setConfirmacion(0);
             this.citas.save(cita);
-            return VIEWS_ADMIN_CREATE_OR_UPDATE_APPOINTMENT;
+            return "redirect:/appointments/report";
         }
     }
 }
