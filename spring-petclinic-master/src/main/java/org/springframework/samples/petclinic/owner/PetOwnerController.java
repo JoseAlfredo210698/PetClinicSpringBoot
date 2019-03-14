@@ -30,6 +30,7 @@ import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Juergen Hoeller
@@ -39,11 +40,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Controller
 //@RequestMapping("/owner")
 class PetOwnerController {
-    
+
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM_OWNER = "pets/createOrUpdatePetFormOwner";
     private final PetRepository pets;
     private final OwnerRepository owners;
-    
+
     @Autowired
     private UserRepository userRepository;
 
@@ -67,6 +68,15 @@ class PetOwnerController {
         dataBinder.setValidator(new PetValidator());
     }
 
+    @GetMapping("/owner/pets")
+    public ModelAndView showOwner() {
+        Owner owner = getCurrentOwner();
+        int ownerId = owner.getId();
+        ModelAndView mav = new ModelAndView("owners/ownerDetailsOwner");
+        mav.addObject(this.owners.findById(ownerId));
+        return mav;
+    }
+
     @GetMapping("/owner/pets/new")
     public String initCreationFormOwner(ModelMap model) {
         Pet pet = new Pet();
@@ -81,7 +91,7 @@ class PetOwnerController {
         Owner owner = getCurrentOwner();
         if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
             result.rejectValue("name", "duplicate", "already exists");
-        }        
+        }
         owner.addPet(pet);
         if (result.hasErrors()) {
             model.put("pet", pet);
@@ -91,8 +101,30 @@ class PetOwnerController {
             return "redirect:/owner/";
         }
     }
-    
-    private Owner getCurrentOwner(){
+
+    @GetMapping("/owner/pets/{petId}/edit")
+    public String initUpdateForm(@PathVariable("petId") int petId, ModelMap model) {
+        Pet pet = this.pets.findById(petId);
+        model.put("pet", pet);
+        return VIEWS_PETS_CREATE_OR_UPDATE_FORM_OWNER;
+    }
+
+    @PostMapping("/owner/pets/{petId}/edit")
+    public String processUpdateForm(@Valid Pet pet, BindingResult result, ModelMap model) {
+        Owner owner = getCurrentOwner();
+        if (result.hasErrors()) {
+            pet.setOwner(owner);
+            model.put("pet", pet);
+            return VIEWS_PETS_CREATE_OR_UPDATE_FORM_OWNER;
+        } else {
+            owner.addPet(pet);
+            this.pets.save(pet);
+            return "redirect:/owner/pets/";
+        }
+    }
+
+    //Metodo para saber quien esta ahorita
+    private Owner getCurrentOwner() {
         String username = "";
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -105,7 +137,7 @@ class PetOwnerController {
         System.out.println("id de este username " + temp.getId());
         Owner owner = this.owners.findByUserId(temp.getId());
         System.out.println("owner: " + owner);
-        
+
         return owner;
     }
 
