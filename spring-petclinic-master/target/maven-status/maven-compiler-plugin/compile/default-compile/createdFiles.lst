@@ -1,6 +1,7 @@
 org\springframework\samples\petclinic\system\CrashController.class
 org\springframework\samples\petclinic\owner\OwnerRepository.class
 org\springframework\samples\petclinic\owner\PetValidator.class
+org\springframework\samples\petclinic\citas\EspecialidadesController.class
 org\springframework\samples\petclinic\product\FileStorageProperties.class
 org\springframework\samples\petclinic\system\SpringSecurityConfig$CustomAuthenticationFailureHandler.class
 org\springframework\samples\petclinic\vet\VetTypeFormatter.class
@@ -9,6 +10,8 @@ org\springframework\samples\petclinic\medicamento\MedicamentoRepository.class
 org\springframework\samples\petclinic\vet\Specialty.class
 org\springframework\samples\petclinic\citas\CitasRepository.class
 org\springframework\samples\petclinic\owner\PetController.class
+org\springframework\samples\petclinic\citas\EspecialidadesRepository.class
+org\springframework\samples\petclinic\citas\MascotasRepository.class
 org\springframework\samples\petclinic\owner\PetRepository.class
 org\springframework\samples\petclinic\system\WelcomeController.class
 org\springframework\samples\petclinic\citas\CitasController.class
@@ -40,6 +43,7 @@ org\springframework\samples\petclinic\owner\PetTypeFormatter.class
 org\springframework\samples\petclinic\visit\Visit.class
 org\springframework\samples\petclinic\vet\Vets.class
 org\springframework\samples\petclinic\owner\VisitController.class
+org\springframework\samples\petclinic\citas\MascotasController.class
 org\springframework\samples\petclinic\record\RecordRepository.class
 org\springframework\samples\petclinic\record\RecordController.class
 org\springframework\samples\petclinic\owner\Owner.class
@@ -49,10 +53,12 @@ org\springframework\samples\petclinic\user\MyUserDetailsService.class
 org\springframework\samples\petclinic\vet\VetRepository.class
 org\springframework\samples\petclinic\appointment\AppointmentController.class
 org\springframework\samples\petclinic\model\BaseEntity.class
+org\springframework\samples\petclinic\citas\Mascotas.class
 org\springframework\samples\petclinic\user\RoleRepository.class
 org\springframework\samples\petclinic\medicamento\MedicamentoController.class
 org\springframework\samples\petclinic\appointment\Specialties.class
 org\springframework\samples\petclinic\system\CacheConfiguration.class
+org\springframework\samples\petclinic\citas\Especialidades.class
 org\springframework\samples\petclinic\system\SpringSecurityConfig$MySimpleUrlAuthenticationSuccessHandler.class
 org\springframework\samples\petclinic\product\Product.class
 org\springframework\samples\petclinic\user\Role.class
