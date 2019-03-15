@@ -63,11 +63,11 @@ public class Owner extends Person {
     private String telephone;
 
     @Column(name = "latitud")
-    @NotEmpty
+    
     private String latitud;
 
     @Column(name = "longitud")
-    @NotEmpty
+    //temp no?
     private String longitud;
 
     @Column(name = "imagen")    

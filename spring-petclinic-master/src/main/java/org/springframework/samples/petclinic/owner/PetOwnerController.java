@@ -98,7 +98,7 @@ class PetOwnerController {
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM_OWNER;
         } else {
             this.pets.save(pet);
-            return "redirect:/owner/";
+            return "redirect:/owner/pets/";
         }
     }
 
