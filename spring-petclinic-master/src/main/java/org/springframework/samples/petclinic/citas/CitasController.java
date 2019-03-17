@@ -6,11 +6,14 @@
 package org.springframework.samples.petclinic.citas;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.OwnerRepository;
+import org.springframework.samples.petclinic.owner.Pet;
+import org.springframework.samples.petclinic.owner.Pets;
 import org.springframework.samples.petclinic.user.RoleRepository;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserRepository;
@@ -31,6 +34,7 @@ public class CitasController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_APPOINTMENT = "citas/appointment";
     private static final String VIEWS_ADMIN_CREATE_OR_UPDATE_APPOINTMENT = "citas/citasadmin";
+     private static final String VIEWS_PETSNOTFOUND = "citas/sinmascotas";
     private static final String HOME = "/user/home";
 
     private final CitasRepository citas;
@@ -83,6 +87,14 @@ public class CitasController {
         System.out.println("owner encontrado: " + owner_temp);
         System.out.println("id del owner encontrado: " + owner_temp.getId());
   
+        Owner owner = this.owners.findById(owner_temp.getId());
+        
+        System.out.println(owner);
+        List<Pet> mascotasOwner = owner.getPets();
+        System.out.println("TAMANIO "+mascotasOwner.size());
+        if(mascotasOwner.size() == 0){
+            return VIEWS_PETSNOTFOUND;
+        }
         
         model.put("idowner", this.owners.findById(owner_temp.getId()));
 
@@ -195,6 +207,7 @@ public class CitasController {
 
             System.out.println("BIEN");*/
             cita.setConfirmacion(0);
+            
             this.citas.save(cita);
             return "redirect:/appointments/report";
         }
