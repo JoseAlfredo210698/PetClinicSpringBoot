@@ -2,31 +2,34 @@ package org.springframework.samples.petclinic.appointment;
 
 import java.sql.Date;
 import java.sql.Time;
-import javax.persistence.Basic;
+import java.util.Set;
 import javax.persistence.Column;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.samples.petclinic.owner.Owner;
 
 @Entity
 @Table(name = "citas")
 
-public class AppointmentReport extends BaseEntity {
+public class Appointment extends BaseEntity {
 
     @Column(name = "owner_id")
     @NotEmpty
     private Integer owner_id;
 
     @Column(name = "fecha")
-    @Basic
     @NotEmpty
     private Date fecha;
 
     @Column(name = "hora")
-    @Basic
     @NotEmpty
     private Time hora;
 
@@ -91,4 +94,3 @@ public class AppointmentReport extends BaseEntity {
     }
 
 }
-    

@@ -34,21 +34,24 @@ public class AppointmentController {
 
     @GetMapping("/appointment/report/{specialtieId}")
     public String report(Map<String, Object> model, @PathVariable("specialtieId") int specialtieId) {
-        Collection<AppointmentReport> allAppointments;
-        System.out.println(this.appointmentRepository.getAppointments(1).size());
+        Collection<Appointment> allAppointments = null;
+        System.out.println(specialtieId);
         if (specialtieId > 0) {
             allAppointments = this.appointmentRepository.getAppointments(specialtieId);
-            Specialties specialtie = this.specialtieRepository.getSpecialtieById(specialtieId);
-            model.put("specialtie", specialtie.getName());
-            System.out.println(allAppointments.size());
             model.put("allAppointments", allAppointments);
+            Specialties specialtie = this.specialtieRepository.getSpecialtieById(specialtieId);
+            model.put("specialtie", specialtie.getNombre());
+
         } else {
             if (specialtieId == 0) {
                 allAppointments = this.appointmentRepository.getAppointmentsByConfirmation(0);
                 model.put("specialtie", "No confirmados");
-            }else{
+            } else if(specialtieId == -1){
                 allAppointments = this.appointmentRepository.getAppointmentsByConfirmation(1);
                 model.put("specialtie", "Confirmados");
+            }else{
+                allAppointments = this.appointmentRepository.getAppointments();
+                model.put("specialtie", "Todas las Citas");
             }
             model.put("allAppointments", allAppointments);
         }

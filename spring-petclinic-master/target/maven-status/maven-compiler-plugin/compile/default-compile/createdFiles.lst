@@ -63,6 +63,7 @@ org\springframework\samples\petclinic\system\SpringSecurityConfig$MySimpleUrlAut
 org\springframework\samples\petclinic\product\Product.class
 org\springframework\samples\petclinic\user\Role.class
 org\springframework\samples\petclinic\user\Privilege.class
+org\springframework\samples\petclinic\owner\PetOwnerController.class
 org\springframework\samples\petclinic\user\PrivilegeRepository.class
 org\springframework\samples\petclinic\user\User.class
 org\springframework\samples\petclinic\PetClinicApplication.class
