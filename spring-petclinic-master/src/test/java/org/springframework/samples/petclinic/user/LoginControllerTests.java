@@ -24,36 +24,54 @@ import org.springframework.security.test.context.support.WithMockUser;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 
 /**
  *
  * @author katZ_
  */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc //need this in Spring Boot test
 public class LoginControllerTests {
+
     @Autowired
     private WebApplicationContext context;
-    
+
     @Autowired
-    private MockMvc mvc;       
-    
+    private MockMvc mvc;
+
     @Before
     public void setup() {
         mvc = MockMvcBuilders
-          .webAppContextSetup(context)
-          .apply(springSecurity())
-          .build();
+                .webAppContextSetup(context)
+                .apply(springSecurity())
+                .build();
     }
     
-    @WithMockUser(username = "admin", authorities = { "ADMIN_PRIVILEGE", "USER_PRIVILEGE" })
     @Test
     public void testInitCreationForm() throws Exception {
         mvc.perform(get("/login"))
-            .andExpect(status().isOk())
-            .andExpect(model().attributeExists("user"))
-            .andExpect(view().name("user/login"));
-    }   
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("user"))
+                .andExpect(view().name("user/login"));
+    }
+
+    @Test
+    public void testLoginFormAdmin() throws Exception {
+        mvc.perform(post("/login")
+                .param("username", "test")
+                .param("password", "test")
+        )
+                .andExpect(status().is3xxRedirection());
+    }
+    
+    @Test
+    public void testLoginFormOwner() throws Exception {
+        mvc.perform(post("/login")
+                .param("username", "lol")
+                .param("password", "lol")
+        )
+                .andExpect(status().is3xxRedirection());
+    }
 }

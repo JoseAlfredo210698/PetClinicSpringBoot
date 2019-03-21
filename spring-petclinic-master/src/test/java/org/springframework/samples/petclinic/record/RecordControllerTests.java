@@ -50,7 +50,8 @@ public class RecordControllerTests {
     }
     
 //    @WithMockUser(username="admin",roles={"USER","ADMIN"})  No se como los definiste, entonces cheque el archivo para sacar los privilegios
-    @WithMockUser(username = "admin", authorities = { "ADMIN_PRIVILEGE", "USER_PRIVILEGE" })
+    @WithMockUser(username = "admin", authorities = { "ADMIN_PRIVILEGE" }) //admin
+    //@WithMockUser(username = "owner", authorities = { "OWNER_PRIVILEGE" }) //owner
     @Test
     public void testInitCreationForm() throws Exception {
         mvc.perform(get("/admin/records"))
