@@ -51,6 +51,7 @@ import java.nio.file.Paths;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.samples.petclinic.citas.Citas;
 import org.springframework.samples.petclinic.citas.CitasRepository;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  * @author Juergen Hoeller
@@ -61,6 +62,7 @@ import org.springframework.samples.petclinic.citas.CitasRepository;
 @Controller
 class OwnerController {
 
+    private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM_INITIAL = "owners/createOrUpdateOwnerFormInicial";
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
     //Save the uploaded file to this folder
@@ -74,6 +76,9 @@ class OwnerController {
 
     @Autowired
     private RoleRepository roleRepository;
+    
+    @Autowired
+    private PetRepository pets;
 
     private ModelAndView modelAndView;
 
@@ -86,20 +91,26 @@ class OwnerController {
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
     }
+    
+    @ModelAttribute("types")
+    public Collection<PetType> populatePetTypes() {
+        return this.pets.findPetTypes();
+    }
 
     @GetMapping("/owner_signup")
     public String initCreationForm(Map<String, Object> model) {
-        Owner owner = new Owner();
-        model.put("owner", owner);
-        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        Pet pet = new Pet();
+        model.put("pet", pet);
+        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM_INITIAL;
     }
 
     @PostMapping("/owner_signup")
-    public String processCreationForm(@Valid Owner owner, BindingResult result,
+    public String processCreationForm(@Valid Pet pet, BindingResult result,
             @RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
-            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM_INITIAL;
         } else {
+            Owner owner = pet.getOwner();
             //Hablar con edgar porque esto es temporal
             Map encoders = new HashMap<>();
             encoders.put("bcrypt", new BCryptPasswordEncoder());
@@ -146,7 +157,8 @@ class OwnerController {
             }
             owner.setImagen(relativePath);
             this.owners.save(owner);
-            return "redirect:/admin/owners/" + owner.getId();
+            this.pets.save(pet);
+            return "redirect:/login";
         }
     }
 
@@ -325,7 +337,7 @@ class OwnerController {
     }
 
     //kevin
-    @GetMapping("user/owners")
+    @GetMapping("/admin/user/owners")
     public ModelAndView ListOwners() {
         modelAndView = this.ViewListOwners("user/list_owner");
         return modelAndView;

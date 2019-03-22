@@ -4,15 +4,14 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout_owner :: layout (~{::body},'home')}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
     <body>
-        
         <style>
             .btn{
                 outline: none !important;
                 border: none;
                 border-radius: 20px;
-                background-color: #29B6F6;
+                background-color: #212121;
                 color: white;
                 width: 100%;
             }
@@ -20,6 +19,7 @@ and open the template in the editor.
         <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 10px; margin-bottom: 40px">Agregar nueva cita</h1></div>
         <div style="display:flex;">
             <div style="width:60%; margin:auto;">
+                
                 <form th:object="${citas}" class="form-horizontal" id="add-owner-form" method="post">
                     <div class="form-group has-feedback">
 
@@ -38,13 +38,24 @@ and open the template in the editor.
                         
                         <br>
                         
+                        Owner
+                        <select th:field="*{owner}">
+                            <span th:each="owners : ${idowner}">
+                                <option  th:value="${owners.id}" th:text="${owners.firstName}"/>
+                            </span>
+                        </select>
+                        
+                        <br>
+                        
                         Mascota
                         <select th:field="*{mascota}">
-                            <span th:each="mascota : ${idowner.pets}">
+                            <span th:each="mascota : ${mascotas}">
                                 <option  th:value="${mascota.id}" th:text="${mascota.name}"/>
                             </span>
                         </select>
 
+                        <!--<input
+                            th:replace="~{fragments/inputField :: input ('Confirmacion', 'confirmacion', 'checkbox')}" />-->
 
                     </div>
 
@@ -55,7 +66,7 @@ and open the template in the editor.
                                     class="btn" type="submit" th:text="${text}">Add Cita</button>
                         </div>
                     </div>
-                </form>
+                </form>   
             </div>         
         </div>
     </body>

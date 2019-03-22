@@ -35,7 +35,7 @@ import org.springframework.samples.petclinic.owner.Owner;
 @Entity
 @Table(name = "citas")
 
-public class Citas extends Person{
+public class Citas extends BaseEntity{
     @Column(name = "fecha")
     @NotEmpty
     private String fecha;
@@ -53,8 +53,19 @@ public class Citas extends Person{
     private String especialidad;
     
     @Column(name = "confirmacion")
-    @NotEmpty
-    private String confirmacion;
+    private Integer confirmacion;
+    
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+    private Owner owner;
+    
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
     
     public String getFecha(){
         return this.fecha;
@@ -84,21 +95,24 @@ public class Citas extends Person{
         return this.especialidad;
     }
     
-    public void setEspecialida(String especialidad){
+    public void setEspecialidad(String especialidad){
         this.especialidad = especialidad;
     }
     
-    public String getConfirmacion(){
+    public Integer getConfirmacion(){
         return this.confirmacion;
     }
     
-    public void setConfirmacion(String confirmacion){
+    public void setConfirmacion(Integer confirmacion){
         this.confirmacion = confirmacion;
     }
     
     @Override
     public String toString() {
         return new ToStringCreator(this)
+                .append("id", this.getId())
+                //.append("owner_id",this.owner.getId())
+                .append("new", this.isNew())
                 .append("fecha", this.fecha)
                 .append("hora", this.hora)
                 .append("mascota",this.mascota)

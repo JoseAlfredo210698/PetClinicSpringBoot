@@ -30,7 +30,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,10 +53,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyUserDetailsService userDetailsService;
-
+    
     @Autowired
     private RecordRepository recordRepository;
-
+   
     // roles admin allow to access /admin/**
     // roles user allow to access /user/**
     // custom 403 access denied handler
@@ -72,7 +71,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/img/**",
                         "/resources/**",
                         "/static/**",
-                        "/login**",      
+                        "/login**",
                         "/owner_signup",
                         "/webjars/**").permitAll()
                 .antMatchers("/owner/**").access("hasAuthority('OWNER_PRIVILEGE')")
@@ -90,7 +89,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
-
+  
     @Bean
     public AuthenticationFailureHandler customAuthenticationFailureHandler() {
         return new CustomAuthenticationFailureHandler();
@@ -117,16 +116,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder encoder() {
-        //por primera vez, yo kevin, sin StackOverflow
-        //sin forums o tutoriales
-        //tuve que ir a la documentacion, y literalmente pasar MANUALMENTE
-        //(mas bien leer) como funcionan aproximadamente 8 clases
-        //para asi poder solucionar esto manualmente
+    public PasswordEncoder encoder() {       
         String idForEncode = "bcrypt";//no borrar en caso que se necesita multiple encriptaciones kevin del futuro
         Map encoders = new HashMap<>();
         encoders.put(idForEncode, new BCryptPasswordEncoder());
-        PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder(idForEncode, encoders);        
+        PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder(idForEncode, encoders);
         return passwordEncoder;
     }
 
@@ -173,12 +167,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         public void onAuthenticationSuccess(HttpServletRequest request,
                 HttpServletResponse response, Authentication authentication)
                 throws IOException {
-            
+
             RecordService recordService = new RecordService(recordRepository);
             System.out.println("test------ sucess");
             String username = request.getParameter("username");
             recordService.success(username);
-            
+
             handle(request, response, authentication);
             //clearAuthenticationAttributes(request);
         }
@@ -197,7 +191,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
         protected String determineTargetUrl(Authentication authentication) {
-            
+
             
             //no borrar en caso de que se necesita roles mas adelante
             boolean isUser = false;
@@ -217,11 +211,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     break;
                 }
             }
-            
+
             if(isUser)
                 return "/owner/";
             return "/";
-            
+
         }
 
         protected void clearAuthenticationAttributes(HttpServletRequest request) {

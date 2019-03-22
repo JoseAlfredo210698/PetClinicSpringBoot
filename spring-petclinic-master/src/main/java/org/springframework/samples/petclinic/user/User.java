@@ -5,31 +5,22 @@
  */
 package org.springframework.samples.petclinic.user;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import java.util.Collection;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-import org.springframework.core.style.ToStringCreator;
-import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.owner.Owner;
 
@@ -42,9 +33,9 @@ import org.springframework.samples.petclinic.owner.Owner;
 
 public class User extends Person {
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)    
     @NotEmpty
-    @Email
+    @Email    
     private String email;
 
     @Column(name = "password")
