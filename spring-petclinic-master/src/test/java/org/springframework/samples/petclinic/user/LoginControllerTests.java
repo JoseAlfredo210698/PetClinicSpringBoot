@@ -24,7 +24,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 /**
  *
@@ -69,9 +69,27 @@ public class LoginControllerTests {
     @Test
     public void testLoginFormOwner() throws Exception {
         mvc.perform(post("/login")
+                .param("username", "owner@owner.com")
+                .param("password", "owner@owner.com")
+        )
+                .andExpect(status().is3xxRedirection());
+    }
+    
+    @Test
+    public void testLoginFormDisabled() throws Exception {
+        mvc.perform(post("/login")
                 .param("username", "lol")
                 .param("password", "lol")
         )
-                .andExpect(status().is3xxRedirection());
+                .andExpect(redirectedUrl("/login?disabled"));        
+    }
+    
+    @Test
+    public void testLoginFormError() throws Exception {
+        mvc.perform(post("/login")
+                .param("username", "test")
+                .param("password", "lol")
+        )
+                .andExpect(redirectedUrl("/login?error"));        
     }
 }

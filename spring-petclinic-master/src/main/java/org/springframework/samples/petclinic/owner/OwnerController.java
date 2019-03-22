@@ -158,7 +158,7 @@ class OwnerController {
             owner.setImagen(relativePath);
             this.owners.save(owner);
             this.pets.save(pet);
-            return "redirect:/admin/owners/" + owner.getId();
+            return "redirect:/login";
         }
     }
 
@@ -337,7 +337,7 @@ class OwnerController {
     }
 
     //kevin
-    @GetMapping("user/owners")
+    @GetMapping("/admin/user/owners")
     public ModelAndView ListOwners() {
         modelAndView = this.ViewListOwners("user/list_owner");
         return modelAndView;
