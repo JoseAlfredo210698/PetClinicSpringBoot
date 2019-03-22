@@ -15,10 +15,11 @@ import javax.validation.constraints.Positive;
 
 
 @Entity
-@Table(name = "specialties")
+@Table(name = "especialidades")
+
 
 public class Specialties extends BaseEntity{
-    @Column(name = "name")
+    @Column(name = "nombreespecialidad")
     @NotEmpty
     private String name;
 
