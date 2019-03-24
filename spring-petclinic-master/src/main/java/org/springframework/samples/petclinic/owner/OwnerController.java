@@ -158,7 +158,7 @@ class OwnerController {
             owner.setImagen(relativePath);
             this.owners.save(owner);
             this.pets.save(pet);
-            return "redirect:/admin/owners/" + owner.getId();
+            return "redirect:/login";
         }
     }
 
@@ -201,13 +201,67 @@ class OwnerController {
     }
 
     @PostMapping("/admin/owners/{ownerId}/edit")
-    public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") int ownerId) {
+    public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result, 
+            @PathVariable("ownerId") int ownerId, @RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
-            owner.setId(ownerId);
+            //obtener owner                        
+            Owner owner_temp = this.owners.findById(ownerId);
+            String temp_pass = owner_temp.getUser().getPassword();
+            String temp_username = owner_temp.getUser().getEmail();
+
+            owner.setId(owner_temp.getId());
+  
+            //Hablar con edgar porque esto es temporal
+            Map encoders = new HashMap<>();
+            encoders.put("bcrypt", new BCryptPasswordEncoder());
+            PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
+
+            Role ownerRole = roleRepository.findByName("ROLE_OWNER");
+            User user = owner_temp.getUser();
+
+            user.setFirstName(owner.getFirstName());
+            user.setLastName(owner.getLastName());
+
+            if (owner.getUser().getPassword().contains("{bcrypt}") || owner.getUser().getPassword().compareTo("") == 0) {
+                user.setPassword(owner_temp.getUser().getPassword());
+            } else {
+                user.setPassword(passwordEncoder.encode(owner.getUser().getPassword()));
+            }
+            user.setEmail(owner.getUser().getEmail());
+            user.setCity(owner.getCity());
+            user.setTelephone(owner.getTelephone());
+            user.setZipcode("29049");
+
+            userRepository.save(user);
+            owner.setUser(user);
+            //owner.setUser(user);
+            /////////////////        
+            ///
+            String relativePath = "";
+            try {
+
+                // Get the file and save it somewhere
+                byte[] bytes = file.getBytes();
+                String prefijo = RandomStringUtils.randomAlphanumeric(10);
+                String imageName = prefijo + file.getOriginalFilename();
+                if (file.isEmpty()) {
+                    relativePath = owner_temp.getImagen();
+                } else {
+                    relativePath = "/resources/images/" + imageName;
+                }
+                Path path = Paths.get(UPLOADED_FOLDER + imageName);
+                Files.write(path, bytes);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            owner.setImagen(relativePath);
             this.owners.save(owner);
-            return "redirect:/owners/{ownerId}";
+            
+            return "redirect:/admin/owners/{ownerId}";
         }
     }
 
@@ -337,7 +391,7 @@ class OwnerController {
     }
 
     //kevin
-    @GetMapping("user/owners")
+    @GetMapping("/admin/user/owners")
     public ModelAndView ListOwners() {
         modelAndView = this.ViewListOwners("user/list_owner");
         return modelAndView;
