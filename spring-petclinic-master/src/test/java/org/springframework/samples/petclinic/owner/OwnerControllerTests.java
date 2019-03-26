@@ -53,7 +53,7 @@ public class OwnerControllerTests {
                 .apply(springSecurity())
                 .build();
     }
-    
+
     @Test
     public void testOwnerSignUpGet() throws Exception {
         mvc.perform(get("/owner_signup"))
@@ -61,30 +61,107 @@ public class OwnerControllerTests {
                 .andExpect(model().attributeExists("pet"))
                 .andExpect(view().name("owners/createOrUpdateOwnerFormInicial"));
     }
-    
+
+    //Para Correr, primero borra el record ingresado en la bd y entonces ya podras descomentar esto
+//    @Test
+//    public void testOwnerSignUpPost() throws Exception {
+//        MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
+//        
+//        mvc.perform(MockMvcRequestBuilders.multipart("/owner_signup").file(file)
+//                .param("owner.firstName", "Borrar")
+//                .param("owner.lastName", "ownersito")
+//                .param("owner.address", "Calle Glorioso Lodasal")
+//                .param("owner.city", "Tuxtlas")
+//                .param("owner.telephone", "123456")
+//                .param("owner.user.email", "borrar@porfavor.com")
+//                .param("owner.user.password", "")                
+//                .param("owner.longitud", "1")
+//                .param("owner.latitud", "1")
+//                .param("name", "Borrar") 
+//                .param("birthDate", "2000-09-07") 
+//                .param("type", "bird")                 
+//        )
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(view().name("redirect:/login"));
+//    }
+    @WithMockUser(username = "admin", authorities = {"ADMIN_PRIVILEGE"}) //admin
     @Test
-    public void testOwnerSignUpPost() throws Exception {
+    public void testAdminFindOwnersGet() throws Exception {
+        mvc.perform(get("/admin/owners/find"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(view().name("owners/findOwners"));
+    }
+
+    @WithMockUser(username = "admin", authorities = {"ADMIN_PRIVILEGE"}) //admin
+    @Test
+    public void testAdminOwnersGet() throws Exception {
+        mvc.perform(get("/admin/owners"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("selections"))
+                .andExpect(view().name("owners/ownersList"));
+    }
+
+    @WithMockUser(username = "admin", authorities = {"ADMIN_PRIVILEGE"}) //admin
+    @Test
+    public void testUpdateOwnerGet() throws Exception {
+        mvc.perform(get("/admin/owners/{ownerId}/edit", 1))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(view().name("owners/createOrUpdateOwnerForm"));
+    }
+
+    @WithMockUser(username = "admin", authorities = {"ADMIN_PRIVILEGE"}) //admin
+    @Test
+    public void testUpdateOwnerPost() throws Exception {
         MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
         
-        mvc.perform(MockMvcRequestBuilders.multipart("/owner_signup").file(file)
-                .param("owner.firstName", "Borrar")
-                .param("owner.lastName", "ownersito")
-                .param("owner.address", "Calle Glorioso Lodasal")
-                .param("owner.city", "Tuxtlas")
-                .param("owner.telephone", "123456")
-                .param("owner.user.email", "borrar@porfavor.com")
-                .param("owner.user.password", "")                
-                .param("owner.longitud", "1")
-                .param("owner.latitud", "1")
-                .param("name", "Borrar") 
-                .param("birthDate", "2000-09-07") 
-                .param("type", "bird")                 
+        mvc.perform(MockMvcRequestBuilders.multipart("/admin/owners/{ownerId}/edit", 1).file(file)
+                .param("firstName", "Joe unitario")
+                .param("lastName", "Franklin")
+                .param("address", "110 W. Liberty St.")
+                .param("city", "Madison")
+                .param("telephone", "6085551023")
+                .param("user.email", "fon@fon.com")
+                .param("user.password", "")
+                .param("longitud", "1")
+                .param("latitud", "1")
         )
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/login"));
+                .andExpect(view().name("redirect:/admin/owners/{ownerId}"));
+    }
+
+    @WithMockUser(username = "admin", authorities = {"ADMIN_PRIVILEGE"}) //admin
+    @Test(expected = NestedServletException.class) //nullpointer porque no debe existir -1
+    public void testUpdateOwnerPostFail() throws Exception {
+        MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
+        
+        mvc.perform(MockMvcRequestBuilders.multipart("/admin/owners/{ownerId}/edit", -1).file(file)//-1, siempre debe dar error
+                .param("firstName", "Joe Unitario aka-")
+                .param("lastName", "-Esto no deberia funcionar")
+                .param("address", "110 W. Liberty St.")
+                .param("city", "Madison")
+                .param("telephone", "6085551023")
+                .param("user.email", "fon@fon.com")
+                .param("user.password", "")
+                .param("longitud", "1")
+                .param("latitud", "1")
+        )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/admin/owners/{ownerId}"));
+                //Redirige ahi mismo pero con un error: Model object must not be null
     }
     
-    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" }) //owner
+    @WithMockUser(username = "admin", authorities = {"ADMIN_PRIVILEGE"}) //admin
+    @Test
+    public void testViewOwnerGet() throws Exception {
+        mvc.perform(get("/admin/owners/{ownerId}", 1))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(view().name("owners/ownerDetails"));
+    }
+    
+    @WithMockUser(username = "owner@owner.com", authorities = {"OWNER_PRIVILEGE"}) //owner
     @Test
     public void testMyProfileGet() throws Exception {
         mvc.perform(get("/owner/my_profile"))
@@ -93,11 +170,11 @@ public class OwnerControllerTests {
                 .andExpect(view().name("owners/createOrUpdateOwnerForm"));
     }
 
-    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" }) //owner
+    @WithMockUser(username = "owner@owner.com", authorities = {"OWNER_PRIVILEGE"}) //owner
     @Test
     public void testMyProfilePost() throws Exception {
         MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
-        
+
         mvc.perform(MockMvcRequestBuilders.multipart("/owner/my_profile").file(file)
                 .param("firstName", "Don owner")
                 .param("lastName", "ownersito")
@@ -105,21 +182,21 @@ public class OwnerControllerTests {
                 .param("city", "Tuxtlas")
                 .param("telephone", "123456")
                 .param("user.email", "owner@owner.com")
-                .param("user.password", "")                
+                .param("user.password", "")
                 .param("longitud", "1")
-                .param("latitud", "1")                
-                //.with(csrf())
+                .param("latitud", "1")
+        //.with(csrf())
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owner/my_profile"));
     }
-    
-    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" }) //owner
+
+    @WithMockUser(username = "owner@owner.com", authorities = {"OWNER_PRIVILEGE"}) //owner
     @Test(expected = NestedServletException.class)//sorry no hay binder, pero se que no puede romper reglas,
     //le hace un redirect diciendo que hubo un error porque el nombre esta muy largo
     public void testMyProfilePostFail() throws Exception {
         MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
-        
+
         mvc.perform(MockMvcRequestBuilders.multipart("/owner/my_profile").file(file)
                 .param("firstName", "Don ownerrrrrrrrrrrrrrrrrrrrrrrrrrrrrr44444444444444444"
                         + "444444444444444444444444444444444444444rrrrrr")
@@ -128,15 +205,15 @@ public class OwnerControllerTests {
                 .param("city", "Tuxtlas")
                 .param("telephone", "123456")
                 .param("user.email", "owner@owner.com")
-                .param("user.password", "")                
+                .param("user.password", "")
                 .param("longitud", "1")
-                .param("latitud", "1")                
-                //.with(csrf())
+                .param("latitud", "1")
+        //.with(csrf())
         )
-                .andExpect(status().is3xxRedirection());                
+                .andExpect(status().is3xxRedirection());
     }
-    
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" }) //owner
+
+    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"}) //owner
     @Test
     public void testListOwnersGet() throws Exception {
         mvc.perform(get("/admin/user/owners"))
