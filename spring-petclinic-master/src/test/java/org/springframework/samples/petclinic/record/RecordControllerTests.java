@@ -49,7 +49,6 @@ public class RecordControllerTests {
           .build();
     }
     
-//    @WithMockUser(username="admin",roles={"USER","ADMIN"})  No se como los definiste, entonces cheque el archivo para sacar los privilegios
     @WithMockUser(username = "admin", authorities = { "ADMIN_PRIVILEGE" }) //admin
     //@WithMockUser(username = "owner", authorities = { "OWNER_PRIVILEGE" }) //owner
     @Test

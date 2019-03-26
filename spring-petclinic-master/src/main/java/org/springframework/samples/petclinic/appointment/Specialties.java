@@ -19,16 +19,9 @@ import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "especialidades")
-<<<<<<< HEAD
-
-
-public class Specialties extends BaseEntity{
-    @Column(name = "nombreespecialidad")
-=======
 
 public class Specialties extends BaseEntity{
     @Column(name = "nombre")
->>>>>>> 8130b4dd20b169127998bc4ae13e0d6c65647a97
     @NotEmpty
     private String nombre;
     

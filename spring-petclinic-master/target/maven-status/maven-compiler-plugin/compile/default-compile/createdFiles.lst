@@ -11,7 +11,6 @@ org\springframework\samples\petclinic\vet\Specialty.class
 org\springframework\samples\petclinic\citas\CitasRepository.class
 org\springframework\samples\petclinic\owner\PetController.class
 org\springframework\samples\petclinic\citas\EspecialidadesRepository.class
-org\springframework\samples\petclinic\system\SpringSecurityConfig$CustomAccessDeniedHandler.class
 org\springframework\samples\petclinic\citas\MascotasRepository.class
 org\springframework\samples\petclinic\owner\PetRepository.class
 org\springframework\samples\petclinic\system\WelcomeController.class

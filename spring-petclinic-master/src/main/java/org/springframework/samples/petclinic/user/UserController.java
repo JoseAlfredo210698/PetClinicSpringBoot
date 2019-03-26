@@ -24,6 +24,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -62,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ModelAndView Save(@Valid User user, BindingResult result) {
+    public ModelAndView Save(@Valid User user, BindingResult result, @RequestParam("file") MultipartFile file) {
         modelAndView = new ModelAndView();
         String password = user.getPassword();
 
