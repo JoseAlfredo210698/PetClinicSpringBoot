@@ -47,6 +47,22 @@ public class UserControllerTests {
     
     @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
     @Test
+    public void testInitCreationForm() throws Exception {
+        mvc.perform(get("/user/home"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("user/list"));
+    }
+    
+    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @Test
+    public void testDeleteGet() throws Exception {
+        mvc.perform(get("/user/delete/45"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("user/list"));
+    }	
+    
+    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @Test
     public void testCreateGet() throws Exception {
         mvc.perform(get("/user/create"))
             .andExpect(status().isOk())
@@ -59,22 +75,46 @@ public class UserControllerTests {
     @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testCreatePost() throws Exception {
-        MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
-        mvc.perform(MockMvcRequestBuilders.multipart("/user/create").file(file)
-            .param("id", "100")
-            .param("first_name", "admin")
-            .param("last_name", "admin")
-            .param("activate", "1")
-            .param("email", "admin@admin")
-            .param("email", "owner@owner.com")
-            .param("password", "{bcrypt}$2a$10$jS74X.M2pYegYNm7HbnJhu2SwxMZrmGewQKybpsTByCOqOx.fUTr2")                
-            .param("telephone", "123")
-            .param("zipcode", "29049")      
-            .param("city", "")    
+        mvc.perform(post("/user/create")
+            .param("email", "admin@admin4")
+            .param("firstName", "admin")
+            .param("lastName", "admin")
+            .param("password", "1234") 
+            .param("active", "1")         
+            .param("city", "tuxtla gutierrez")
+            .param("zipcode", "29010")    
+            .param("telephone", "123")  
         )
             .andExpect(status().isOk())
-            .andExpect(view().name("user/create"));
+            .andExpect(view().name("user/list"));
     }	
+     
+    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @Test
+    public void testUpdateGet() throws Exception {
+        mvc.perform(get("/user/update/20"))
+            .andExpect(model().attributeExists("user"))
+            .andExpect(model().attributeExists("exitsError"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("user/update_delete"));
+    }
+    
+    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @Test
+    public void testUpdatePost() throws Exception {
+        mvc.perform(post("/user/update/44")
+            .param("email", "admin@admin5")
+            .param("firstName", "admin2")
+            .param("lastName", "admin")
+            .param("password", "1234") 
+            .param("active", "1")         
+            .param("city", "tuxtla gutierrez")
+            .param("zipcode", "29010")    
+            .param("telephone", "123")  
+        )
+            .andExpect(status().isOk())
+            .andExpect(view().name("user/list"));
+    }    
     
     @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
     @Test
@@ -83,22 +123,4 @@ public class UserControllerTests {
             .andExpect(status().isOk())
             .andExpect(view().name("user/reports"));
     }
-     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
-    @Test
-    public void testUpdateGet() throws Exception {
-        mvc.perform(get("/user/update/10"))
-            .andExpect(model().attributeExists("user"))
-            .andExpect(model().attributeExists("exitsError"))
-            .andExpect(status().is3xxRedirection())
-            .andExpect(view().name("user/update_delete"));
-    }
-         
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
-    @Test
-    public void testInitCreationForm() throws Exception {
-        mvc.perform(get("/user/home"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("user/list"));
-    }	
 }

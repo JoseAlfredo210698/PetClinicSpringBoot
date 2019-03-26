@@ -64,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ModelAndView Save(@Valid User user, BindingResult result, @RequestParam("file") MultipartFile file) {
+    public ModelAndView Save(@Valid User user, BindingResult result) {
         modelAndView = new ModelAndView();
         String password = user.getPassword();
 
