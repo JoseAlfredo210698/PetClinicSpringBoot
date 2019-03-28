@@ -45,7 +45,7 @@ public class AppointmentControllerTest {
                 .build();
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getAppointments() throws Exception {
         this.mockMvc.perform(get("/appointments/report"))
@@ -54,7 +54,7 @@ public class AppointmentControllerTest {
                 .andExpect(view().name("appointment/appointment-report"));
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getAppointmentsBySpecialtie() throws Exception {
         this.mockMvc.perform(get("/appointment/report/{specialtieId}", 1))
