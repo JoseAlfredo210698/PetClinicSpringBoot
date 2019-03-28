@@ -45,7 +45,7 @@ public class ProductControllerTest {
                 .build();
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getProducts() throws Exception {
         this.mockMvc.perform(get("/products"))
@@ -54,7 +54,7 @@ public class ProductControllerTest {
                 .andExpect(view().name("producto/product"));
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getProductsReport() throws Exception {
         this.mockMvc.perform(get("/products/report"))
@@ -63,7 +63,7 @@ public class ProductControllerTest {
                 .andExpect(view().name("producto/product-report"));
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void initNewProduct() throws Exception {
         this.mockMvc.perform(get("/product/create-product"))
@@ -72,7 +72,7 @@ public class ProductControllerTest {
                 .andExpect(view().name("producto/product-create"));
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"}) //owner
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"}) //owner
     @Test
     public void postNewProduct() throws Exception {
         MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
@@ -87,7 +87,7 @@ public class ProductControllerTest {
         //.andExpect(status().is3xxRedirection());
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"}) //admin
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"}) //admin
     @Test
     public void getUpdateProduct() throws Exception {
         this.mockMvc.perform(get("/product/edit/{productId}", 3))
@@ -96,7 +96,7 @@ public class ProductControllerTest {
                 .andExpect(view().name("producto/product-edit"));
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void updateProduct() throws Exception {
         MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
@@ -111,7 +111,7 @@ public class ProductControllerTest {
         //.andExpect(status().is3xxRedirection())
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void deleteProduct() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.delete("/product/delete/3"))
@@ -122,7 +122,7 @@ public class ProductControllerTest {
 
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void testDeletePostVet() throws Exception {
         this.mockMvc.perform(get("/product/delete/3"))
