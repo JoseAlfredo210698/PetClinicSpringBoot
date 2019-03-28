@@ -45,7 +45,7 @@ public class MedicamentoControllerTest {
                 .build();
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getMedicamentos() throws Exception {
         this.mockMvc.perform(get("/medicamento"))
@@ -54,7 +54,7 @@ public class MedicamentoControllerTest {
                 .andExpect(view().name("medicamentos/medicamentosList"));
     }
     
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getMedicamentosFind() throws Exception {
         this.mockMvc.perform(get("/medicamento/find"))
@@ -64,7 +64,7 @@ public class MedicamentoControllerTest {
     }
 
     
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getProductsReport() throws Exception {
         this.mockMvc.perform(get("/medicamento2"))
@@ -73,7 +73,7 @@ public class MedicamentoControllerTest {
                 .andExpect(view().name("medicamentos/medicamentosList2"));
     }
     
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void initNewProduct() throws Exception {
         this.mockMvc.perform(get("/medicamento/new"))
@@ -82,7 +82,7 @@ public class MedicamentoControllerTest {
                 .andExpect(view().name("medicamentos/createOrUpdateMedicamentoForm"));
     }
 
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"}) //owner
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"}) //owner
     @Test
     public void postNewProduct() throws Exception {
 
@@ -96,7 +96,7 @@ public class MedicamentoControllerTest {
 
     
     
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void getUpdateMedicamento() throws Exception {
         this.mockMvc.perform(get("/medicamento/{medicamentoId}/edit", 1))
@@ -106,7 +106,7 @@ public class MedicamentoControllerTest {
     }
     
     
-    @WithMockUser(username = "test", authorities = {"ADMIN_PRIVILEGE"})
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"})
     @Test
     public void postUpdateMedicamento() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/medicamento/{medicamentoId}/edit", 1)
