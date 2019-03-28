@@ -93,7 +93,6 @@ class VetController {
 
     @GetMapping("/vets")
     public String processFindForm(Vet vet, BindingResult result, Map<String, Object> model) {
-
         // allow parameterless GET request for /owners to return all records
         if (vet.getLastName() == null) {
             vet.setLastName(""); // empty string signifies broadest possible search
@@ -101,6 +100,11 @@ class VetController {
 
         // find owners by last name
         Collection<Vet> results = this.vets.findByLastName(vet.getLastName());
+        
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>><");
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>><"+results.size());
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>><");
+
         if (results.isEmpty()) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");
@@ -117,7 +121,7 @@ class VetController {
     }
     
     
-        @GetMapping("/vets2")
+    @GetMapping("/vets2")
     public String processFindForm2(Vet vet, BindingResult result, Map<String, Object> model) {
 
         // allow parameterless GET request for /owners to return all records
@@ -156,7 +160,7 @@ class VetController {
         } else {
             vet.setId(vetId);
             this.vets.save(vet);
-            return "redirect:/vets/{vetId}";
+            return "redirect:/vets/" + vet.getId();
         }
     }
     

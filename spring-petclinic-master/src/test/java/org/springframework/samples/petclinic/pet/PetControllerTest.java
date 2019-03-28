@@ -46,6 +46,8 @@ public class PetControllerTest {
                 .build();
     }
     
+    private int idPet = 29;
+    
     @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testInitCreationForm() throws Exception {
@@ -58,7 +60,7 @@ public class PetControllerTest {
     @Test
     public void testCreatePetPost() throws Exception {
         mvc.perform(post("/owner/pets/new")
-            .param("name", "Gratus")
+            .param("name", "Gratus"+idPet)
             .param("birthDate", "2019-03-05")
             .param("type", "cat")
         )
@@ -78,7 +80,7 @@ public class PetControllerTest {
     @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testUpdatePetGet() throws Exception {
-        mvc.perform(get("/owner/pets/20/edit"))
+        mvc.perform(get("/owner/pets/"+(idPet)+"/edit"))
             .andExpect(model().attributeExists("pet"))
             .andExpect(status().isOk())
             .andExpect(view().name("pets/createOrUpdatePetFormOwner"));
@@ -87,7 +89,7 @@ public class PetControllerTest {
     @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testUpdatePetPost() throws Exception {
-        mvc.perform(post("/owner/pets/20/edit")
+        mvc.perform(post("/owner/pets/"+(idPet)+"/edit")
             .param("name", "Gratus2")
             .param("birthDate", "2019-02-05")
             .param("type", "cat")
