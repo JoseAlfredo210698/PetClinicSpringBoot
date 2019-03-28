@@ -49,7 +49,7 @@ public class RecordControllerTests {
           .build();
     }
     
-    @WithMockUser(username = "admin", authorities = { "ADMIN_PRIVILEGE" }) //admin
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" }) //admin
     //@WithMockUser(username = "owner", authorities = { "OWNER_PRIVILEGE" }) //owner
     @Test
     public void testInitCreationForm() throws Exception {

@@ -45,9 +45,9 @@ public class UserControllerTests {
                 .build();
     }
     
-    private int idUser = 49;
+    private int idUser = 3;
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testInitCreationForm() throws Exception {
         mvc.perform(get("/user/home"))
@@ -55,7 +55,7 @@ public class UserControllerTests {
             .andExpect(view().name("user/list"));
     }
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testCreateGet() throws Exception {
         mvc.perform(get("/user/create"))
@@ -66,24 +66,25 @@ public class UserControllerTests {
             .andExpect(view().name("user/create"));
     }	    
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
-    @Test
-    public void testCreatePost() throws Exception {
-        mvc.perform(post("/user/create")
-            .param("email", "admin@admin" + idUser)
-            .param("firstName", "admin" + idUser)
-            .param("lastName", "admin" + idUser)
-            .param("password", "1234") 
-            .param("active", "1")         
-            .param("city", "tuxtla gutierrez")
-            .param("zipcode", "29010")    
-            .param("telephone", "123")  
-        )
-            .andExpect(status().isOk())
-            .andExpect(view().name("user/list"));
-    }	
+    //Solo una vez
+//    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
+//    @Test
+//    public void testCreatePost() throws Exception {
+//        mvc.perform(post("/user/create")
+//            .param("email", "admin@admin" + idUser)
+//            .param("firstName", "admin" + idUser)
+//            .param("lastName", "admin" + idUser)
+//            .param("password", "1234") 
+//            .param("active", "1")         
+//            .param("city", "tuxtla gutierrez")
+//            .param("zipcode", "29010")    
+//            .param("telephone", "123")  
+//        )
+//            .andExpect(status().isOk())
+//            .andExpect(view().name("user/list"));
+//    }	
      
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testUpdateGet() throws Exception {
         mvc.perform(get("/user/update/"+idUser))
@@ -93,10 +94,10 @@ public class UserControllerTests {
             .andExpect(view().name("user/update_delete"));
     }
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testUpdatePost() throws Exception {
-        mvc.perform(post("/user/update/"+(idUser-1))
+        mvc.perform(post("/user/update/"+(idUser))
             .param("email", "admin@admin"+(idUser+1))
             .param("firstName", "admin"+(idUser+1))
             .param("lastName", "admin"+(idUser+1))
@@ -110,7 +111,7 @@ public class UserControllerTests {
             .andExpect(view().name("user/list"));
     }    
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testDeleteGet() throws Exception {
         mvc.perform(get("/user/delete/"+idUser))
@@ -119,7 +120,7 @@ public class UserControllerTests {
     }	
     
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testReportsGet() throws Exception {
         mvc.perform(get("/user/reports"))

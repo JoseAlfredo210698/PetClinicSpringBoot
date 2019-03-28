@@ -60,8 +60,8 @@ public class LoginControllerTests {
     @Test
     public void testLoginFormAdmin() throws Exception {
         mvc.perform(post("/login")
-                .param("username", "test")
-                .param("password", "test")
+                .param("username", "admin@admin.com")
+                .param("password", "admin")
         )
                 .andExpect(status().is3xxRedirection());
     }
@@ -70,7 +70,7 @@ public class LoginControllerTests {
     public void testLoginFormOwner() throws Exception {
         mvc.perform(post("/login")
                 .param("username", "owner@owner.com")
-                .param("password", "owner@owner.com")
+                .param("password", "owner")
         )
                 .andExpect(status().is3xxRedirection());
     }
@@ -78,8 +78,8 @@ public class LoginControllerTests {
     @Test
     public void testLoginFormDisabled() throws Exception {
         mvc.perform(post("/login")
-                .param("username", "lol")
-                .param("password", "lol")
+                .param("username", "prueba@prueba2.com")
+                .param("password", "prueba")
         )
                 .andExpect(redirectedUrl("/login?disabled"));        
     }

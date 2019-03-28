@@ -46,9 +46,9 @@ public class PetControllerTest {
                 .build();
     }
     
-    private int idPet = 29;
+    private int idPet = 1;
     
-    @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
+    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testInitCreationForm() throws Exception {
         mvc.perform(get("/owner/pets"))
@@ -56,7 +56,7 @@ public class PetControllerTest {
             .andExpect(view().name("owners/ownerDetailsOwner"));
     }
     
-    @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
+    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testCreatePetPost() throws Exception {
         mvc.perform(post("/owner/pets/new")
@@ -64,11 +64,10 @@ public class PetControllerTest {
             .param("birthDate", "2019-03-05")
             .param("type", "cat")
         )
-            .andExpect(status().is3xxRedirection())
-            .andExpect(view().name("redirect:/owner/pets/"));
+            .andExpect(status().isOk());
     }
     
-    @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
+    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testCreatePetGet() throws Exception {
         mvc.perform(get("/owner/pets/new"))
@@ -77,7 +76,7 @@ public class PetControllerTest {
             .andExpect(view().name("pets/createOrUpdatePetFormOwner"));
     }
     
-    @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
+    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testUpdatePetGet() throws Exception {
         mvc.perform(get("/owner/pets/"+(idPet)+"/edit"))
@@ -86,7 +85,7 @@ public class PetControllerTest {
             .andExpect(view().name("pets/createOrUpdatePetFormOwner"));
     }
     
-    @WithMockUser(username = "lol", authorities = { "OWNER_PRIVILEGE" })
+    @WithMockUser(username = "owner@owner.com", authorities = { "OWNER_PRIVILEGE" })
     @Test
     public void testUpdatePetPost() throws Exception {
         mvc.perform(post("/owner/pets/"+(idPet)+"/edit")

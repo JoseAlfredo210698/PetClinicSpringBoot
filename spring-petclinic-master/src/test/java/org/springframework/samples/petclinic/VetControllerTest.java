@@ -44,9 +44,9 @@ public class VetControllerTest {
                 .build();
     }
     
-    private int idUser = 14;
+    private int idUser = 1;
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testFindVet() throws Exception {
         mvc.perform(get("/vets/find"))
@@ -54,7 +54,7 @@ public class VetControllerTest {
             .andExpect(view().name("vets/findVets"));
     }
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testGetVetById() throws Exception {
         mvc.perform(get("/vets/2"))
@@ -63,7 +63,7 @@ public class VetControllerTest {
             .andExpect(view().name("vets/vetDetails"));
     }
 
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testAddGetVet() throws Exception {
         mvc.perform(get("/vets/new"))
@@ -71,7 +71,7 @@ public class VetControllerTest {
             .andExpect(view().name("vets/createOrUpdateVetForm"));
     }
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testEditGetVet() throws Exception {
         mvc.perform(get("/vets/"+idUser+"/edit"))
@@ -79,7 +79,7 @@ public class VetControllerTest {
             .andExpect(view().name("vets/createOrUpdateVetForm"));
     }
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testEditPostVet() throws Exception {
         mvc.perform(post("/vets/"+idUser+"/edit")
@@ -93,7 +93,7 @@ public class VetControllerTest {
             .andExpect(view().name("redirect:/vets/"+idUser));
     } 
         
-//    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+//    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
 //    @Test
 //    public void testDeletePostVet() throws Exception {
 //        mvc.perform(get("/vets/"+idUser+"/delete"))
@@ -101,7 +101,7 @@ public class VetControllerTest {
 //            .andExpect(view().name("redirect:/vets?lastName="));
 //    }
     
-    @WithMockUser(username = "test", authorities = { "ADMIN_PRIVILEGE" })
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testAddtVet() throws Exception {
         mvc.perform(post("/vets/new")
@@ -111,8 +111,7 @@ public class VetControllerTest {
             .param("telephone", "123")  
             .param("Schedule", "2:40")
         )
-            .andExpect(status().is3xxRedirection())
-            .andExpect(view().name("redirect:/vets/"+idUser));
+            .andExpect(status().is3xxRedirection());
     } 
 
      
