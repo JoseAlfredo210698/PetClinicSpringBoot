@@ -1,3 +1,5 @@
+El petclinic.sql contiene lo necesario para que funcione el programa la primera
+vez, tambien para que las pruebas unitarias funcionen. Team Charizcos
 ================================================================================
 ===        Spring PetClinic sample application - MySQL Configuration         ===
 ================================================================================
