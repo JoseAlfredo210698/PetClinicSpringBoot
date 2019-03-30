@@ -76,7 +76,7 @@
                             <span>Find owners</span>
                         </li>
                         
-                        <li th:replace="::menuItem ('/admin/citas','citas','citas','th-list','Make Appointment')">
+                        <li th:replace="::menuItem ('/admin/citas','citas','citas','th-list','Cita')">
                             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                             <span>Citas</span>
                         </li>
@@ -102,7 +102,11 @@
                         </li>
 
                         <li th:replace="::menuItem ('/user/home','list','list','th-list','Usuario')">
-                        </li>         
+                        </li>
+                        
+                        <li th:replace="::menuItem ('/','Manual','Manual','th-list','Manual')">
+                            <a th:href="@{/Reportes.html}">Pre</a>
+                        </li>  
                         
                         <li th:replace="::menuItem ('/logout','logout','users','th-list','Logout')">                                                        
                         </li>
