@@ -25,7 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 /**
  *
- * @author AugustoRuCle
+ * @author legad
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
