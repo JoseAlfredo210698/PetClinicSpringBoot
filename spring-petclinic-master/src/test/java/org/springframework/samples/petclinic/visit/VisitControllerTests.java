@@ -20,8 +20,11 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -47,15 +50,31 @@ public class VisitControllerTests {
           .apply(springSecurity())
           .build();
     }
+    private int idPet = 3;
     
-    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" }) //admin
-    //@WithMockUser(username = "owner", authorities = { "OWNER_PRIVILEGE" }) //owner
+    @WithMockUser(username = "admin@admin.com", authorities = { "ADMIN_PRIVILEGE" })
     @Test
     public void testInitCreationForm() throws Exception {
-        mvc.perform(get("/admin/records"))
-            .andExpect(status().isOk())
-            .andExpect(model().attributeExists("visit"))
-            .andExpect(view().name("user/records"));
+        mvc.perform(get("/admin/owners/*/pets/"+idPet+"/visits/new"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("visit"))
+                .andExpect(view().name("pets/createOrUpdateVisitForm"));
+    }
+    
+    @WithMockUser(username = "admin@admin.com", authorities = {"ADMIN_PRIVILEGE"}) //owner
+    @Test
+    public void testOwnerCitasPost() throws Exception {
+        MockMultipartFile file = new MockMultipartFile("file", new byte[1]);
+
+        mvc.perform(MockMvcRequestBuilders.multipart("/admin/owners/*/pets/"+idPet+"/visits/new").file(file)
+                .param("visit_date", "2019-03-30")
+                .param("description", "ver al medico")
+                .param("pet_id", "3")
+                
+        //.with(csrf())
+        )
+                .andExpect(status().is3xxRedirection());
+                //.andExpect(view().name("/admin/owners/{ownerId}"));
     }
     
 }
