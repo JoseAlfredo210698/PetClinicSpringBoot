@@ -108,6 +108,7 @@ public class ProductController {
     @GetMapping("/product/delete/{productId}")
     public String deleteProduct(@PathVariable("productId") int productId) {
         Product product = this.productRepository.findById(productId);
+        System.out.println("PRODUCT "+product);
         this.productRepository.delete(product);
         return "redirect:/products";
     }

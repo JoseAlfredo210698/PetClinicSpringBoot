@@ -17,5 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
  * @author legad
  */
 public interface CitasRepository extends Repository<Citas, Long>{
+    
+    @Query("SELECT cita FROM Citas cita WHERE cita.id =:id")
+    @Transactional(readOnly = true)
+    Citas findById(@Param("id") Integer id);
+    
     void save(Citas citas);   
 }

@@ -45,6 +45,7 @@
                     <th th:text="#{hora}" style="width: 150px;"></th>
                     <th th:text="#{mascota}" style="width: 200px;"></th>
                     <th th:text="#{confirmacion}" style="width: 150px;"></th>
+                    <th th:text="Confirmar" style="width: 150px;"></th>
                 </tr>
             </thead>
 
@@ -58,6 +59,7 @@
                         th:text="#{noConfirmado}"/>
                     <td th:unless="${appointments.confirmacion == 0}" style="width: 150px; color: green;"
                         th:text="#{confirmado}"/>
+                    <td> <a th:text="Confirmar" th:href="@{/appointments/update/__${appointments.id}__}" class="btn btn-default"></a> </td>
                 </tr>
             </tbody>
         </table>

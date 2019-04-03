@@ -58,4 +58,15 @@ public class AppointmentController {
 
         return VIEW_PRODUCTO_REPORT_BY_SPECIALTIE;
     }
+    
+    @GetMapping("/appointments/update/{id}")
+    public String updateAppointment(@PathVariable("id") int productId) {
+        System.out.println(productId);
+        //Appointment product = this.appointmentRepository.findById(productId);
+        //System.out.println("PRO "+product);
+        //this.appointmentRepository.delete(product);
+         this.appointmentRepository.updateUserSetStatusForNameNative("1", productId);
+         
+        return "redirect:/appointments/report";
+    }
 }

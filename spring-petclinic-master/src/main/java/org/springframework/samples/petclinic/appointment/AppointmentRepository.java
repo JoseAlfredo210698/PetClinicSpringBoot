@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.appointment;
 
 import java.util.Collection;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -28,6 +29,15 @@ inner join specialties on appointment.id_specialtie=specialties.id;
     @Transactional(readOnly = true)
     Collection<Appointment> getAppointmentsByConfirmation(@Param("id") Integer id);
 
+    @Query("SELECT appointment FROM Appointment appointment WHERE appointment.id =:id")
+    @Transactional(readOnly = true)
+    Appointment findById(@Param("id") Integer id);
     
-
+    @Modifying
+    @Transactional
+    @Query(value = "update citas u set u.confirmacion = ? where u.id = ?", 
+    nativeQuery = true)
+    int updateUserSetStatusForNameNative(String confirmacion, Integer id);
+    
+    void delete(Appointment appoinment);
 }
